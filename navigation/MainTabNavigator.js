@@ -8,6 +8,10 @@ import LinksScreen from '../screens/LinksScreen'
 import SettingsScreen from '../screens/SettingsScreen'
 import Colors from '../constants/Colors'
 
+const tabBarOptions = {
+    activeTintColor: Colors.tabIconSelected,
+    inactiveTintColor: Colors.tabIconDefault,
+}
 
 function createNavigationOptions( name, icon ) {
   let iconSet
@@ -21,7 +25,7 @@ function createNavigationOptions( name, icon ) {
     iconSet = icon
   }
   return {
-    tabBarLabel: 'Home',
+    tabBarLabel: name,
     tabBarIcon: ({ focused }) => (
       <TabBarIcon
         focused={focused}
@@ -30,10 +34,7 @@ function createNavigationOptions( name, icon ) {
         }
       />
     ),
-    tabBarOptions: {
-      activeTintColor: Colors.tabIconSelected,
-      inactiveTintColor: Colors.tabIconDefault,
-    }
+    tabBarOptions
   }
 }
 
@@ -42,7 +43,6 @@ const HomeStack = createStackNavigator({
   Home: HomeScreen,
 })
 HomeStack.navigationOptions = createNavigationOptions('Home', 'md-information-circle')
-
 
 const LinksStack = createStackNavigator({
   Links: LinksScreen,
