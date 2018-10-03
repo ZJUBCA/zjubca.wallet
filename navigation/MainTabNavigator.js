@@ -3,7 +3,7 @@ import { Platform } from 'react-native'
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
 
 import TabBarIcon from '../components/TabBarIcon'
-import HomeScreen from '../screens/HomeScreen'
+import AssetScreen from '../screens/AssetScreen'
 import LinksScreen from '../screens/LinksScreen'
 import SettingsScreen from '../screens/SettingsScreen'
 import Colors from '../constants/Colors'
@@ -40,9 +40,10 @@ function createNavigationOptions(icon) {
 
 
 const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+  Asset: AssetScreen,
+  Links: LinksScreen,
 })
-HomeStack.navigationOptions = createNavigationOptions('md-information-circle')
+HomeStack.navigationOptions = createNavigationOptions('logo-bitcoin')
 
 const LinksStack = createStackNavigator({
   Links: LinksScreen,
