@@ -9,11 +9,12 @@ import SettingsScreen from '../screens/SettingsScreen'
 import Colors from '../constants/Colors'
 
 const tabBarOptions = {
-    activeTintColor: Colors.tabIconSelected,
-    inactiveTintColor: Colors.tabIconDefault,
+  showLabel: false,
+  activeTintColor: Colors.tabIconSelected,
+  inactiveTintColor: Colors.tabIconDefault,
 }
 
-function createNavigationOptions( name, icon ) {
+function createNavigationOptions(icon) {
   let iconSet
   if (typeof icon === 'string') {
     iconSet = {
@@ -25,7 +26,6 @@ function createNavigationOptions( name, icon ) {
     iconSet = icon
   }
   return {
-    tabBarLabel: name,
     tabBarIcon: ({ focused }) => (
       <TabBarIcon
         focused={focused}
@@ -42,17 +42,17 @@ function createNavigationOptions( name, icon ) {
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
 })
-HomeStack.navigationOptions = createNavigationOptions('Home', 'md-information-circle')
+HomeStack.navigationOptions = createNavigationOptions('md-information-circle')
 
 const LinksStack = createStackNavigator({
   Links: LinksScreen,
 })
-LinksStack.navigationOptions = createNavigationOptions('Links', 'md-link')
+LinksStack.navigationOptions = createNavigationOptions('md-link')
 
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen,
 })
-SettingsStack.navigationOptions = createNavigationOptions('Settings', 'md-options')
+SettingsStack.navigationOptions = createNavigationOptions('md-options')
 
 
 export default createBottomTabNavigator({
