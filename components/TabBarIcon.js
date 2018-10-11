@@ -1,13 +1,14 @@
 import React from 'react';
 // import { Icon } from 'expo';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
 
 import Colors from '../constants/Colors';
+// import FontAwesome5 from '@expo/vector-icons/vendor/react-native-vector-icons/FontAwesome5'
 
 export default class TabBarIcon extends React.Component {
   render() {
     return (
-      <Ionicons
+      <FontAwesome
         name={this.props.name}
         size={26}
         style={{ marginBottom: -3 }}

@@ -41,10 +41,6 @@ export default class AssetScreen extends React.Component {
           <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
             <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
           </View>
-
-          <Text style={styles.getStartedText}>
-            Change this text and your app will automatically reload.
-          </Text>
         </View>
 
         <View style={styles.helpContainer}>
@@ -104,6 +100,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     paddingTop: 30,
+    paddingHorizontal: 20,
   },
   welcomeContainer: {
     alignItems: 'center',

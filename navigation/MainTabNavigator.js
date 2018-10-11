@@ -43,17 +43,17 @@ const HomeStack = createStackNavigator({
   Asset: AssetScreen,
   Links: LinksScreen,
 })
-HomeStack.navigationOptions = createNavigationOptions('logo-bitcoin')
+HomeStack.navigationOptions = createNavigationOptions('credit-card')
 
 const LinksStack = createStackNavigator({
   Links: LinksScreen,
 })
-LinksStack.navigationOptions = createNavigationOptions('md-link')
+LinksStack.navigationOptions = createNavigationOptions('calendar')
 
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen,
 })
-SettingsStack.navigationOptions = createNavigationOptions('md-options')
+SettingsStack.navigationOptions = createNavigationOptions('calendar')
 
 
 export default createBottomTabNavigator({
