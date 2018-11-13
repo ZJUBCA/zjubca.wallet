@@ -12,6 +12,7 @@ import {
 import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 import {eosService} from '../services/eos.service'
+import {accountService} from '../services/account.service'
 
 
 
@@ -25,10 +26,12 @@ export default class AssetScreen extends React.Component {
   };
 
   test = async () => {
-    const result = await eosService.getBalance();
-    this.setState({
-      balance: result[0]
-    });
+    const result = await accountService.getAccounts()
+    console.log(result);
+    // const result = await eosService.getBalance();
+    // this.setState({
+    //   balance: result[0]
+    // });
   };
 
   render() {
