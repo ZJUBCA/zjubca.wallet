@@ -21,7 +21,6 @@ function createNavigationOptions(icon) {
       active: icon,
       inactive: icon
     }
-    console.log(iconSet)
   } else {
     iconSet = icon
   }
@@ -48,12 +47,12 @@ HomeStack.navigationOptions = createNavigationOptions('credit-card')
 const LinksStack = createStackNavigator({
   Links: LinksScreen,
 })
-LinksStack.navigationOptions = createNavigationOptions('calendar')
+LinksStack.navigationOptions = createNavigationOptions('paper-plane')
 
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen,
 })
-SettingsStack.navigationOptions = createNavigationOptions('calendar')
+SettingsStack.navigationOptions = createNavigationOptions('cog')
 
 
 export default createBottomTabNavigator({

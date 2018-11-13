@@ -10,12 +10,25 @@ import {
   Button,
 } from 'react-native';
 import { WebBrowser } from 'expo';
-
 import { MonoText } from '../components/StyledText';
+import {eosService} from '../services/eos.service'
+
+
 
 export default class AssetScreen extends React.Component {
+  state = {
+    balance: ''
+  };
+
   static navigationOptions = {
     title: '资产'
+  };
+
+  test = async () => {
+    const result = await eosService.getBalance();
+    this.setState({
+      balance: result[0]
+    });
   };
 
   render() {
@@ -32,6 +45,9 @@ export default class AssetScreen extends React.Component {
           />
         </View>
         <Button title="Go Links" onPress={() => this.props.navigation.navigate('Links')} />
+        <Button title="test" onPress={this.test} />
+
+        <Text>{this.state.balance}</Text>
 
         <View style={styles.getStartedContainer}>
           {this._maybeRenderDevelopmentModeWarning()}
