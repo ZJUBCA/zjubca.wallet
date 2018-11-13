@@ -17,16 +17,16 @@
     "@expo/vector-icons": "8.x",
     "eosjs": "^20.0.0-beta2",
     "eosjs-rn": "^20.0.0-beta2.3",
-    "expo": "30.0.1",
-    "expo-asset": "^1.1.0",
-    "expo-constants": "^1.0.2",
-    "expo-font": "^1.0.0",
-    "react": "16.3.1",
+    "expo": "30.x",
+    "expo-asset": "1.1.x",
+    "expo-constants": "1.x",
+    "expo-font": "1.0.x",
+    "react": "16.7.0-alpha.0",
     "react-native": "0.55.x",
     "react-navigation": "2.x",
-    "text-encoding": "^0.7.0"
+    "text-encoding": "0.x"
   },
   "devDependencies": {
-    "jest-expo": "30.0.0"
+    "jest-expo": "30.x"
   }
 }
