@@ -4,11 +4,15 @@ import {
   Platform,
   ScrollView,
   StyleSheet,
-  Text,
+  // Text,
   TouchableOpacity,
   View,
-  Button,
+  // Button,
+  Picker,
+  Modal,
+  Alert,
 } from 'react-native';
+import { Container, Header, Content, Button, Text } from 'native-base';
 import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 import {eosService} from '../services/eos.service'
@@ -18,7 +22,9 @@ import {accountService} from '../services/account.service'
 
 export default class AssetScreen extends React.Component {
   state = {
-    balance: ''
+    balance: '',
+    test: '1',
+    modalVisible: true,
   };
 
   static navigationOptions = {
@@ -47,8 +53,9 @@ export default class AssetScreen extends React.Component {
             style={styles.welcomeImage}
           />
         </View>
-        <Button title="Go Links" onPress={() => this.props.navigation.navigate('Links')} />
-        <Button title="test" onPress={this.test} />
+        {/*<Button title="Go Links" onPress={() => this.props.navigation.navigate('Links')} />*/}
+        {/*<Button title="test" onPress={this.test} />*/}
+        <Button onPress={() => this.props.navigation.navigate('Links')} dark><Text> Dark </Text></Button>
 
         <Text>{this.state.balance}</Text>
 
