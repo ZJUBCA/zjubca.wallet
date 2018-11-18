@@ -16,7 +16,6 @@ import { Container, Header, Content, Button, Text } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
-import {eosService} from '../services/eos.service'
 import {accountService} from '../services/account.service'
 
 
@@ -129,7 +128,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   accountArea: {
-    alignItems: 'center'
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   developmentModeText: {
     marginBottom: 20,
