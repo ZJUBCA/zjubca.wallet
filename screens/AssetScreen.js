@@ -13,6 +13,7 @@ import {
   Alert,
 } from 'react-native';
 import { Container, Header, Content, Button, Text } from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 import {eosService} from '../services/eos.service'
@@ -55,7 +56,17 @@ export default class AssetScreen extends React.Component {
         </View>
         {/*<Button title="Go Links" onPress={() => this.props.navigation.navigate('Links')} />*/}
         {/*<Button title="test" onPress={this.test} />*/}
-        <Button onPress={() => this.props.navigation.navigate('Links')} dark><Text> Dark </Text></Button>
+        <Grid>
+          <Row>
+            <View style={styles.accountArea}>
+              <Text>
+                账号名
+              </Text>
+              <Button onPress={() => this.props.navigation.navigate('Links')} dark rounded><Text>切换账号</Text></Button>
+            </View>
+          </Row>
+        </Grid>
+
 
         <Text>{this.state.balance}</Text>
 
@@ -116,6 +127,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  accountArea: {
+    alignItems: 'center'
   },
   developmentModeText: {
     marginBottom: 20,

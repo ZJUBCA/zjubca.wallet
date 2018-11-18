@@ -25,6 +25,7 @@
     "native-base": "^2.8.1",
     "react": "16.7.0-alpha.0",
     "react-native": "0.55.x",
+    "react-native-easy-grid": "^0.2.0",
     "react-navigation": "2.x",
     "rxjs": "^6.3.3",
     "text-encoding": "0.x"
