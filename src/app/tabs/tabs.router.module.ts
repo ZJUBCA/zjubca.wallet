@@ -27,24 +27,24 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab3',
+        path: 'assets',
         children: [
           {
             path: '',
-            loadChildren: '../tab3/tab3.module#Tab3PageModule'
+            loadChildren: '../assets/assets.module#AssetsPageModule'
           }
         ]
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/assets',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/assets',
     pathMatch: 'full'
   }
 ];
