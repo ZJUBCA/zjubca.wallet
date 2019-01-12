@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {EosService} from '../../eos.service'
+import {EosService} from '../../core/eos.service'
 
 @Component({
   selector: 'app-tab1',
