@@ -309,6 +309,13 @@
   dependencies:
     "@types/cordova" latest
 
+"@ionic-native/secure-storage@^5.0.0-beta.23":
+  version "5.0.0-beta.23"
+  resolved "http://registry.npm.taobao.org/@ionic-native/secure-storage/download/@ionic-native/secure-storage-5.0.0-beta.23.tgz#2a9c9b985b085ab0093269a6059322beee7a3867"
+  integrity sha1-KpybmFsIWrAJMmmmBZMivu56OGc=
+  dependencies:
+    "@types/cordova" latest
+
 "@ionic-native/splash-screen@5.0.0-beta.21":
   version "5.0.0-beta.21"
   resolved "http://registry.npm.taobao.org/@ionic-native/splash-screen/download/@ionic-native/splash-screen-5.0.0-beta.21.tgz#4cd961351e6cd60320ece1ecfd83d629b00d234d"
@@ -1818,6 +1825,11 @@ copy-webpack-plugin@4.5.4:
     minimatch "^3.0.4"
     p-limit "^1.0.0"
     serialize-javascript "^1.4.0"
+
+cordova-plugin-secure-storage@3.0.1:
+  version "3.0.1"
+  resolved "http://registry.npm.taobao.org/cordova-plugin-secure-storage/download/cordova-plugin-secure-storage-3.0.1.tgz#cb9b7c5b5fde31ce1b455f2cb98553dab815a59d"
+  integrity sha1-y5t8W1/eMc4bRV8suYVT2rgVpZ0=
 
 core-js@^2.2.0, core-js@^2.4.0, core-js@^2.5.4:
   version "2.6.2"

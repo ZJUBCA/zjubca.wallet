@@ -1,5 +1,7 @@
 {
   "name": "jade",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
