@@ -309,13 +309,6 @@
   dependencies:
     "@types/cordova" latest
 
-"@ionic-native/secure-storage@^5.0.0-beta.23":
-  version "5.0.0-beta.23"
-  resolved "http://registry.npm.taobao.org/@ionic-native/secure-storage/download/@ionic-native/secure-storage-5.0.0-beta.23.tgz#2a9c9b985b085ab0093269a6059322beee7a3867"
-  integrity sha1-KpybmFsIWrAJMmmmBZMivu56OGc=
-  dependencies:
-    "@types/cordova" latest
-
 "@ionic-native/splash-screen@5.0.0-beta.21":
   version "5.0.0-beta.21"
   resolved "http://registry.npm.taobao.org/@ionic-native/splash-screen/download/@ionic-native/splash-screen-5.0.0-beta.21.tgz#4cd961351e6cd60320ece1ecfd83d629b00d234d"
@@ -353,6 +346,15 @@
   integrity sha1-B5AmE0ytNQZuLrGVOIbEHFg2Hhc=
   dependencies:
     ionicons "4.5.1"
+
+"@ionic/storage@^2.2.0":
+  version "2.2.0"
+  resolved "http://registry.npm.taobao.org/@ionic/storage/download/@ionic/storage-2.2.0.tgz#ac181991d3bfc8352a5400efb5e9faa5e76b5d4b"
+  integrity sha1-rBgZkdO/yDUqVADvten6pedrXUs=
+  dependencies:
+    localforage "1.7.1"
+    localforage-cordovasqlitedriver "1.7.0"
+    tslib "^1.7.1"
 
 "@ngtools/webpack@7.1.4":
   version "7.1.4"
@@ -1826,10 +1828,17 @@ copy-webpack-plugin@4.5.4:
     p-limit "^1.0.0"
     serialize-javascript "^1.4.0"
 
-cordova-plugin-secure-storage@3.0.1:
-  version "3.0.1"
-  resolved "http://registry.npm.taobao.org/cordova-plugin-secure-storage/download/cordova-plugin-secure-storage-3.0.1.tgz#cb9b7c5b5fde31ce1b455f2cb98553dab815a59d"
-  integrity sha1-y5t8W1/eMc4bRV8suYVT2rgVpZ0=
+cordova-sqlite-storage-dependencies@1.2.1:
+  version "1.2.1"
+  resolved "http://registry.npm.taobao.org/cordova-sqlite-storage-dependencies/download/cordova-sqlite-storage-dependencies-1.2.1.tgz#35bd0087c0e54c248f3b6f4d9bc54a58fa1eecc1"
+  integrity sha1-Nb0Ah8DlTCSPO29Nm8VKWPoe7ME=
+
+cordova-sqlite-storage@2.6.0:
+  version "2.6.0"
+  resolved "http://registry.npm.taobao.org/cordova-sqlite-storage/download/cordova-sqlite-storage-2.6.0.tgz#84f5c56509d83b8629338f863e027482afd7fdcd"
+  integrity sha1-hPXFZQnYO4YpM4+GPgJ0gq/X/c0=
+  dependencies:
+    cordova-sqlite-storage-dependencies "1.2.1"
 
 core-js@^2.2.0, core-js@^2.4.0, core-js@^2.5.4:
   version "2.6.2"
@@ -4219,7 +4228,7 @@ license-webpack-plugin@2.0.2:
   dependencies:
     webpack-sources "^1.2.0"
 
-lie@~3.1.0:
+lie@3.1.1, lie@~3.1.0:
   version "3.1.1"
   resolved "http://registry.npm.taobao.org/lie/download/lie-3.1.1.tgz#9a436b2cc7746ca59de7a41fa469b3efb76bd87e"
   integrity sha1-mkNrLMd0bKWd56QfpGmz77dr2H4=
@@ -4269,6 +4278,27 @@ loader-utils@^1.0.1, loader-utils@^1.0.2, loader-utils@^1.1.0:
     big.js "^5.2.2"
     emojis-list "^2.0.0"
     json5 "^1.0.1"
+
+localforage-cordovasqlitedriver@1.7.0:
+  version "1.7.0"
+  resolved "http://registry.npm.taobao.org/localforage-cordovasqlitedriver/download/localforage-cordovasqlitedriver-1.7.0.tgz#8b93957759ee688d3a58d5ba7c0477f6ccb53838"
+  integrity sha1-i5OVd1nuaI06WNW6fAR39sy1ODg=
+  dependencies:
+    localforage ">=1.5.0"
+
+localforage@1.7.1:
+  version "1.7.1"
+  resolved "http://registry.npm.taobao.org/localforage/download/localforage-1.7.1.tgz#e4927e042302b864db30f3211f13b5c6f0de965d"
+  integrity sha1-5JJ+BCMCuGTbMPMhHxO1xvDell0=
+  dependencies:
+    lie "3.1.1"
+
+localforage@>=1.5.0:
+  version "1.7.3"
+  resolved "http://registry.npm.taobao.org/localforage/download/localforage-1.7.3.tgz#0082b3ca9734679e1bd534995bdd3b24cf10f204"
+  integrity sha1-AIKzypc0Z54b1TSZW907JM8Q8gQ=
+  dependencies:
+    lie "3.1.1"
 
 locate-path@^2.0.0:
   version "2.0.0"
@@ -7040,7 +7070,7 @@ ts-node@~7.0.0:
     source-map-support "^0.5.6"
     yn "^2.0.0"
 
-tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
+tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.9.3"
   resolved "http://registry.npm.taobao.org/tslib/download/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
   integrity sha1-1+TdeSRdhUKMTX5IIqeZF5VMooY=

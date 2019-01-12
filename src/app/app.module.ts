@@ -8,11 +8,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {SecureStorage} from '@ionic-native/secure-storage/ngx';
-import {AssetsPageModule} from './pages/assets/assets.module'
-import {Tab1PageModule} from './pages/tab1/tab1.module'
-import {SharedModule} from './shared/shared.module'
-import {CoreModule} from './core/core.module'
+import {AssetsPageModule} from './pages/assets/assets.module';
+import {Tab1PageModule} from './pages/tab1/tab1.module';
+import {SharedModule} from './shared/shared.module';
+import {CoreModule} from './core/core.module';
+import {IonicStorageModule} from '@ionic/storage';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +20,7 @@ import {CoreModule} from './core/core.module'
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
     CoreModule,
     AppRoutingModule,
     SharedModule,
@@ -29,7 +30,6 @@ import {CoreModule} from './core/core.module'
   providers: [
     StatusBar,
     SplashScreen,
-    SecureStorage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent],

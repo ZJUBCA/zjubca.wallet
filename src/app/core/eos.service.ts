@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core'
+import { Injectable } from '@angular/core';
 
 declare global {
   interface Window {
@@ -29,20 +29,20 @@ export class EosService {
       }
     },
     'account': 'zjuwalletapp'
-  }
-  rpc = new window.eosjs_jsonrpc.default('http://178.62.36.41:8888')
+  };
+  rpc = new window.eosjs_jsonrpc.default('http://178.62.36.41:8888');
   signatureProvider = new window.eosjs_jssig.default([this.account.keys.active_key.private]);
   api = new window.eosjs_api.default({
     rpc: this.rpc,
     signatureProvider: this.signatureProvider,
     textDecoder: new TextDecoder(),
     textEncoder: new TextEncoder(),
-  })
+  });
   
   async getBalance() {
-    const result = await this.rpc.get_currency_balance('zjubcatokent', 'zjuwalletapp')
-    console.log(result)
-    return result
+    const result = await this.rpc.get_currency_balance('zjubcatokent', 'zjuwalletapp');
+    console.log(result);
+    return result;
     //[ '99999999.9999 SYS' ]
   }
 }

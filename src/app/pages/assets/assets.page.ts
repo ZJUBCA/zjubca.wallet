@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AccountService} from '../../core/account.service';
+import {Account} from '../../../classes/account';
 
 @Component({
   selector: 'app-assets',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssetsPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private accountSvc: AccountService,
+  ) { }
+  
+  get account() {
+    console.log(this.accountSvc.accounts);
+    return this.accountSvc.accounts;
+  }
 
   ngOnInit() {
+    this.accountSvc.fetchAccounts();
   }
 
 }

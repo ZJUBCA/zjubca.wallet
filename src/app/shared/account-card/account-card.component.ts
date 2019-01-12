@@ -9,7 +9,7 @@ export class AccountCardComponent implements OnInit {
 
   constructor() { }
   
-  @Input() account?
+  @Input() account?;
 
   ngOnInit() {
   }
