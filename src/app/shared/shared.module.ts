@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {AccountCardComponent} from './account-card/account-card.component'
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {AccountCardComponent} from './account-card/account-card.component';
 
 @NgModule({
   declarations: [
@@ -13,4 +13,5 @@ import {AccountCardComponent} from './account-card/account-card.component'
     AccountCardComponent
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}
