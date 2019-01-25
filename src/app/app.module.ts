@@ -10,9 +10,11 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {AssetsPageModule} from './pages/assets/assets.module';
 import {DappPageModule} from './pages/dapp/dapp.module';
+import {AccountPageModule} from './pages/account/account.module';
 import {SharedModule} from './shared/shared.module';
 import {CoreModule} from './core/core.module';
 import {IonicStorageModule} from '@ionic/storage';
+import {LoginPageModule} from './pages/login/login.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +28,8 @@ import {IonicStorageModule} from '@ionic/storage';
     SharedModule,
     AssetsPageModule,
     DappPageModule,
+    AccountPageModule,
+    LoginPageModule
   ],
   providers: [
     StatusBar,
