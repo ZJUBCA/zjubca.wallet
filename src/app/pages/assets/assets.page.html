@@ -1,10 +1,14 @@
-<!--<ion-header>-->
-<!--<ion-toolbar>-->
-<!--<ion-title>-->
-<!--资产-->
-<!--</ion-title>-->
-<!--</ion-toolbar>-->
-<!--</ion-header>-->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>资产</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/tabs/assets/account-add']">Add</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
   <ion-card class="welcome-card">

@@ -10,8 +10,9 @@ export class AccountService {
   constructor(
     private storage: Storage
   ) {
+    this.fetchAccounts();
   }
-
+  
   accounts: string[] = [];
 
   async fetchAccounts(): Promise<Account[]> {

@@ -23,7 +23,6 @@ export class AssetsPage implements OnInit {
 
   async ngOnInit() {
     this.balance = await this.eosService.getBalance();
-    this.accountSvc.fetchAccounts();
   }
 
   balance: string;
