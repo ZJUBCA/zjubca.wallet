@@ -39,10 +39,26 @@ export class EosService {
     textEncoder: new TextEncoder(),
   });
 
-  async getBalance() {
-    const result = await this.rpc.get_currency_balance('zjubcatokent', 'zjuwalletapp');
-    console.log(result);
-    return result;
+  async getBalance(name: string) {
+    const eosBalance = await this.rpc.get_currency_balance('eosio.token', name, 'EOS');
+    const zjubcaBalance = await this.rpc.get_currency_balance('zjubcatokent', name, 'ZJUBCA');
+    console.log(zjubcaBalance);
+    return {
+      eos: eosBalance[0],
+      zjubca: zjubcaBalance[0],
+    };
     // [ '99999999.9999 SYS' ]
+  }
+
+  async getTokens(name: string) {
+    return await this.rpc.get_currency_balance('zjubcatokent', name);
+  }
+
+  async getAccountList(pubkey: string) {
+    return await this.rpc.history_get_key_accounts(pubkey);
+  }
+
+  async getAccount(name: string) {
+    return await this.rpc.get_account(name);
   }
 }

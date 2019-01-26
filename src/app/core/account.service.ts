@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Storage} from '@ionic/storage';
-import {Account} from '../../classes/account';
+import {Account} from '../../classes';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +22,15 @@ export class AccountService {
     } else {
       return [];
     }
+  }
+
+  async saveAccounts(accounts: Account[]): Promise<any> {
+    const exists = await this.fetchAccounts();
+    accounts.forEach(item => {
+      if (exists.indexOf(item) < 0) {
+        exists.push(item);
+      }
+    });
+    return await this.storage.set('accounts', JSON.stringify(exists));
   }
 }

@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
+class ImportForm {
+  privKey: string;
+  password: string;
+  confirmPswd: string;
+  checked: boolean;
+}
 
 @Component({
   selector: 'app-import-wallet',
@@ -6,10 +13,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./import-wallet.component.scss']
 })
 export class ImportWalletComponent implements OnInit {
+  form: ImportForm;
 
-  constructor() { }
+  constructor() {
+    this.form = new ImportForm();
+  }
 
   ngOnInit() {
+  }
+
+  async submitForm() {
+    console.log(this.form)
   }
 
 }

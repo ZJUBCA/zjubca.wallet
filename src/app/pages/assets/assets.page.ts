@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountService} from '../../core/account.service';
-import {Account} from '../../../classes/account';
+import {Index} from '../../../classes';
 import {EosService} from '../../core/eos.service';
 
 @Component({
