@@ -31,8 +31,13 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../pages/assets/assets.module#AssetsPageModule'
-          }
+            loadChildren: '../pages/assets/assets.module#AssetsPageModule',
+            pathMatch: 'full'
+          },
+          {
+            path: 'account-add',
+            loadChildren: '../pages/account-add/account-add.module#AccountAddPageModule'
+          },
         ]
       },
       {

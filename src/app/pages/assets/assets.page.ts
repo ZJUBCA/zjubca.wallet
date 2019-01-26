@@ -18,8 +18,6 @@ export class AssetsPage implements OnInit {
     return this.accountSvc.accounts;
   }
 
-  ngOnInit() {
-    this.accountSvc.fetchAccounts();
-  }
+  ngOnInit() {}
 
 }

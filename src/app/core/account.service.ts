@@ -9,7 +9,9 @@ export class AccountService {
 
   constructor(
     private storage: Storage
-  ) {}
+  ) {
+    this.fetchAccounts();
+  }
   
   accounts: string[] = [];
   async fetchAccounts(): Promise<Account[]> {
@@ -18,7 +20,7 @@ export class AccountService {
     if (res) {
       return JSON.parse(res);
     } else {
-      return []
+      return [];
     }
   }
 }

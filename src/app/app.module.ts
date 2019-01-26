@@ -24,8 +24,6 @@ import {IonicStorageModule} from '@ionic/storage';
     CoreModule,
     AppRoutingModule,
     SharedModule,
-    AssetsPageModule,
-    Tab1PageModule,
   ],
   providers: [
     StatusBar,
