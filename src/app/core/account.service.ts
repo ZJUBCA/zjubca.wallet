@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import {Injectable} from '@angular/core';
+import {Storage} from '@ionic/storage';
 import {Account} from '../../classes/account';
 
 @Injectable({
@@ -14,6 +14,7 @@ export class AccountService {
   }
   
   accounts: string[] = [];
+
   async fetchAccounts(): Promise<Account[]> {
     const res = await this.storage.get('accounts');
     console.log(res);

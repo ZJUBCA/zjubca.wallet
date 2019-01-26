@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { TabsPage } from './tabs.page';
+import {TabsPage} from './tabs.page';
 
 const routes: Routes = [
   {
@@ -9,29 +9,29 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
-        children: [
-          {
-            path: '',
-            loadChildren: '../pages/tab1/tab1.module#Tab1PageModule'
-          }
-        ]
-      },
-      {
-        path: 'tab2',
-        children: [
-          {
-            path: '',
-            loadChildren: '../pages/tab2/tab2.module#Tab2PageModule'
-          }
-        ]
-      },
-      {
         path: 'assets',
         children: [
           {
             path: '',
-            loadChildren: '../pages/assets/assets.module#AssetsPageModule',
+            loadChildren: '../pages/assets/assets.module#AssetsPageModule'
+          }
+        ]
+      },
+      {
+        path: 'dapp',
+        children: [
+          {
+            path: '',
+            loadChildren: '../pages/dapp/dapp.module#DappPageModule'
+          }
+        ]
+      },
+      {
+        path: 'account',
+        children: [
+          {
+            path: '',
+            loadChildren: '../pages/account/account.module#AccountPageModule',
             pathMatch: 'full'
           },
           {
@@ -58,4 +58,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule {
+}

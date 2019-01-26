@@ -1,20 +1,20 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 declare global {
   interface Window {
-    eosjs_jsonrpc: any
-    eosjs_jssig: any
-    eosjs_api: any
+    eosjs_jsonrpc: any;
+    eosjs_jssig: any;
+    eosjs_api: any;
   }
 }
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class EosService {
-  constructor() {}
-  
+  constructor() {
+  }
+
   // rpc = new JsonRpc('https://api.kylin-testnet.eospacex.com', { fetch })
   account = {
     'msg': 'succeeded',
@@ -38,11 +38,11 @@ export class EosService {
     textDecoder: new TextDecoder(),
     textEncoder: new TextEncoder(),
   });
-  
+
   async getBalance() {
     const result = await this.rpc.get_currency_balance('zjubcatokent', 'zjuwalletapp');
     console.log(result);
     return result;
-    //[ '99999999.9999 SYS' ]
+    // [ '99999999.9999 SYS' ]
   }
 }
