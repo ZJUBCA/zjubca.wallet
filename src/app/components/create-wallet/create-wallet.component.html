@@ -5,9 +5,21 @@
     <ion-note class="f12">支持小写字母a-z与数字12345组成的12位账户名</ion-note>
   </div>
   <div class="gutter">
+    <ion-label class="privLabel" position="stacked">私钥 &nbsp;<ion-icon name="refresh"
+                                                                       (click)="generatePrivkey()"></ion-icon>
+    </ion-label>
+    <ion-item-divider class="keyarea f14">
+      <ion-textarea [value]="privateKey" readonly="true"></ion-textarea>
+    </ion-item-divider>
+  </div>
+  <div class="gutter">
     <ion-label position="stacked">请设定一个密码保护钱包</ion-label>
     <ion-input class="f14" type="password" [(ngModel)]="form.password" placeholder="密码"></ion-input>
     <ion-input class="f14" type="password" [(ngModel)]="form.confirmPswd" placeholder="重复密码"></ion-input>
+  </div>
+  <div class="gutter">
+    <ion-label position="stacked">邀请码（若无，请向协会管理层获取）</ion-label>
+    <ion-input class="f14" [(ngModel)]="form.inviteCode" placeholder="邀请码"></ion-input>
   </div>
   <div class="gutter">
     <div class="notice">
@@ -15,9 +27,17 @@
       <ion-label class="f14" padding-start>我已了解以下事项：</ion-label>
     </div>
     <div class="f12">
-      <ol>· 该账号为EOS麒麟测试网账号</ol>
-      <ol>· 账号所有权/使用权归用户所有，创建账号后的所有操作与ZJUBCA无关</ol>
+      <ol>
+        <ion-text color="danger">· 我已将私钥抄写并保存好</ion-text>
+      </ol>
+      <ol>
+        <ion-text>· 该账号为EOS麒麟测试网账号，与EOS主网不互通</ion-text>
+      </ol>
+      <ol>
+        <ion-text>· 账号所有权/使用权归用户所有，创建账号后的所有操作与ZJUBCA无关</ion-text>
+      </ol>
     </div>
   </div>
-  <ion-button class="gutter" color="dark" expand="full" [disabled]="!form.checked" (click)="submitForm()">创建钱包</ion-button>
+  <ion-button class="gutter" color="dark" expand="full" [disabled]="!form.checked" (click)="submitForm()">创建钱包
+  </ion-button>
 </ion-content>

@@ -1,0 +1,29 @@
+.gutter {
+  margin-top: 20px;
+}
+
+.f14 {
+  font-size: 14px;
+}
+
+.valueForm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.symbol {
+  margin-right: 10px;
+  margin-left: -16px;
+}
+
+.qrScanner {
+  position: absolute;
+  right: 18px;
+  margin-top: -27px;
+}
+
+.transactModal {
+  --height: 60px;
+  --max-height: 60px;
+}

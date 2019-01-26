@@ -32,4 +32,21 @@ export class WalletService {
       return '';
     }
   }
+
+  /**
+   * getPrivKeyByPubkeys will return the private key which first corresponds to the given public key.
+   *
+   * @param pubkeys
+   * @param password
+   */
+  async getPrivKeyByPubKeys(pubkeys: string, password: string): Promise<string> {
+    let privKey: string;
+    for (const pubkey of pubkeys) {
+      privKey = await this.retrieveKey(pubkey, password);
+      if (privKey) {
+        break;
+      }
+    }
+    return privKey;
+  }
 }

@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text="" icon="arrow-back">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>收款</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <div class="qrcode">
+    <qrcode [qrdata]="qrcodeString" [size]="256" [level]="'M'"></qrcode>
+    <div class="account">
+      <ion-text color="light">{{qrcodeString}}</ion-text>
+    </div>
+  </div>
+  <div class="logo">
+    <ion-img src="/assets/img/logo.png"></ion-img>
+  </div>
+</ion-content>

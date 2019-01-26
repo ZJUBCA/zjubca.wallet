@@ -5,13 +5,13 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {IonicModule} from '@ionic/angular';
 
-import {AssetsPage} from './assets.page';
-import {SharedModule} from '../../shared/shared.module';
+import {BillPage} from './bill.page';
+import {QRCodeModule} from 'angularx-qrcode';
 
 const routes: Routes = [
   {
     path: '',
-    component: AssetsPage
+    component: BillPage
   }
 ];
 
@@ -20,10 +20,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    SharedModule,
+    QRCodeModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [AssetsPage]
+  declarations: [BillPage]
 })
-export class AssetsPageModule {
+export class BillPageModule {
 }

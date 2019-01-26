@@ -1,12 +1,12 @@
 <ion-content padding>
   <div class="privkey">
     <ion-label position="stacked">个人私钥</ion-label>
-    <ion-textarea class="f14" placeholder="请输入您的私钥"></ion-textarea>
+    <ion-textarea class="f14" placeholder="请输入您的私钥" [(ngModel)]="form.privKey"></ion-textarea>
   </div>
   <div class="gutter">
     <ion-label position="stacked">请设定一个密码保护钱包</ion-label>
-    <ion-input type="password" class="f14" placeholder="密码"></ion-input>
-    <ion-input type="password" class="f14" placeholder="重复密码"></ion-input>
+    <ion-input type="password" class="f14" [(ngModel)]="form.password" placeholder="密码"></ion-input>
+    <ion-input type="password" class="f14" [(ngModel)]="form.confirmPswd" placeholder="重复密码"></ion-input>
   </div>
   <div class="gutter notice">
     <ion-checkbox color="dark" [(ngModel)]="form.checked"></ion-checkbox>

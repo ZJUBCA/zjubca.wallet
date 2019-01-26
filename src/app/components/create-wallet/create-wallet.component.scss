@@ -10,7 +10,16 @@
   margin-top: 20px;
 }
 
+.keyarea {
+  margin-top: 10px;
+}
+
 .notice {
+  display: flex;
+  align-items: center;
+}
+
+.privLabel {
   display: flex;
   align-items: center;
 }

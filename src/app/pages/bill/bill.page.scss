@@ -1,0 +1,29 @@
+.qrcode {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 256px;
+  height: 256px;
+
+  text-align: center;
+}
+
+.account {
+  margin-top: 15px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  background: #1e2023;
+}
+
+.logo {
+  width: 240px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  opacity: 0.688;
+}

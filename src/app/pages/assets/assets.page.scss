@@ -1,0 +1,20 @@
+.btnGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+}
+
+.f18 {
+  font-size: 18px;
+}
+
+.btn {
+  --border-radius: 100%;
+  width: 80px;
+  height: 80px;
+}

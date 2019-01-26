@@ -5,13 +5,13 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {IonicModule} from '@ionic/angular';
 
-import {AssetsPage} from './assets.page';
-import {SharedModule} from '../../shared/shared.module';
+import {TransferPage} from './transfer.page';
+import {TransactModalComponent} from '../../modal/transact-modal/transact-modal.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AssetsPage
+    component: TransferPage
   }
 ];
 
@@ -20,10 +20,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    SharedModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [AssetsPage]
+  entryComponents: [TransactModalComponent],
+  declarations: [TransferPage, TransactModalComponent]
 })
-export class AssetsPageModule {
+export class TransferPageModule {
 }

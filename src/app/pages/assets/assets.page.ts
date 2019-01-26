@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountService} from '../../core/account.service';
-import {Index} from '../../../classes';
 import {EosService} from '../../core/eos.service';
 
 @Component({
@@ -9,6 +8,13 @@ import {EosService} from '../../core/eos.service';
   styleUrls: ['./assets.page.scss'],
 })
 export class AssetsPage implements OnInit {
+  balance = {
+    eos: '0 EOS',
+    zjubca: '0 ZJUBCA',
+  };
+
+  currAccount: string;
+  accounts: string[];
 
   constructor(
     private accountSvc: AccountService,
@@ -16,14 +22,10 @@ export class AssetsPage implements OnInit {
   ) {
   }
 
-  get account() {
-    console.log(this.accountSvc.accounts);
-    return this.accountSvc.accounts;
-  }
-
   async ngOnInit() {
-    this.balance = await this.eosService.getBalance();
+    this.accounts = await this.accountSvc.fetchAccounts();
+    this.currAccount = await this.accountSvc.current();
+    this.balance = await this.eosService.getBalance(this.currAccount);
+    console.log(this.currAccount, this.accounts);
   }
-
-  balance: string;
 }

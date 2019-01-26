@@ -1,0 +1,17 @@
+.actionGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input {
+  font-size: 14px;
+  --padding-start: 10px;
+  border: 1px solid #efefef;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.btn {
+  height: 40px;
+}

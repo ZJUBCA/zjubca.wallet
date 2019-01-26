@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text="" icon="arrow-back">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>转账</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="f14">
+    <ion-label position="stacked">收款账号</ion-label>
+    <ion-input placeholder="收款账号" [(ngModel)]="form.account" required></ion-input>
+    <ion-icon name="qr-scanner" class="qrScanner" (click)="qrScan()"></ion-icon>
+  </div>
+  <div class="gutter f14">
+    <ion-label position="stacked">转账金额</ion-label>
+    <div class="valueForm">
+      <ion-select interface="action-sheet" class="symbol" [(ngModel)]="form.symbol">
+        <ion-select-option value="EOS" [selected]="true">EOS</ion-select-option>
+        <ion-select-option value="ZJUBCA">ZJUBCA</ion-select-option>
+      </ion-select>
+      <ion-input placeholder="转账金额" (ionBlur)="valueBlur()" [(ngModel)]="form.value"></ion-input>
+    </div>
+  </div>
+  <div class="gutter f14">
+    <ion-label position="stacked">备注(Memo)</ion-label>
+    <ion-input placeholder="备注(Memo)" [(ngModel)]="form.memo"></ion-input>
+  </div>
+  <ion-button class="gutter" expand="full" color="dark" (click)="transfer()" [disabled]="!form.account || !form.value">
+    确认转账
+  </ion-button>
+</ion-content>
