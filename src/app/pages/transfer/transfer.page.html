@@ -18,8 +18,8 @@
     <ion-label position="stacked">转账金额</ion-label>
     <div class="valueForm">
       <ion-select interface="action-sheet" class="symbol" [(ngModel)]="form.symbol">
-        <ion-select-option value="EOS" [selected]="true">EOS</ion-select-option>
-        <ion-select-option value="ZJUBCA">ZJUBCA</ion-select-option>
+        <ion-select-option *ngFor="let symbol of symbols" [value]="symbol"
+                           [selected]="symbol === form.symbol">{{symbol}}</ion-select-option>
       </ion-select>
       <ion-input placeholder="转账金额" (ionBlur)="valueBlur()" [(ngModel)]="form.value"></ion-input>
     </div>

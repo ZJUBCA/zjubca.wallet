@@ -17,6 +17,7 @@ export class WalletService {
 
   async saveKey(pubKey: string, privKey: string, password: string): Promise<any> {
     const encrypted = this.ase.encrypt(privKey, password).toString();
+    console.log(pubKey, encrypted);
     return await this.storage.set(pubKey, JSON.stringify({
       pubKey: pubKey,
       encrypted_privkey: encrypted

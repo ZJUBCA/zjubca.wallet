@@ -9,9 +9,12 @@
 </ion-header>
 <ion-content padding>
   <div class="qrcode">
-    <qrcode [qrdata]="qrcodeString" [size]="256" [level]="'M'"></qrcode>
-    <div class="account">
-      <ion-text color="light">{{qrcodeString}}</ion-text>
+    <qrcode [qrdata]="qrcode" [size]="256" [level]="'M'"></qrcode>
+    <div class="line">
+      <ion-text color="light">{{account}}</ion-text>
+    </div>
+    <div class="line">
+      <ion-text color="light">{{symbol}}</ion-text>
     </div>
   </div>
   <div class="logo">

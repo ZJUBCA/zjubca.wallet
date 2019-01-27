@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text="" icon="arrow-back">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>我的资产</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="list" padding>
+  <ion-list>
+    <ion-item class="item" *ngFor="let item of tokens" [routerLink]="'/token-detail/'+item.symbol">
+      <ion-avatar slot="start">
+        <img [src]="item.logo"/>
+      </ion-avatar>
+      <ion-label>{{item.symbol}}</ion-label>
+      <ion-label class="value">{{item.value}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

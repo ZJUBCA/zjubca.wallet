@@ -7,6 +7,9 @@ const routes: Routes = [
   {path: 'login', loadChildren: './pages/login/login.module#LoginPageModule'},
   {path: 'transfer', loadChildren: './pages/transfer/transfer.module#TransferPageModule'},
   {path: 'bill', loadChildren: './pages/bill/bill.module#BillPageModule'},
+  {path: 'nft', loadChildren: './pages/nft/nft.module#NftPageModule'},
+  {path: 'tokens', loadChildren: './pages/tokens/tokens.module#TokensPageModule'},
+  {path: 'token-detail/:symbol', loadChildren: './pages/token-detail/token-detail.module#TokenDetailPageModule'},
 ];
 
 @NgModule({

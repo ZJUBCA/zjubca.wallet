@@ -3,6 +3,7 @@ import {ToastController, LoadingController} from '@ionic/angular';
 import {EosService} from '../../core/eos.service';
 import {AccountService} from '../../core/account.service';
 import {Router} from '@angular/router';
+import {WalletService} from '../../core/wallet.service';
 
 
 class ImportForm {
@@ -26,6 +27,7 @@ export class ImportWalletComponent implements OnInit {
     public loadingController: LoadingController,
     private eosService: EosService,
     private accService: AccountService,
+    private walletService: WalletService,
     private router: Router
   ) {
     this.form = new ImportForm();
@@ -44,6 +46,10 @@ export class ImportWalletComponent implements OnInit {
       return await this.alert('密码不能为空');
     }
 
+    if (this.form.password.length < 6) {
+      return await this.alert('钱包密码须大于6位');
+    }
+
     if (this.form.password !== this.form.confirmPswd) {
       return await this.alert('两次输入密码不一致');
     }
@@ -54,21 +60,34 @@ export class ImportWalletComponent implements OnInit {
     });
     await loading.present();
     // Fetch account list
-    const pubkey = this.ecc.privateToPublic(this.form.privKey);
-    const res = await this.eosService.getAccountList(pubkey);
-    const names = res.account_names;
-    if (names.length > 0) {
-      const accounts = names.map(name => {
-        return {
-          name: name
-        };
-      });
-      this.accService.saveAccounts(accounts);
-      this.accService.setCurrent(names[0]);
-    }
+    try {
+      const pubkey = this.ecc.privateToPublic(this.form.privKey);
 
-    await loading.dismiss();
-    this.router.navigate(['/tabs']);
+      const res = await this.eosService.getAccountList(pubkey);
+      const names = res.account_names;
+      if (names.length > 0) {
+        const accounts = names.map(name => {
+          return {
+            name: name
+          };
+        });
+        await this.accService.saveAccounts(accounts);
+        await this.accService.setCurrent(names[0]);
+        await this.walletService.saveKey(pubkey, this.form.privKey, this.form.password);
+        await this.router.navigate(['/tabs']);
+      } else {
+        await this.alert('该密钥下无账户名');
+      }
+
+    } catch (e) {
+      let msg: string = e.message;
+      if (msg.indexOf('checksum') >= 0) {
+        msg = '私钥格式不正确';
+      }
+      await this.alert(msg);
+    } finally {
+      await loading.dismiss();
+    }
   }
 
   async alert(msg: string) {

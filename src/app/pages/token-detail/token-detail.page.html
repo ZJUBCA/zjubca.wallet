@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text="" icon="arrow-back">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>资产详情</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <div class="infoBox">
+        <ion-thumbnail>
+          <ion-img [src]="tokenInfo.logo">
+          </ion-img>
+        </ion-thumbnail>
+        <ion-text color="dark" class="f20">{{symbol}}</ion-text>
+      </div>
+      <div class="gutter balance">
+        <ion-text color="dark">余额 {{balance}}</ion-text>
+      </div>
+      <div class="gutter intro f14">
+        <ion-text>{{tokenInfo.intro}}测试测试测试测试</ion-text>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <div class="btnGroup" padding>
+    <ion-button class="btn" expand="full" color="dark" (click)="goTransfer()">转账</ion-button>
+    <ion-button class="btn" expand="full" color="dark" (click)="goBill()">收款</ion-button>
+  </div>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>交易记录</ion-label>
+    </ion-list-header>
+    <ion-item class="txItem" *ngFor="let action of historyActions">
+      <div class="left">
+        <ion-text class="name" color="dark">{{action.type ? action.to : action.from}}</ion-text>
+        <ion-text class="f12" color="medium">{{action.time}}</ion-text>
+      </div>
+      <div class="right">
+        <ion-text [color]="action.type?'danger':'dark'">{{(action.type ? '-' : '+') + action.quantity}}</ion-text>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

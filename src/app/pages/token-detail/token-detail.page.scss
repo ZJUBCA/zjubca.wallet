@@ -1,0 +1,55 @@
+.infoBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.gutter {
+  margin-top: 20px;
+}
+
+.balance {
+  text-align: center;
+}
+
+.intro {
+  text-align: center;
+}
+
+.btnGroup {
+  padding-top: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.btn {
+  flex: 1;
+}
+
+.txItem {
+  --padding-start: 0px;
+  --inner-padding-start: 10px;
+  --padding-top: 10px;
+  --inner-padding-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  .left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .name {
+      margin-bottom: 5px;
+    }
+  }
+
+  .right {
+    flex: 1;
+    text-align: right;
+  }
+}

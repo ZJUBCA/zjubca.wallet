@@ -3,9 +3,37 @@
 @import '~@ionic/angular/css/normalize.css';
 @import '~@ionic/angular/css/structure.css';
 @import '~@ionic/angular/css/typography.css';
-
 @import '~@ionic/angular/css/padding.css';
 @import '~@ionic/angular/css/float-elements.css';
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+
+.f14 {
+  font-size: 14px;
+}
+
+.f12 {
+  font-size: 12px;
+}
+
+.f18 {
+  font-size: 18px;
+}
+
+.f20 {
+  font-size: 20px;
+}
+
+.f24 {
+  font-size: 24px;
+}
+
+.transactModal {
+  --height: 140px;
+}
+
+.transactModal .modal-wrapper {
+  position: inherit;
+  bottom: 0px;
+}

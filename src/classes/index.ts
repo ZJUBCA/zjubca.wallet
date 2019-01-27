@@ -16,3 +16,11 @@ export interface Action {
   }[];
   data: any;
 }
+
+export interface Token {
+  logo: string;
+  symbol: string;
+  value: string;
+  account: string;
+  intro: string;
+}

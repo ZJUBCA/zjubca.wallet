@@ -15,6 +15,8 @@ import {SharedModule} from './shared/shared.module';
 import {CoreModule} from './core/core.module';
 import {IonicStorageModule} from '@ionic/storage';
 import {LoginPageModule} from './pages/login/login.module';
+import {TokensPageModule} from './pages/tokens/tokens.module';
+import {NftPageModule} from './pages/nft/nft.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,7 +31,9 @@ import {LoginPageModule} from './pages/login/login.module';
     AssetsPageModule,
     DappPageModule,
     AccountPageModule,
-    LoginPageModule
+    LoginPageModule,
+    TokensPageModule,
+    NftPageModule
   ],
   providers: [
     StatusBar,

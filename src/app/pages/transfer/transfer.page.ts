@@ -3,6 +3,9 @@ import {EosService} from '../../core/eos.service';
 import {AccountService} from '../../core/account.service';
 import {ModalController} from '@ionic/angular';
 import {TransactModalComponent} from '../../modal/transact-modal/transact-modal.component';
+import axios from '../../common/axios';
+import {tokenCode, tokensUrl} from '../../common/config';
+import {ActivatedRoute} from '@angular/router';
 
 // import {QRScannerOriginal, QRScannerStatus} from '@ionic-native/qr-scanner';
 
@@ -21,16 +24,25 @@ class TransferForm {
 export class TransferPage implements OnInit {
 
   form: TransferForm;
+  symbols: string[];
 
   constructor(
     private eosService: EosService,
     private accService: AccountService,
-    public modalController: ModalController
+    private route: ActivatedRoute,
+    public modalController: ModalController,
   ) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.form = new TransferForm();
+
+    this.symbols = ['EOS'].concat(await this.fetchSymbols());
+    const {symbol, to} = this.route.queryParams.value;
+    setTimeout(() => {
+      this.form.symbol = symbol || 'EOS';
+      this.form.account = to || '';
+    });
   }
 
   async qrScan() {
@@ -53,12 +65,30 @@ export class TransferPage implements OnInit {
     //   }
   }
 
+  async fetchSymbols(): Promise<string[]> {
+    try {
+      const result = await axios.get(tokensUrl);
+      const tokens = result.data;
+      return tokens.map(item => item.symbol);
+    } catch (e) {
+      console.log(e);
+      return [];
+    }
+  }
+
   async transfer() {
     // this.eosService.init(name, '123', ['active']);
+    const code = this.filterCode(this.form.symbol);
+    const asset = `${this.form.value} ${this.form.symbol}`;
     const modal = await this.modalController.create({
       component: TransactModalComponent,
       cssClass: 'transactModal',
-      componentProps: {},
+      componentProps: {
+        code,
+        asset,
+        to: this.form.account,
+        memo: this.form.memo
+      },
       backdropDismiss: true,
       showBackdrop: true
     });
@@ -66,40 +96,19 @@ export class TransferPage implements OnInit {
     await modal.present();
     console.log(this.form);
 
-    const {data} = await modal.onDidDismiss();
-    if (data && data.password) {
-      console.log(data.password);
-      const actor = await this.accService.current();
-      this.eosService.init(name, data.password, ['active']);
-      this.eosService.sendTx([{
-        account: this.filterCode(this.form.symbol),
-        name: 'transfer',
-        authorization: [
-          {
-            actor,
-            permission: 'active'
-          }
-        ],
-        data: {
-          from: actor,
-          to: this.form.account,
-          asset: `${this.form.value} ${this.form.symbol}`
-        }
-      }]);
-    }
   }
 
   /**
    * filterCode filters and returns the target contract code with the given symbol type.
+   *
+   * @param symbol
    */
   filterCode(symbol: string): string {
     switch (symbol) {
       case 'EOS':
         return 'eosio.token';
-      case 'ZJUBCA':
-        return 'zjubcatokent';
       default:
-        return 'eosio.token';
+        return tokenCode;
     }
   }
 

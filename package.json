@@ -32,7 +32,9 @@
     "cordova-sqlite-storage": "2.6.0",
     "core-js": "^2.5.4",
     "crypto-js": "^3.1.9-1",
+    "moment": "^2.24.0",
     "rxjs": "~6.3.3",
+    "text-encoding": "^0.7.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

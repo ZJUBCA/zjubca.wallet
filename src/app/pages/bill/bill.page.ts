@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountService} from '../../core/account.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-bill',
@@ -8,15 +9,25 @@ import {AccountService} from '../../core/account.service';
 })
 export class BillPage implements OnInit {
 
-  qrcodeString: string = null;
+  account: string;
+  symbol: string;
+  qrcode: string = null;
 
   constructor(
-    private accService: AccountService
+    private accService: AccountService,
+    private route: ActivatedRoute
   ) {
   }
 
   async ngOnInit() {
-    this.qrcodeString = await this.accService.current();
+    this.symbol = this.route.queryParams.value.symbol || 'EOS';
+    this.account = await this.accService.current();
+
+    this.qrcode = JSON.stringify({
+      symbol: this.symbol,
+      account: this.account,
+      type: 'transfer'
+    });
   }
 
 }

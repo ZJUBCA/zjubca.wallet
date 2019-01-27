@@ -52,6 +52,10 @@ export class CreateWalletComponent implements OnInit {
       return this.alert('密码不能为空');
     }
 
+    if (this.form.password.length < 6) {
+      return await this.alert('钱包密码须大于6位');
+    }
+
     if (this.form.password !== this.form.confirmPswd) {
       return this.alert('两次输入密码不一致');
     }
