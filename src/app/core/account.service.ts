@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Storage} from '@ionic/storage';
 import {Account} from '../../classes';
-import {EosService} from './eos.service';
-import {WalletService} from './wallet.service';
+import {ACCOUNTS_KEY, CURRENT_ACC_KEY} from '../common/config';
 
 /**
  * Notice:
@@ -29,11 +28,11 @@ export class AccountService {
    * @param name
    */
   async setCurrent(name: string): Promise<any> {
-    return await this.storage.set('current', name);
+    return await this.storage.set(CURRENT_ACC_KEY, name);
   }
 
   async current(): Promise<string> {
-    const name = await this.storage.get('current');
+    const name = await this.storage.get(CURRENT_ACC_KEY);
     if (!name) {
       return null;
     } else {
@@ -45,10 +44,10 @@ export class AccountService {
    * fetchAccounts fetch the name list in the storage.
    */
   async fetchAccounts(): Promise<string[]> {
-    const res = await this.storage.get('accounts');
+    const res = await this.storage.get(ACCOUNTS_KEY);
     console.log(res);
     if (res) {
-      return JSON.parse(res);
+      return res;
     } else {
       return [];
     }
@@ -65,18 +64,13 @@ export class AccountService {
       if (exists.indexOf(item.name) < 0) {
         exists.push(item.name);
       }
-      this.storage.set(item.name, JSON.stringify(item));
+      this.storage.set(item.name, item);
     });
-    return await this.storage.set('accounts', JSON.stringify(exists));
+    return await this.storage.set(ACCOUNTS_KEY, exists);
   }
 
   async getAccountFromLocal(name: string): Promise<Account> {
-    const result = await this.storage.get(name);
-    if (!result) {
-      return null;
-    } else {
-      return JSON.parse(result);
-    }
+    return await this.storage.get(name) || null;
   }
 
   /**

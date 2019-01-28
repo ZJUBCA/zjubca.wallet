@@ -1,7 +1,11 @@
 <ion-content padding>
   <div>
-    <ion-label>账号名</ion-label>
-    <ion-input class="f14" [(ngModel)]="form.name" placeholder="请设计账户名" maxlength="12"></ion-input>
+    <ion-label position="stacked">钱包名称</ion-label>
+    <ion-input class="f14" placeholder="给钱包起个名称吧" [(ngModel)]="form.name"></ion-input>
+  </div>
+  <div class="gutter">
+    <ion-label position="stacked">账号名</ion-label>
+    <ion-input class="f14" [(ngModel)]="form.account" placeholder="请设计账户名" maxlength="12"></ion-input>
     <ion-note class="f12">支持小写字母a-z与数字12345组成的12位账户名</ion-note>
   </div>
   <div class="gutter">
@@ -14,20 +18,20 @@
   </div>
   <div class="gutter">
     <div>
-      <ion-label>请设定一个密码保护钱包</ion-label>
+      <ion-label position="stacked">请设定一个密码保护钱包</ion-label>
     </div>
     <ion-note class="f12">钱包密码长度须大于6位</ion-note>
     <ion-input class="f14" type="password" [(ngModel)]="form.password" placeholder="密码"></ion-input>
     <ion-input class="f14" type="password" [(ngModel)]="form.confirmPswd" placeholder="重复密码"></ion-input>
   </div>
   <div class="gutter">
-    <ion-label>邀请码（若无，请向协会管理层获取）</ion-label>
+    <ion-label position="stacked">邀请码（若无，请向协会管理层获取）</ion-label>
     <ion-input class="f14" [(ngModel)]="form.inviteCode" placeholder="邀请码"></ion-input>
   </div>
   <div class="gutter">
     <div class="notice">
       <ion-checkbox color="dark" [(ngModel)]="form.checked"></ion-checkbox>
-      <ion-label class="f14" padding-start>我已了解以下事项：</ion-label>
+      <ion-label position="stacked" class="f14" padding-start>我已了解以下事项：</ion-label>
     </div>
     <div class="f12">
       <ol>

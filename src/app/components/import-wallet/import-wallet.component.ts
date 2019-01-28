@@ -7,6 +7,7 @@ import {WalletService} from '../../core/wallet.service';
 
 
 class ImportForm {
+  name: string;
   privKey: string;
   password: string;
   confirmPswd: string;
@@ -38,6 +39,10 @@ export class ImportWalletComponent implements OnInit {
 
   async submitForm() {
     console.log(this.form);
+    if (!this.form.name) {
+      return await this.alert('钱包名称不能为空');
+    }
+
     if (!this.form.privKey) {
       return await this.alert('私钥不能为空');
     }
@@ -54,6 +59,10 @@ export class ImportWalletComponent implements OnInit {
       return await this.alert('两次输入密码不一致');
     }
 
+    if (!this.form.checked) {
+      return await this.alert('请先勾选注意事项');
+    }
+
     const loading = await this.loadingController.create({
       message: '拼命导入中',
       duration: 0
@@ -61,8 +70,8 @@ export class ImportWalletComponent implements OnInit {
     await loading.present();
     // Fetch account list
     try {
-      const pubkey = this.ecc.privateToPublic(this.form.privKey);
-
+      const privKey = this.form.privKey;
+      const pubkey = this.ecc.privateToPublic(privKey);
       const res = await this.eosService.getAccountList(pubkey);
       const names = res.account_names;
       if (names.length > 0) {
@@ -73,13 +82,14 @@ export class ImportWalletComponent implements OnInit {
         });
         await this.accService.saveAccounts(accounts);
         await this.accService.setCurrent(names[0]);
-        await this.walletService.saveKey(pubkey, this.form.privKey, this.form.password);
+        await this.walletService.saveWallet(this.form.name, pubkey, privKey, this.form.password);
         await this.router.navigate(['/tabs']);
       } else {
         await this.alert('该密钥下无账户名');
       }
 
     } catch (e) {
+      console.log(e);
       let msg: string = e.message;
       if (msg.indexOf('checksum') >= 0) {
         msg = '私钥格式不正确';

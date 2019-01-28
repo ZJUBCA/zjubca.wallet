@@ -20,3 +20,10 @@ export const endpoints = [
 ];
 
 export const timezone = 'Asia/Shanghai';
+
+
+/* ===== storage key ===== */
+export const ENDPOINT_KEY = 'endpoint';
+export const CURRENT_ACC_KEY = 'current';
+export const PUBKEYS_KEY = 'pubkeys';
+export const ACCOUNTS_KEY = 'accounts';

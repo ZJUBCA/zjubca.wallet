@@ -7,8 +7,14 @@
     <ion-title>钱包管理</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content padding>
-  <ion-card>
 
+<ion-content padding>
+  <ion-card *ngFor="let wallet of wallets" color="dark">
+    <ion-card-header class="cardHeader" [routerLink]="'/wallet-detail/'+wallet.publicKey">
+      <ion-card-title color="dark" class="f16">{{wallet.name}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="f14">
+      {{wallet.publicKey}}
+    </ion-card-content>
   </ion-card>
 </ion-content>

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {endpoints} from '../../common/config';
+import {ENDPOINT_KEY, endpoints} from '../../common/config';
 import {Storage} from '@ionic/storage';
 
 interface Peer {
@@ -27,7 +27,7 @@ export class NetworkPage implements OnInit {
 
   async ngOnInit() {
     this.peers = endpoints;
-    const currPeer = await this.storage.get('endpoint');
+    const currPeer = await this.storage.get(ENDPOINT_KEY);
     if (currPeer) {
       this.currPeer = JSON.parse(currPeer);
     }
@@ -36,7 +36,7 @@ export class NetworkPage implements OnInit {
   async peerChange(ev) {
     const name = ev.detail.value;
     this.currPeer = this.peers.find(item => item.name === name);
-    await this.storage.set('endpoint', JSON.stringify(this.currPeer));
+    await this.storage.set(ENDPOINT_KEY, JSON.stringify(this.currPeer));
   }
 
 }

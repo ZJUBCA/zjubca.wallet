@@ -3,7 +3,7 @@ import {WalletService} from './wallet.service';
 import {AccountService} from './account.service';
 import {Action} from '../../classes';
 import {TextDecoder, TextEncoder} from 'text-encoding';
-import {tokenCode, endpoints} from '../common/config';
+import {tokenCode, endpoints, ENDPOINT_KEY} from '../common/config';
 import {Storage} from '@ionic/storage';
 
 
@@ -67,7 +67,7 @@ export class EosService {
   rpc: any;
 
   async initRPC() {
-    let currPeer = await this.storage.get('endpoint');
+    let currPeer = await this.storage.get(ENDPOINT_KEY);
     if (currPeer) {
       currPeer = JSON.parse(currPeer);
     } else {

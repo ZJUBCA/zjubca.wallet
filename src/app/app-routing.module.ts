@@ -12,6 +12,7 @@ const routes: Routes = [
   {path: 'network', loadChildren: './pages/network/network.module#NetworkPageModule'},
   {path: 'wallet-manage', loadChildren: './pages/wallet-manage/wallet-manage.module#WalletManagePageModule'},
   {path: 'about', loadChildren: './pages/about/about.module#AboutPageModule'},
+  {path: 'wallet-detail/:pubkey', loadChildren: './pages/wallet-detail/wallet-detail.module#WalletDetailPageModule'},
 ];
 
 @NgModule({

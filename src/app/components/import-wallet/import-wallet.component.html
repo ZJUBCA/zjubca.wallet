@@ -1,11 +1,15 @@
 <ion-content padding>
-  <div class="privkey">
+  <div>
+    <ion-label position="stacked">钱包名称</ion-label>
+    <ion-input class="f14" placeholder="给钱包起个名称吧" [(ngModel)]="form.name"></ion-input>
+  </div>
+  <div class="gutter privkey">
     <ion-label position="stacked">个人私钥</ion-label>
     <ion-textarea class="f14" placeholder="请输入您的私钥" [(ngModel)]="form.privKey"></ion-textarea>
   </div>
   <div class="gutter">
     <div>
-      <ion-label>请设定一个密码保护钱包</ion-label>
+      <ion-label position="stacked">请设定一个密码保护钱包</ion-label>
     </div>
     <ion-note class="f12">钱包密码长度须大于6位</ion-note>
     <ion-input type="password" class="f14" [(ngModel)]="form.password" placeholder="密码"></ion-input>

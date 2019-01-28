@@ -6,7 +6,8 @@ import {AccountService} from '../../core/account.service';
 import {WalletService} from '../../core/wallet.service';
 
 class CreateForm {
-  name: string;
+  name: string;  // wallet name
+  account: string;
   password: string;
   confirmPswd: string;
   inviteCode: string;
@@ -45,15 +46,19 @@ export class CreateWalletComponent implements OnInit {
     console.log(this.form);
 
     if (!this.form.name) {
-      return this.alert('账号名不能为空');
+      return await this.alert('钱包名不能为空');
     }
 
-    if (this.form.name.length !== 12) {
-      return this.alert('账户名长度必须为12位');
+    if (!this.form.account) {
+      return await this.alert('账号名不能为空');
+    }
+
+    if (this.form.account.length !== 12) {
+      return await this.alert('账户名长度必须为12位');
     }
 
     if (!this.form.password) {
-      return this.alert('密码不能为空');
+      return await this.alert('密码不能为空');
     }
 
     if (this.form.password.length < 6) {
@@ -61,11 +66,11 @@ export class CreateWalletComponent implements OnInit {
     }
 
     if (this.form.password !== this.form.confirmPswd) {
-      return this.alert('两次输入密码不一致');
+      return await this.alert('两次输入密码不一致');
     }
 
     if (!this.form.inviteCode) {
-      return this.alert('邀请码不能为空');
+      return await this.alert('邀请码不能为空');
     }
 
     const privateKey = this.privateKey;
@@ -83,17 +88,17 @@ export class CreateWalletComponent implements OnInit {
           handler: async () => {
             try {
               const res = await axios.post('/signup', {
-                account: this.form.name,
+                account: this.form.account,
                 pubKey,
                 inviteCode: this.form.inviteCode,
                 debug: false
               });
               const resp = res.data;
               if (!resp.code) {
-                // TODO: create wallet successfully
-                await this.accService.saveAccounts([{name: this.form.name}]);
-                await this.accService.setCurrent(this.form.name);
-                await this.walletService.saveKey(pubKey, privateKey, this.form.password);
+                // create account successfully
+                await this.accService.saveAccounts([{name: this.form.account}]);
+                await this.accService.setCurrent(this.form.account);
+                await this.walletService.saveWallet(this.form.name, pubKey, privateKey, this.form.password);
                 this.router.navigate(['/assets']);
               } else {
                 throw new Error(resp.msg);

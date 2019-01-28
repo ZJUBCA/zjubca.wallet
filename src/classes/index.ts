@@ -3,6 +3,7 @@ export interface Account {
 }
 
 export interface Wallet {
+  name: string;
   publicKey: string;
   encrypted_privkey: string;
 }
