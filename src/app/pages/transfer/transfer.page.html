@@ -12,7 +12,9 @@
   <div class="f14">
     <ion-label position="stacked">收款账号</ion-label>
     <ion-input placeholder="收款账号" [(ngModel)]="form.account" required></ion-input>
-    <ion-icon name="qr-scanner" class="qrScanner" (click)="qrScan()"></ion-icon>
+    <div (click)="qrScan()" class="qrScanner">
+      <ion-icon name="qr-scanner"></ion-icon>
+    </div>
   </div>
   <div class="gutter f14">
     <ion-label position="stacked">转账金额</ion-label>

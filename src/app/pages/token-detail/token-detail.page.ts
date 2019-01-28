@@ -50,6 +50,7 @@ export class TokenDetailPage implements OnInit {
   }
 
   ngOnInit() {
+    // @ts-ignore
     this.symbol = this.routes.params.value.symbol;
     this.fetchDetails();
     this.getBalance();

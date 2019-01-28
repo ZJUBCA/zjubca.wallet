@@ -4,6 +4,8 @@ import {EosService} from '../../core/eos.service';
 import {AccountService} from '../../core/account.service';
 import {Router} from '@angular/router';
 import {WalletService} from '../../core/wallet.service';
+import {ENDPOINT_KEY, endpoints} from '../../common/config';
+import {Storage} from '@ionic/storage';
 
 
 class ImportForm {
@@ -29,7 +31,8 @@ export class ImportWalletComponent implements OnInit {
     private eosService: EosService,
     private accService: AccountService,
     private walletService: WalletService,
-    private router: Router
+    private router: Router,
+    private storage: Storage
   ) {
     this.form = new ImportForm();
   }
@@ -80,6 +83,11 @@ export class ImportWalletComponent implements OnInit {
             name: name
           };
         });
+        // set current endpoint if is first logged in.
+        const currPeer = await this.storage.get(ENDPOINT_KEY);
+        if (!currPeer) {
+          await this.storage.set(ENDPOINT_KEY, endpoints[0]);
+        }
         await this.accService.saveAccounts(accounts);
         await this.accService.setCurrent(names[0]);
         await this.walletService.saveWallet(this.form.name, pubkey, privKey, this.form.password);

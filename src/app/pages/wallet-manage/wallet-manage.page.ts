@@ -3,6 +3,8 @@ import {Storage} from '@ionic/storage';
 import {PUBKEYS_KEY} from '../../common/config';
 import {Wallet} from '../../../classes';
 import {WalletService} from '../../core/wallet.service';
+import {Clipboard} from '@ionic-native/clipboard';
+import {ToastController} from '@ionic/angular';
 
 @Component({
   selector: 'app-wallet-manage',
@@ -14,7 +16,8 @@ export class WalletManagePage implements OnInit {
 
   constructor(
     private storage: Storage,
-    private walletSvc: WalletService
+    private walletSvc: WalletService,
+    private toastController: ToastController
   ) {
   }
 
@@ -25,5 +28,14 @@ export class WalletManagePage implements OnInit {
     }
   }
 
+  async copy(pubkey) {
+    Clipboard.copy(pubkey);
+    const toast = await this.toastController.create({
+      message: '已复制',
+      position: 'bottom',
+      duration: 1000,
+    });
+    toast.present();
+  }
 
 }

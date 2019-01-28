@@ -7,7 +7,7 @@ import axios from '../../common/axios';
 import {tokenCode, tokensUrl} from '../../common/config';
 import {ActivatedRoute} from '@angular/router';
 
-// import {QRScannerOriginal, QRScannerStatus} from '@ionic-native/qr-scanner';
+import {QRScanner, QRScannerStatus} from '@ionic-native/qr-scanner';
 
 class TransferForm {
   account: string;
@@ -30,7 +30,7 @@ export class TransferPage implements OnInit {
     private eosService: EosService,
     private accService: AccountService,
     private route: ActivatedRoute,
-    public modalController: ModalController,
+    private modalController: ModalController,
   ) {
   }
 
@@ -38,6 +38,7 @@ export class TransferPage implements OnInit {
     this.form = new TransferForm();
 
     this.symbols = this.symbols.concat(await this.fetchSymbols());
+    // @ts-ignore
     const {symbol, to} = this.route.queryParams.value;
     setTimeout(() => {
       this.form.symbol = symbol || 'EOS';
@@ -46,23 +47,24 @@ export class TransferPage implements OnInit {
   }
 
   async qrScan() {
-    //   try {
-    //     const status: QRScannerStatus = await this.qrScanner.prepare();
-    //     if (status.authorized) {
-    //       // camera permission was granted
-    //       const scanSub = this.qrScanner.scan().subscribe((text: string) => {
-    //         console.log('scanned somthing', text);
-    //         this.qrScanner.hide();
-    //         scanSub.unsubscribe();
-    //       });
-    //     } else if (status.denied) {
-    //
-    //     } else {
-    //
-    //     }
-    //   } catch (e) {
-    //
-    //   }
+    try {
+      const status: QRScannerStatus = await QRScanner.prepare();
+      if (status.authorized) {
+        console.log('open scanner');
+        // camera permission was granted
+        const scanSub = QRScanner.scan().subscribe((text: string) => {
+          console.log('scanned somthing', text);
+          QRScanner.hide();
+          scanSub.unsubscribe();
+        });
+      } else if (status.denied) {
+
+      } else {
+
+      }
+    } catch (e) {
+
+    }
   }
 
   async fetchSymbols(): Promise<string[]> {

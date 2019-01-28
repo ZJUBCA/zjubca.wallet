@@ -29,14 +29,14 @@ export class NetworkPage implements OnInit {
     this.peers = endpoints;
     const currPeer = await this.storage.get(ENDPOINT_KEY);
     if (currPeer) {
-      this.currPeer = JSON.parse(currPeer);
+      this.currPeer = currPeer;
     }
   }
 
   async peerChange(ev) {
     const name = ev.detail.value;
     this.currPeer = this.peers.find(item => item.name === name);
-    await this.storage.set(ENDPOINT_KEY, JSON.stringify(this.currPeer));
+    await this.storage.set(ENDPOINT_KEY, this.currPeer);
   }
 
 }

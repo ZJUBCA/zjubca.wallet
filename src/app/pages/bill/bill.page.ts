@@ -20,6 +20,7 @@ export class BillPage implements OnInit {
   }
 
   async ngOnInit() {
+    // @ts-ignore
     this.symbol = this.route.queryParams.value.symbol || 'EOS';
     this.account = await this.accService.current();
 

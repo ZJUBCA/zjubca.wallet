@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {WalletService} from './wallet.service';
 import {AccountService} from './account.service';
 import {Action} from '../../classes';
@@ -35,7 +35,6 @@ export class EosService {
     private walletService: WalletService,
     private storage: Storage
   ) {
-    this.initRPC();
   }
 
   // rpc = new JsonRpc('https://api.kylin-testnet.eospacex.com', { fetch })
@@ -66,15 +65,13 @@ export class EosService {
   api: any;
   rpc: any;
 
-  async initRPC() {
+  async RPC() {
     let currPeer = await this.storage.get(ENDPOINT_KEY);
-    if (currPeer) {
-      currPeer = JSON.parse(currPeer);
-    } else {
+    if (!currPeer) {
       currPeer = endpoints[0];
+      await this.storage.set(ENDPOINT_KEY, currPeer);
     }
-    this.rpc = new window.eosjs_jsonrpc.default(currPeer.endpoint);
-
+    return new window.eosjs_jsonrpc.default(currPeer.endpoint);
   }
 
   /**
@@ -104,9 +101,10 @@ export class EosService {
     }
 
     console.log(privKey);
+    const rpc = await this.RPC();
     this.signatureProvider = new window.eosjs_jssig.default([privKey]);
     this.api = new window.eosjs_api.default({
-      rpc: this.rpc,
+      rpc: rpc,
       signatureProvider: this.signatureProvider,
       textDecoder: new TextDecoder(),
       textEncoder: new TextEncoder(),
@@ -119,8 +117,9 @@ export class EosService {
    * @param name
    */
   async getBalance(name: string) {
-    const eosBalance = await this.rpc.get_currency_balance('eosio.token', name, 'EOS');
-    const zjubcaBalance = await this.rpc.get_currency_balance(tokenCode, name, 'ZJUBCA');
+    const rpc = await this.RPC();
+    const eosBalance = await rpc.get_currency_balance('eosio.token', name, 'EOS');
+    const zjubcaBalance = await rpc.get_currency_balance(tokenCode, name, 'ZJUBCA');
     console.log(zjubcaBalance);
     return {
       eos: eosBalance[0] || '0 EOS',
@@ -137,7 +136,8 @@ export class EosService {
    * @param symbol
    */
   async getTokenBalance(code: string, name: string, symbol?: string) {
-    return await this.rpc.get_currency_balance(code, name, symbol);
+    const rpc = await this.RPC();
+    return await rpc.get_currency_balance(code, name, symbol);
   }
 
   /**
@@ -146,7 +146,8 @@ export class EosService {
    * @param pubkey
    */
   async getAccountList(pubkey: string): Promise<any> {
-    return await this.rpc.history_get_key_accounts(pubkey);
+    const rpc = await this.RPC();
+    return await rpc.history_get_key_accounts(pubkey);
   }
 
   /**
@@ -155,7 +156,8 @@ export class EosService {
    * @param name
    */
   async getAccount(name: string): Promise<any> {
-    return await this.rpc.get_account(name);
+    const rpc = await this.RPC();
+    return await rpc.get_account(name);
   }
 
   async sendTx(actions: Action[]): Promise<any> {
@@ -173,7 +175,8 @@ export class EosService {
    * @param name
    */
   async getActions(name: string, pos: number, offset: number): Promise<any> {
-    return await this.rpc.history_get_actions(name, pos, offset);
+    const rpc = await this.RPC();
+    return await rpc.history_get_actions(name, pos, offset);
   }
 
 }
