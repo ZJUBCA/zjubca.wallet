@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ToastController, AlertController} from '@ionic/angular';
 import {Route, Router} from '@angular/router';
 import axios from '../../common/axios';
+import {AccountService} from '../../core/account.service';
+import {WalletService} from '../../core/wallet.service';
 
 class CreateForm {
   name: string;
@@ -24,6 +26,8 @@ export class CreateWalletComponent implements OnInit {
   constructor(
     public toastController: ToastController,
     public alertController: AlertController,
+    private accService: AccountService,
+    private walletService: WalletService,
     private router: Router
   ) {
     this.form = new CreateForm();
@@ -64,7 +68,8 @@ export class CreateWalletComponent implements OnInit {
       return this.alert('邀请码不能为空');
     }
 
-    const pubKey = this.ecc.privateToPublic(this.privateKey);
+    const privateKey = this.privateKey;
+    const pubKey = this.ecc.privateToPublic(privateKey);
     const warning = await this.alertController.create({
       header: '请务必保存好私钥',
       message: '创建成功后，您也可使用"备份私钥"功能再次显示私钥',
@@ -86,6 +91,9 @@ export class CreateWalletComponent implements OnInit {
               const resp = res.data;
               if (!resp.code) {
                 // TODO: create wallet successfully
+                await this.accService.saveAccounts([{name: this.form.name}]);
+                await this.accService.setCurrent(this.form.name);
+                await this.walletService.saveKey(pubKey, privateKey, this.form.password);
                 this.router.navigate(['/assets']);
               } else {
                 throw new Error(resp.msg);

@@ -18,10 +18,12 @@ export class WalletService {
   async saveKey(pubKey: string, privKey: string, password: string): Promise<any> {
     const encrypted = this.ase.encrypt(privKey, password).toString();
     console.log(pubKey, encrypted);
-    return await this.storage.set(pubKey, JSON.stringify({
+    await this.storage.set(pubKey, JSON.stringify({
       pubKey: pubKey,
       encrypted_privkey: encrypted
     }));
+
+    return await this.pushKey(pubKey);
   }
 
   async retrieveKey(pubKey: string, password: string): Promise<string> {
@@ -31,6 +33,22 @@ export class WalletService {
       return this.ase.decrypt(wallet.encrypted_privkey, password).toString(Cryptojs.enc.Utf8);
     } else {
       return '';
+    }
+  }
+
+  /**
+   * pushKey push a new public key to the key list
+   */
+  async pushKey(pubKey: string) {
+    let keys = await this.storage.get('pubkeys');
+    if (!keys) {
+      keys = [];
+    } else {
+      keys = JSON.parse(keys);
+    }
+    if (keys.indexOf(pubKey) < 0) {
+      keys.push(pubKey);
+      await this.storage.set('pubkeys', keys);
     }
   }
 

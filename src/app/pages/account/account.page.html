@@ -1,9 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>account</ion-title>
+    <ion-title>我的</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content padding class="con">
+  <ion-list lines="none">
+    <ion-item routerLink="/network">
+      <ion-icon slot="start" color="medium" name="globe"></ion-icon>
+      <ion-label>节点选择</ion-label>
+    </ion-item>
+    <ion-item routerLink="/wallet-manage">
+      <ion-icon slot="start" color="medium" name="card"></ion-icon>
+      <ion-label>钱包管理</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon slot="start" color="medium" name="share-alt"></ion-icon>
+      <ion-label>推荐zjubca.wallet</ion-label>
+    </ion-item>
+    <ion-item routerLink="/about">
+      <ion-icon slot="start" color="medium" name="information-circle-outline"></ion-icon>
+      <ion-label>关于我们</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

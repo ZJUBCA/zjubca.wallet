@@ -4,6 +4,7 @@ import {AccountService} from './account.service';
 import {Action} from '../../classes';
 import {TextDecoder, TextEncoder} from 'text-encoding';
 import {tokenCode, endpoints} from '../common/config';
+import {Storage} from '@ionic/storage';
 
 
 declare global {
@@ -32,7 +33,9 @@ interface SimpleAccount {
 export class EosService {
   constructor(
     private walletService: WalletService,
+    private storage: Storage
   ) {
+    this.initRPC();
   }
 
   // rpc = new JsonRpc('https://api.kylin-testnet.eospacex.com', { fetch })
@@ -61,8 +64,18 @@ export class EosService {
   // };
   signatureProvider: any;
   api: any;
+  rpc: any;
 
-  rpc = new window.eosjs_jsonrpc.default(endpoints[0]);
+  async initRPC() {
+    let currPeer = await this.storage.get('endpoint');
+    if (currPeer) {
+      currPeer = JSON.parse(currPeer);
+    } else {
+      currPeer = endpoints[0];
+    }
+    this.rpc = new window.eosjs_jsonrpc.default(currPeer.endpoint);
+
+  }
 
   /**
    * initialize the signature provider with a fresh key corresponding the authorization.

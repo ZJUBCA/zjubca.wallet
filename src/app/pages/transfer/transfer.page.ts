@@ -24,7 +24,7 @@ class TransferForm {
 export class TransferPage implements OnInit {
 
   form: TransferForm;
-  symbols: string[];
+  symbols: string[] = ['EOS'];
 
   constructor(
     private eosService: EosService,
@@ -37,7 +37,7 @@ export class TransferPage implements OnInit {
   async ngOnInit() {
     this.form = new TransferForm();
 
-    this.symbols = ['EOS'].concat(await this.fetchSymbols());
+    this.symbols = this.symbols.concat(await this.fetchSymbols());
     const {symbol, to} = this.route.queryParams.value;
     setTimeout(() => {
       this.form.symbol = symbol || 'EOS';

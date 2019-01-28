@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import axios from '../../common/axios';
-import {tokenCode, tokensUrl} from '../../common/config';
+import {timezone, tokenCode, tokensUrl} from '../../common/config';
 import {ToastController} from '@ionic/angular';
 import {Token} from '../../../classes';
 import {EosService} from '../../core/eos.service';
 import {AccountService} from '../../core/account.service';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 interface HistoryAction {
   from: string;
@@ -34,10 +34,11 @@ export class TokenDetailPage implements OnInit {
 
   balance: string;
 
-  historyActions: any = [];
+  historyActions: HistoryAction[] = [];
   noMoreActions = false;
+  actionsLoading = false;
   pos = 1;
-  offset = 20;
+  offset = 30;
 
   constructor(
     private routes: ActivatedRoute,
@@ -100,10 +101,20 @@ export class TokenDetailPage implements OnInit {
   }
 
   async getHistoryActions() {
+    if (this.actionsLoading) {
+      return;
+    }
     try {
+      this.actionsLoading = true;
       const name = await this.accService.current();
       const result = await this.eosService.getActions(name, this.pos, this.offset);
       const trxIds = {};
+
+      if (result.actions.length < this.offset + 1) {
+        this.noMoreActions = true;
+      } else {
+        this.pos += this.offset + 1;
+      }
 
       // filter duplicate transactions
       result.actions = result.actions.filter(item => {
@@ -142,19 +153,21 @@ export class TokenDetailPage implements OnInit {
           to,
           quantity: quantity.split(' ')[0],
           type,
-          time: moment(item.action_trace.block_time).zone(8).format('YYYY-MM-DD HH:mm:ss')
+          time: moment.tz(item.action_trace.block_time, timezone).format('YYYY-MM-DD HH:mm:ss')
         };
       });
       this.historyActions = this.historyActions.concat(actions);
-      if (result.actions.length < this.offset + 1) {
-        this.noMoreActions = true;
-      } else {
-        this.pos += this.offset + 1;
-      }
-      console.log(this.historyActions);
+      // console.log(this.historyActions);
     } catch (e) {
       console.log(e);
       await this.alert('获取交易记录失败');
+    } finally {
+      this.actionsLoading = false;
     }
+  }
+
+  async loadData(event) {
+    await this.getHistoryActions();
+    event.target.complete();
   }
 }

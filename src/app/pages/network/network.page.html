@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text="" icon="arrow-back">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>节点选择</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="full">
+    <ion-radio-group (ionChange)="peerChange($event)" [value]="currPeer.name">
+      <ion-list-header>
+        <ion-label>可选节点</ion-label>
+      </ion-list-header>
+      <ion-item *ngFor="let peer of peers">
+        <ion-label>{{peer.name}}</ion-label>
+        <ion-radio slot="start" [value]="peer.name" [checked]="peer.name === currPeer.name"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+</ion-content>

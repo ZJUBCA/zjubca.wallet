@@ -44,4 +44,15 @@
       </div>
     </ion-item>
   </ion-list>
+  <div class="bottomText">
+    <ion-note class="f14" *ngIf="noMoreActions">到底了</ion-note>
+  </div>
+  <ion-infinite-scroll class="infiniteBottom" threshold="50px" (ionInfinite)="loadData($event)"
+                       [disabled]="noMoreActions">
+    <ion-infinite-scroll-content
+      class="scrollContent"
+      loadingSpinner="crescent"
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
