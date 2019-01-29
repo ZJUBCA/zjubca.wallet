@@ -4,8 +4,8 @@ import axios from '../../common/axios';
 import {timezone, tokenCode, tokensUrl} from '../../common/config';
 import {ToastController} from '@ionic/angular';
 import {Token} from '../../../classes';
-import {EosService} from '../../core/eos.service';
-import {AccountService} from '../../core/account.service';
+import {EosService} from '../../services/eos.service';
+import {AccountService} from '../../services/account.service';
 import moment from 'moment-timezone';
 
 interface HistoryAction {

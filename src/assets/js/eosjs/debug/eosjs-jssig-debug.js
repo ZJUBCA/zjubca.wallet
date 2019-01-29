@@ -9314,7 +9314,7 @@ module.exports = CipherBase
 
 /***/ "./node_modules/core-util-is/lib/util.js":
 /*!***********************************************!*\
-  !*** ./node_modules/core-util-is/lib/util.js ***!
+  !*** ./node_modules/services-util-is/lib/util.js ***!
   \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -14502,7 +14502,7 @@ var objectKeys = Object.keys || function (obj) {
 module.exports = Duplex;
 
 /*<replacement>*/
-var util = __webpack_require__(/*! core-util-is */ "./node_modules/core-util-is/lib/util.js");
+var util = __webpack_require__(/*! services-util-is */ "./node_modules/services-util-is/lib/util.js");
 util.inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js");
 /*</replacement>*/
 
@@ -14631,7 +14631,7 @@ module.exports = PassThrough;
 var Transform = __webpack_require__(/*! ./_stream_transform */ "./node_modules/readable-stream/lib/_stream_transform.js");
 
 /*<replacement>*/
-var util = __webpack_require__(/*! core-util-is */ "./node_modules/core-util-is/lib/util.js");
+var util = __webpack_require__(/*! services-util-is */ "./node_modules/services-util-is/lib/util.js");
 util.inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js");
 /*</replacement>*/
 
@@ -14723,7 +14723,7 @@ function _isUint8Array(obj) {
 /*</replacement>*/
 
 /*<replacement>*/
-var util = __webpack_require__(/*! core-util-is */ "./node_modules/core-util-is/lib/util.js");
+var util = __webpack_require__(/*! services-util-is */ "./node_modules/services-util-is/lib/util.js");
 util.inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js");
 /*</replacement>*/
 
@@ -15758,7 +15758,7 @@ module.exports = Transform;
 var Duplex = __webpack_require__(/*! ./_stream_duplex */ "./node_modules/readable-stream/lib/_stream_duplex.js");
 
 /*<replacement>*/
-var util = __webpack_require__(/*! core-util-is */ "./node_modules/core-util-is/lib/util.js");
+var util = __webpack_require__(/*! services-util-is */ "./node_modules/services-util-is/lib/util.js");
 util.inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js");
 /*</replacement>*/
 
@@ -15979,7 +15979,7 @@ var Duplex;
 Writable.WritableState = WritableState;
 
 /*<replacement>*/
-var util = __webpack_require__(/*! core-util-is */ "./node_modules/core-util-is/lib/util.js");
+var util = __webpack_require__(/*! services-util-is */ "./node_modules/services-util-is/lib/util.js");
 util.inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js");
 /*</replacement>*/
 
@@ -16058,7 +16058,7 @@ function WritableState(options, stream) {
   this.destroyed = false;
 
   // should we decode strings into buffers before passing to _write?
-  // this is here so that some node-core streams can optimize string
+  // this is here so that some node-services streams can optimize string
   // handling at a lower level.
   var noDecode = options.decodeStrings === false;
   this.decodeStrings = !noDecode;
@@ -16709,7 +16709,7 @@ if (util && util.inspect && util.inspect.custom) {
 var pna = __webpack_require__(/*! process-nextick-args */ "./node_modules/process-nextick-args/index.js");
 /*</replacement>*/
 
-// undocumented cb() API, needed for core, not for public API
+// undocumented cb() API, needed for services, not for public API
 function destroy(err, cb) {
   var _this = this;
 

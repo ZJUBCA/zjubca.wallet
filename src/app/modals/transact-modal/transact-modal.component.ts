@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ModalController, ToastController} from '@ionic/angular';
-import {AccountService} from '../../core/account.service';
-import {EosService} from '../../core/eos.service';
+import {AccountService} from '../../services/account.service';
+import {EosService} from '../../services/eos.service';
 
 @Component({
   selector: 'app-transact-modal',

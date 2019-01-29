@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {EosService} from '../../core/eos.service';
-import {AccountService} from '../../core/account.service';
+import {EosService} from '../../services/eos.service';
+import {AccountService} from '../../services/account.service';
 import {ModalController} from '@ionic/angular';
-import {TransactModalComponent} from '../../modal/transact-modal/transact-modal.component';
+import {TransactModalComponent} from '../../modals/transact-modal/transact-modal.component';
 import axios from '../../common/axios';
 import {tokenCode, tokensUrl} from '../../common/config';
 import {ActivatedRoute} from '@angular/router';

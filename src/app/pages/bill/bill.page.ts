@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AccountService} from '../../core/account.service';
+import {AccountService} from '../../services/account.service';
 import {ActivatedRoute} from '@angular/router';
 import {QRData} from '../../../classes';
 import {QR_PROTOCOL, QR_VERSION, tokenCode} from '../../common/config';

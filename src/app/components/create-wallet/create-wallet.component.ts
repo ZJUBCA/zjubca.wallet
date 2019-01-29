@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ToastController, AlertController} from '@ionic/angular';
 import {Route, Router} from '@angular/router';
 import axios from '../../common/axios';
-import {AccountService} from '../../core/account.service';
-import {WalletService} from '../../core/wallet.service';
+import {AccountService} from '../../services/account.service';
+import {WalletService} from '../../services/wallet.service';
 import {ENDPOINT_KEY, endpoints} from '../../common/config';
 import {Storage} from '@ionic/storage';
 

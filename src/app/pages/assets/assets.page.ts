@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AccountService} from '../../core/account.service';
-import {EosService} from '../../core/eos.service';
+import {AccountService} from '../../services/account.service';
+import {EosService} from '../../services/eos.service';
 import {Router} from '@angular/router';
 import {Storage} from '@ionic/storage';
 import {PopoverController} from '@ionic/angular';

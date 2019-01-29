@@ -12,14 +12,15 @@ import {AssetsPageModule} from './pages/assets/assets.module';
 import {DappPageModule} from './pages/dapp/dapp.module';
 import {AccountPageModule} from './pages/account/account.module';
 import {SharedModule} from './shared/shared.module';
-import {CoreModule} from './core/core.module';
+import {CoreModule} from './services/core.module';
 import {IonicStorageModule} from '@ionic/storage';
 import {LoginPageModule} from './pages/login/login.module';
 import {TokensPageModule} from './pages/tokens/tokens.module';
 import {NftPageModule} from './pages/nft/nft.module';
+import { ActionModalComponent } from './modals/action-modal/action-modal.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ActionModalComponent],
   entryComponents: [],
   imports: [
     BrowserModule,

@@ -6,7 +6,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {IonicModule} from '@ionic/angular';
 
 import {TransferPage} from './transfer.page';
-import {TransactModalComponent} from '../../modal/transact-modal/transact-modal.component';
+import {TransactModalComponent} from '../../modals/transact-modal/transact-modal.component';
 
 const routes: Routes = [
   {

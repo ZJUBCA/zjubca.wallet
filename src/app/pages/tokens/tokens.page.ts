@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import axios from '../../common/axios';
 import {tokenCode, tokensUrl} from '../../common/config';
 import {Token} from '../../../classes';
-import {EosService} from '../../core/eos.service';
-import {AccountService} from '../../core/account.service';
+import {EosService} from '../../services/eos.service';
+import {AccountService} from '../../services/account.service';
 
 @Component({
   selector: 'app-tokens',

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Storage} from '@ionic/storage';
 import {PUBKEYS_KEY} from '../../common/config';
 import {Wallet} from '../../../classes';
-import {WalletService} from '../../core/wallet.service';
+import {WalletService} from '../../services/wallet.service';
 import {Clipboard} from '@ionic-native/clipboard/ngx';
 import {ToastController} from '@ionic/angular';
 

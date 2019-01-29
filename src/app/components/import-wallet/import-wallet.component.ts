@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ToastController, LoadingController} from '@ionic/angular';
-import {EosService} from '../../core/eos.service';
-import {AccountService} from '../../core/account.service';
+import {EosService} from '../../services/eos.service';
+import {AccountService} from '../../services/account.service';
 import {Router} from '@angular/router';
-import {WalletService} from '../../core/wallet.service';
+import {WalletService} from '../../services/wallet.service';
 import {ENDPOINT_KEY, endpoints} from '../../common/config';
 import {Storage} from '@ionic/storage';
 
