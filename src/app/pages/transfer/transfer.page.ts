@@ -7,8 +7,6 @@ import axios from '../../common/axios';
 import {tokenCode, tokensUrl} from '../../common/config';
 import {ActivatedRoute} from '@angular/router';
 
-import {QRScanner, QRScannerStatus} from '@ionic-native/qr-scanner';
-
 class TransferForm {
   account: string;
   value: string;
@@ -44,27 +42,6 @@ export class TransferPage implements OnInit {
       this.form.symbol = symbol || 'EOS';
       this.form.account = to || '';
     });
-  }
-
-  async qrScan() {
-    try {
-      const status: QRScannerStatus = await QRScanner.prepare();
-      if (status.authorized) {
-        console.log('open scanner');
-        // camera permission was granted
-        const scanSub = QRScanner.scan().subscribe((text: string) => {
-          console.log('scanned somthing', text);
-          QRScanner.hide();
-          scanSub.unsubscribe();
-        });
-      } else if (status.denied) {
-
-      } else {
-
-      }
-    } catch (e) {
-
-    }
   }
 
   async fetchSymbols(): Promise<string[]> {

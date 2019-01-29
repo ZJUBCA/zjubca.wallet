@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AccountService} from '../../core/account.service';
 import {EosService} from '../../core/eos.service';
 import {Router} from '@angular/router';
 import {Storage} from '@ionic/storage';
+import {PopoverController} from '@ionic/angular';
+import {HomePopMenuComponent} from '../../components/home-pop-menu/home-pop-menu.component';
 
 @Component({
   selector: 'app-assets',
@@ -11,18 +13,21 @@ import {Storage} from '@ionic/storage';
 })
 export class AssetsPage implements OnInit {
   balance = {
-    eos: '0 EOS',
-    zjubca: '0 ZJUBCA',
+    eos: '获取中...',
+    zjubca: '获取中...',
   };
 
   currAccount: string;
   accounts: string[];
 
+  popover: any;
+
   constructor(
     private accountSvc: AccountService,
     private eosService: EosService,
     private storage: Storage,
-    private router: Router
+    private router: Router,
+    private popoverCtrl: PopoverController
   ) {
   }
 
@@ -35,4 +40,14 @@ export class AssetsPage implements OnInit {
     this.balance = await this.eosService.getBalance(this.currAccount);
     console.log(this.currAccount, this.accounts);
   }
+
+  async showMenu(ev) {
+    this.popover = await this.popoverCtrl.create({
+      component: HomePopMenuComponent,
+      event: ev,
+      translucent: true,
+    });
+    return await this.popover.present();
+  }
+
 }

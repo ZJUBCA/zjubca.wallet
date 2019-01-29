@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>钱包</ion-title>
     <ion-buttons slot="end">
-      <ion-button color="dark">
+      <ion-button color="dark" (click)="showMenu($event)">
         <ion-icon name="add"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -32,11 +32,11 @@
       </ion-row>
       <ion-row>
         <ion-col>EOS</ion-col>
-        <ion-col>{{balance.eos}}</ion-col>
+        <ion-col class="alignRight">{{balance.eos}}</ion-col>
       </ion-row>
       <ion-row>
         <ion-col>ZJUBCA</ion-col>
-        <ion-col>{{balance.zjubca}}</ion-col>
+        <ion-col class="alignRight">{{balance.zjubca}}</ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>

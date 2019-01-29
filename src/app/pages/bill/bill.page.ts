@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountService} from '../../core/account.service';
 import {ActivatedRoute} from '@angular/router';
+import {QRData} from '../../../classes';
+import {QR_PROTOCOL, QR_VERSION, tokenCode} from '../../common/config';
 
 @Component({
   selector: 'app-bill',
@@ -24,11 +26,17 @@ export class BillPage implements OnInit {
     this.symbol = this.route.queryParams.value.symbol || 'EOS';
     this.account = await this.accService.current();
 
-    this.qrcode = JSON.stringify({
+    const qrData: QRData = {
+      protocol: QR_PROTOCOL,
+      version: QR_VERSION,
+      action: 'transfer',
+      to: this.account,
+      amount: 0,
+      contract: tokenCode,
       symbol: this.symbol,
-      account: this.account,
-      type: 'transfer'
-    });
+      precision: 4
+    };
+    this.qrcode = JSON.stringify(qrData);
   }
 
 }

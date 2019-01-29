@@ -122,8 +122,8 @@ export class EosService {
     const zjubcaBalance = await rpc.get_currency_balance(tokenCode, name, 'ZJUBCA');
     console.log(zjubcaBalance);
     return {
-      eos: eosBalance[0] || '0 EOS',
-      zjubca: zjubcaBalance[0] || '0 ZJUBCA',
+      eos: (eosBalance[0] || '0 EOS').split(' ')[0],
+      zjubca: (zjubcaBalance[0] || '0 ZJUBCA').split(' ')[0],
     };
     // [ '99999999.9999 SYS' ]
   }

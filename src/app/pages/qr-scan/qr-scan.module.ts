@@ -5,14 +5,13 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {IonicModule} from '@ionic/angular';
 
-import {AssetsPage} from './assets.page';
-import {SharedModule} from '../../shared/shared.module';
-import {HomePopMenuComponent} from '../../components/home-pop-menu/home-pop-menu.component';
+import {QrScanPage} from './qr-scan.page';
+import {QRScanner} from '@ionic-native/qr-scanner/ngx';
 
 const routes: Routes = [
   {
     path: '',
-    component: AssetsPage
+    component: QrScanPage
   }
 ];
 
@@ -21,11 +20,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    SharedModule,
     RouterModule.forChild(routes)
   ],
-  entryComponents: [HomePopMenuComponent],
-  declarations: [AssetsPage, HomePopMenuComponent]
+  providers: [QRScanner],
+  declarations: [QrScanPage]
 })
-export class AssetsPageModule {
+export class QrScanPageModule {
 }
