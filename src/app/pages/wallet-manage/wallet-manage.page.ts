@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Storage} from '@ionic/storage';
-import {PUBKEYS_KEY} from '../../common/config';
 import {Wallet} from '../../../classes';
 import {WalletService} from '../../services/wallet.service';
 import {Clipboard} from '@ionic-native/clipboard/ngx';
@@ -23,7 +22,7 @@ export class WalletManagePage implements OnInit {
   }
 
   async ngOnInit() {
-    const keys = await this.storage.get(PUBKEYS_KEY);
+    const keys = await this.walletSvc.getWallets();
     for (const key of keys) {
       this.wallets.push(await this.walletSvc.getWallet(key));
     }

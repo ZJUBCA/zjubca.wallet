@@ -4,7 +4,6 @@ import {EosService} from '../../services/eos.service';
 import {AccountService} from '../../services/account.service';
 import {Router} from '@angular/router';
 import {WalletService} from '../../services/wallet.service';
-import {ENDPOINT_KEY, endpoints} from '../../common/config';
 import {Storage} from '@ionic/storage';
 
 
@@ -83,11 +82,6 @@ export class ImportWalletComponent implements OnInit {
             name: name
           };
         });
-        // set current endpoint if is first logged in.
-        const currPeer = await this.storage.get(ENDPOINT_KEY);
-        if (!currPeer) {
-          await this.storage.set(ENDPOINT_KEY, endpoints[0]);
-        }
         await this.accService.saveAccounts(accounts);
         await this.accService.setCurrent(names[0]);
         await this.walletService.saveWallet(this.form.name, pubkey, privKey, this.form.password);

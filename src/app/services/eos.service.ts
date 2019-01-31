@@ -1,10 +1,10 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {WalletService} from './wallet.service';
-import {AccountService} from './account.service';
 import {Action} from '../../classes';
 import {TextDecoder, TextEncoder} from 'text-encoding';
-import {tokenCode, endpoints, ENDPOINT_KEY} from '../common/config';
-import {Storage} from '@ionic/storage';
+import {tokenCode} from '../common/config';
+import {NetworkService} from './network.service';
+import {Buffer} from 'buffer';
 
 
 declare global {
@@ -33,7 +33,7 @@ interface SimpleAccount {
 export class EosService {
   constructor(
     private walletService: WalletService,
-    private storage: Storage
+    private networkService: NetworkService,
   ) {
   }
 
@@ -66,11 +66,7 @@ export class EosService {
   rpc: any;
 
   async RPC() {
-    let currPeer = await this.storage.get(ENDPOINT_KEY);
-    if (!currPeer) {
-      currPeer = endpoints[0];
-      await this.storage.set(ENDPOINT_KEY, currPeer);
-    }
+    const currPeer = await this.networkService.getNetwork();
     return new window.eosjs_jsonrpc.default(currPeer.endpoint);
   }
 
@@ -100,7 +96,7 @@ export class EosService {
       throw new Error('密码不正确或无可用密钥');
     }
 
-    console.log(privKey);
+    // console.log(privKey);
     const rpc = await this.RPC();
     this.signatureProvider = new window.eosjs_jssig.default([privKey]);
     this.api = new window.eosjs_api.default({
@@ -160,7 +156,7 @@ export class EosService {
     return await rpc.get_account(name);
   }
 
-  async sendTx(actions: Action[]): Promise<any> {
+  async createTransaction(actions: Action[]): Promise<any> {
     return await this.api.transact({
       actions
     }, {
@@ -177,6 +173,13 @@ export class EosService {
   async getActions(name: string, pos: number, offset: number): Promise<any> {
     const rpc = await this.RPC();
     return await rpc.history_get_actions(name, pos, offset);
+  }
+
+  sign(payload: any, privKey: string, arbitrary = false, isHash = false): string {
+    if (arbitrary && isHash) {
+      return window.eosjs_ecc.Signature.signHash(payload.data, privKey).toString();
+    }
+    return window.eosjs_ecc.sign(Buffer.from(arbitrary ? payload.data : payload.buf, 'utf8'), privKey);
   }
 
 }

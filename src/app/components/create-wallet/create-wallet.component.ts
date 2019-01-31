@@ -4,7 +4,6 @@ import {Route, Router} from '@angular/router';
 import axios from '../../common/axios';
 import {AccountService} from '../../services/account.service';
 import {WalletService} from '../../services/wallet.service';
-import {ENDPOINT_KEY, endpoints} from '../../common/config';
 import {Storage} from '@ionic/storage';
 
 class CreateForm {
@@ -98,11 +97,6 @@ export class CreateWalletComponent implements OnInit {
               });
               const resp = res.data;
               if (!resp.code) {
-                // set current endpoint if is first logged in.
-                const currPeer = await this.storage.get(ENDPOINT_KEY);
-                if (!currPeer) {
-                  await this.storage.set(ENDPOINT_KEY, endpoints[0]);
-                }
                 await this.accService.saveAccounts([{name: this.form.account}]);
                 await this.accService.setCurrent(this.form.account);
                 await this.walletService.saveWallet(this.form.name, pubKey, privateKey, this.form.password);

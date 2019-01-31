@@ -12,7 +12,7 @@ export class DappPage implements OnInit {
   }
 
   ngOnInit() {
-    const browser = InAppBrowser.create('https://www.baidu.com');
+    // const browser = InAppBrowser.create('https://www.baidu.com');
   }
 
 }

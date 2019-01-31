@@ -32,6 +32,7 @@
     "@ionic/storage": "^2.2.0",
     "angularx-qrcode": "^1.5.2",
     "axios": "^0.18.0",
+    "buffer": "^5.2.1",
     "cordova-clipboard": "1.2.1",
     "cordova-ios": "4.5.5",
     "cordova-plugin-add-swift-support": "^1.7.2",
@@ -51,6 +52,7 @@
     "moment-timezone": "^0.5.23",
     "rxjs": "^6.3.3",
     "socket.io": "^2.2.0",
+    "stream": "^0.0.2",
     "text-encoding": "^0.7.0",
     "zone.js": "~0.8.26"
   },

@@ -63,6 +63,10 @@ export class WalletService {
     return await this.storage.get(pubKey);
   }
 
+  async getWallets(): Promise<string[]> {
+    return await this.storage.get(PUBKEYS_KEY);
+  }
+
   /**
    * getPrivKeyByPubkeys will return the private key which first corresponds to the given public key.
    *

@@ -57,16 +57,29 @@ export class TransferPage implements OnInit {
 
   async transfer() {
     // this.eosService.init(name, '123', ['active']);
+    const actor = await this.accService.current();
     const code = this.filterCode(this.form.symbol);
     const asset = `${this.form.value} ${this.form.symbol}`;
     const modal = await this.modalController.create({
       component: TransactModalComponent,
       cssClass: 'transactModal',
       componentProps: {
-        code,
-        asset,
-        to: this.form.account,
-        memo: this.form.memo
+        actions: [{
+          account: code,
+          name: 'transfer',
+          authorization: [
+            {
+              actor,
+              permission: 'active'
+            }
+          ],
+          data: {
+            from: actor,
+            to: this.form.account,
+            quantity: asset,
+            memo: this.form.memo
+          }
+        }]
       },
       backdropDismiss: true,
       showBackdrop: true

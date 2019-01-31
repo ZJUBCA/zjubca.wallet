@@ -3,6 +3,9 @@ export const tokensUrl = 'https://raw.githubusercontent.com/Blockchain-zju/walle
 // account of token contract
 export const tokenCode = 'zjubcatokent';
 
+// kylin testnet chain id
+export const CHAINID = '5fff1dae8dc8e2fc4d5b23b2c7665c97f9e9d8edf2b6485a86ba311c25639191';
+
 export const endpoints = [
   {
     name: 'EOSLaomao',
@@ -30,4 +33,4 @@ export const ACCOUNTS_KEY = 'accounts';
 
 /* ===== QR Code Configuration ===== */
 export const QR_PROTOCOL = 'SimpleWallet';
-export const QR_VERSION = '1.0'
+export const QR_VERSION = '1.0';

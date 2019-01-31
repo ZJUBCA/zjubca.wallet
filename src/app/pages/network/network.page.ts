@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ENDPOINT_KEY, endpoints} from '../../common/config';
-import {Storage} from '@ionic/storage';
+import {endpoints} from '../../common/config';
+import {NetworkService} from '../../services/network.service';
 
 interface Peer {
   name: string;
@@ -21,22 +21,19 @@ export class NetworkPage implements OnInit {
   };
 
   constructor(
-    private storage: Storage
+    private networkSvc: NetworkService
   ) {
   }
 
   async ngOnInit() {
     this.peers = endpoints;
-    const currPeer = await this.storage.get(ENDPOINT_KEY);
-    if (currPeer) {
-      this.currPeer = currPeer;
-    }
+    this.currPeer = await this.networkSvc.getNetwork();
   }
 
   async peerChange(ev) {
     const name = ev.detail.value;
     this.currPeer = this.peers.find(item => item.name === name);
-    await this.storage.set(ENDPOINT_KEY, this.currPeer);
+    await this.networkSvc.setNetwork(this.currPeer);
   }
 
 }

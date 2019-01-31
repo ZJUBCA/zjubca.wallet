@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ModalController, ToastController} from '@ionic/angular';
 import {AccountService} from '../../services/account.service';
 import {EosService} from '../../services/eos.service';
+import {Action} from '../../../classes';
 
 @Component({
   selector: 'app-transact-modal',
@@ -12,10 +13,8 @@ export class TransactModalComponent implements OnInit {
 
   password: string;
 
-  @Input() code: string;
-  @Input() asset: string;
-  @Input() to: string;
-  @Input() memo: string;
+  @Input() actions: Action[];
+  @Input() sign = false;
 
   constructor(
     private toastController: ToastController,
@@ -43,23 +42,15 @@ export class TransactModalComponent implements OnInit {
     }
     try {
       const actor = await this.accService.current();
-      await this.eosService.init(actor, this.password, ['active', 'owner']);
-      const result = await this.eosService.sendTx([{
-        account: this.code,
-        name: 'transfer',
-        authorization: [
-          {
-            actor,
-            permission: 'active'
-          }
-        ],
-        data: {
-          from: actor,
-          to: this.to,
-          quantity: this.asset,
-          memo: this.memo
-        }
-      }]);
+      let result = null;
+      if (this.sign) {
+        await this.modalCtrl.dismiss({
+          password: this.password
+        });
+      } else {
+        await this.eosService.init(actor, this.password, ['active', 'owner']);
+        result = await this.eosService.createTransaction(this.actions);
+      }
       console.log(result);
     } catch (e) {
       console.log(e);
