@@ -1,5 +1,6 @@
 export interface Account {
   name: string;
+  last_code_update: string;
 }
 
 export interface Wallet {
@@ -9,8 +10,8 @@ export interface Wallet {
 }
 
 export interface Action {
-  account: string;
-  name: string;
+  account: string;  // contract account
+  name: string;     // action name
   authorization: {
     actor: string;
     permission: string;
@@ -24,6 +25,18 @@ export interface Token {
   value: string;
   account: string;
   intro: string;
+}
+
+export interface Abi {
+  version: string;
+  types: Array<{ new_type_name: string, type: string }>;
+  structs: Array<{ name: string, base: string, fields: Array<{ name: string, type: string }> }>;
+  actions: Array<{ name: string, type: string, ricardian_contract: string }>;
+  tables: Array<{ name: string, type: string, index_type: string, key_names: string[], key_types: string[] }>;
+  ricardian_clauses: Array<{ id: string, body: string }>;
+  error_messages: Array<{ error_code: string, error_msg: string }>;
+  abi_extensions: Array<{ tag: number, value: string }>;
+  variants?: Array<{ name: string, types: string[] }>;
 }
 
 // Data structure for QR transaction, based on the `SimpleWallet` protocol
@@ -48,4 +61,3 @@ export interface QRData {
                        // 钱包回调时在此URL后加上操作结果(result、txID)，如：https://abc.com?action=login&qrcID=123&result=1&txID=xxx,
                        // result的值为：0为用户取消，1为成功,  2为失败；txID为EOS主网上该笔交易的id（若有）
 }
-

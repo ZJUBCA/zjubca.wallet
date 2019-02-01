@@ -1,4 +1,9 @@
+.data {
+  height: 160px;
+}
+
 .actionGroup {
+  margin-top: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;

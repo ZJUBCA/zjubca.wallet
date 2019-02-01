@@ -3,6 +3,7 @@ import {ModalController, ToastController} from '@ionic/angular';
 import {AccountService} from '../../services/account.service';
 import {EosService} from '../../services/eos.service';
 import {Action} from '../../../classes';
+import {AbiService} from '../../services/abi.service';
 
 @Component({
   selector: 'app-transact-modal',
@@ -21,10 +22,24 @@ export class TransactModalComponent implements OnInit {
     private modalCtrl: ModalController,
     private accService: AccountService,
     private eosService: EosService,
+    private abiService: AbiService
   ) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    if (this.sign) {
+      const abis = await this.abiService.getAbis(this.actions.map(item => item.account));
+      this.actions = await Promise.all(this.actions.map(async action => {
+        const abi = abis[action.account];
+        const typeName = abi.actions.find(x => x.name === action.name).type;
+        action.data = this.abiService.deserializeData(action.data, abi, typeName);
+        return action;
+      }));
+    }
+  }
+
+  get formatData() {
+    return JSON.stringify(this.actions, null, 4);
   }
 
   async closeModal() {

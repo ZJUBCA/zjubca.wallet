@@ -64,12 +64,21 @@ export class AccountService {
       if (exists.indexOf(item.name) < 0) {
         exists.push(item.name);
       }
-      this.storage.set(item.name, item);
+      this.setAccount(item.name, item);
     });
     return await this.storage.set(ACCOUNTS_KEY, exists);
   }
 
-  async getAccountFromLocal(name: string): Promise<Account> {
+  async setAccount(name: string, account: Account) {
+    await this.storage.set(name, account);
+  }
+
+  /**
+   * getAccounts returns the account from local storage.
+   *
+   * @param name
+   */
+  async getAccount(name: string): Promise<Account> {
     return await this.storage.get(name) || null;
   }
 

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {WalletService} from './wallet.service';
-import {Action} from '../../classes';
+import {Abi, Action} from '../../classes';
 import {TextDecoder, TextEncoder} from 'text-encoding';
 import {tokenCode} from '../common/config';
 import {NetworkService} from './network.service';
@@ -13,18 +13,8 @@ declare global {
     eosjs_jssig: any;
     eosjs_api: any;
     eosjs_ecc: any;
+    eosjs_serialize: any;
   }
-}
-
-interface SimpleAccount {
-  name: string;
-  permissions: [{
-    perm_name: string;
-    keys: [{
-      key: string;
-      threshold: number;
-    }]
-  }];
 }
 
 @Injectable({
@@ -173,6 +163,12 @@ export class EosService {
   async getActions(name: string, pos: number, offset: number): Promise<any> {
     const rpc = await this.RPC();
     return await rpc.history_get_actions(name, pos, offset);
+  }
+
+  async getAbi(name: string): Promise<Abi> {
+    const rpc = await this.RPC();
+    const result = await rpc.get_abi(name);
+    return result.abi;
   }
 
   sign(payload: any, privKey: string, arbitrary = false, isHash = false): string {

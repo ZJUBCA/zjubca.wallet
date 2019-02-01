@@ -9,8 +9,8 @@ import {Account} from '../common/dappApi';
 })
 export class PermissionService {
 
-  static permissions = [];
-  static whitelist = [];
+  static permissions = {};
+  static whitelist = {};
 
   constructor() {
   }
@@ -31,7 +31,7 @@ export class PermissionService {
     return typeof PermissionService.whitelist[origin] !== undefined;
   }
 
-  static delFromWhitelist(origin: string) {
+  static clearWhitelist(origin: string) {
     delete PermissionService.whitelist[origin];
   }
 }

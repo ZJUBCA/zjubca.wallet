@@ -230,7 +230,7 @@ class ApiService {
       }
       try {
         const signature = this.eosService.sign(this.payload, privKey);
-        this.response({signature});
+        this.response({signatures: [signature], requiredFields});
       } catch (e) {
         return this.response(Error.signatureError('invalid_signature', e.message));
       }
