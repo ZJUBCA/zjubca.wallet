@@ -1,3 +1,6 @@
+// @ts-ignore
+import {version} from '../../../package.json';
+
 export const tokensUrl = 'https://raw.githubusercontent.com/Blockchain-zju/wallet-config/master/tokens.json';
 
 // account of token contract
@@ -35,3 +38,6 @@ export const ABI_KEY_PREFIX = 'abi.';
 /* ===== Mobile Native App Interaction QR Protocol ===== */
 export const QR_PROTOCOL = 'SimpleWallet';
 export const QR_VERSION = '1.0';
+
+/* ===== Wallet Meta ===== */
+export const VERSION = version;

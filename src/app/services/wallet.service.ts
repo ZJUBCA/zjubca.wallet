@@ -4,17 +4,20 @@ import Cryptojs from 'crypto-js';
 import {Wallet} from '../../classes';
 import {PUBKEYS_KEY} from '../common/config';
 
+const SELF_WALLET = 'self_wallet';
+
 @Injectable({
   providedIn: 'root'
 })
 export class WalletService {
+  static whitelist = {};
+  ase = Cryptojs.AES;
 
   constructor(
     private storage: Storage
   ) {
   }
 
-  ase = Cryptojs.AES;
 
   async saveWallet(name: string, pubKey: string, privKey: string, password: string): Promise<any> {
     const encrypted = this.ase.encrypt(privKey, password).toString();
@@ -34,11 +37,17 @@ export class WalletService {
    *
    * @param pubKey
    * @param password
+   * @param origin
+   * @param whitelist
    */
-  async retrieveKey(pubKey: string, password: string): Promise<string> {
+  async retrieveKey(pubKey: string, password: string, origin: string = SELF_WALLET, whitelist: boolean = false): Promise<string> {
     const wallet: Wallet = await this.getWallet(pubKey);
     if (wallet) {
-      return this.ase.decrypt(wallet.encrypted_privkey, password).toString(Cryptojs.enc.Utf8);
+      const privKey = this.ase.decrypt(wallet.encrypted_privkey, password).toString(Cryptojs.enc.Utf8);
+      if (whitelist && privKey) {
+        WalletService.whitelist[origin + pubKey] = privKey;
+      }
+      return privKey;
     } else {
       return '';
     }
@@ -63,24 +72,23 @@ export class WalletService {
     return await this.storage.get(pubKey);
   }
 
-  async getWallets(): Promise<string[]> {
+  async getPublicKeys(): Promise<string[]> {
     return await this.storage.get(PUBKEYS_KEY);
   }
 
-  /**
-   * getPrivKeyByPubkeys will return the private key which first corresponds to the given public key.
-   *
-   * @param pubkeys
-   * @param password
-   */
-  async getPrivKeyByPubKeys(pubkeys: string, password: string): Promise<string> {
-    let privKey: string;
-    for (const pubkey of pubkeys) {
-      privKey = await this.retrieveKey(pubkey, password);
-      if (privKey) {
-        break;
-      }
-    }
-    return privKey;
+  // async getPublicKey(name: string, permission: string): string {
+  //   const pubkeys = await this.getPublicKeys();
+  // }
+
+  getFromWhitelist(publicKey: string, origin: string = SELF_WALLET): string {
+    return WalletService.whitelist[origin + publicKey];
+  }
+
+  isInWhitelist(origin: string, publicKey: string): boolean {
+    return typeof WalletService.whitelist[origin + publicKey] !== undefined;
+  }
+
+  rmFromWhitelist(origin: string, publicKey: string) {
+    delete WalletService.whitelist[origin + publicKey];
   }
 }

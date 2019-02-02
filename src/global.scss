@@ -34,12 +34,12 @@
 }
 
 .transactModal {
-  --height: 280px;
-}
+  --height: 390px;
 
-.transactModal .modal-wrapper {
-  position: inherit;
-  bottom: 0px;
+  .modal-wrapper {
+    position: inherit;
+    bottom: 0px;
+  }
 }
 
 .infinite-loading {

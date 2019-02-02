@@ -4,6 +4,7 @@ import {AccountService} from '../../services/account.service';
 import {EosService} from '../../services/eos.service';
 import {Action} from '../../../classes';
 import {AbiService} from '../../services/abi.service';
+import {READABLE_TYPES} from '../../common/dappApi';
 
 @Component({
   selector: 'app-transact-modal',
@@ -13,9 +14,11 @@ import {AbiService} from '../../services/abi.service';
 export class TransactModalComponent implements OnInit {
 
   password: string;
+  whitelist: boolean;
 
   @Input() actions: Action[];
   @Input() sign = false;
+  @Input() type: string;
 
   constructor(
     private toastController: ToastController,
@@ -27,7 +30,8 @@ export class TransactModalComponent implements OnInit {
   }
 
   async ngOnInit() {
-    if (this.sign) {
+    this.type = READABLE_TYPES[this.type];
+    if (this.sign && this.actions) {
       const abis = await this.abiService.getAbis(this.actions.map(item => item.account));
       this.actions = await Promise.all(this.actions.map(async action => {
         const abi = abis[action.account];
@@ -60,11 +64,12 @@ export class TransactModalComponent implements OnInit {
       let result = null;
       if (this.sign) {
         await this.modalCtrl.dismiss({
-          password: this.password
+          password: this.password,
+          whitelist: this.whitelist
         });
       } else {
         await this.eosService.init(actor, this.password, ['active', 'owner']);
-        result = await this.eosService.createTransaction(this.actions);
+        result = await this.eosService.sendTransaction(this.actions);
       }
       console.log(result);
     } catch (e) {

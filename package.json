@@ -1,8 +1,8 @@
 {
-  "name": "jade",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "zjubca.wallet",
+  "version": "1.0.0",
+  "author": "ZJUBCA",
+  "homepage": "https://github.com/Blockchain-zju/zjubca.wallet",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -82,7 +82,7 @@
     "tslint": "~5.12.0",
     "typescript": "~3.1.6"
   },
-  "description": "An Ionic project",
+  "description": "A mobile EOSIO wallet powered by ZJUBCA",
   "cordova": {
     "plugins": {
       "cordova-sqlite-storage": {},

@@ -22,7 +22,7 @@ export class WalletManagePage implements OnInit {
   }
 
   async ngOnInit() {
-    const keys = await this.walletSvc.getWallets();
+    const keys = await this.walletSvc.getPublicKeys();
     for (const key of keys) {
       this.wallets.push(await this.walletSvc.getWallet(key));
     }

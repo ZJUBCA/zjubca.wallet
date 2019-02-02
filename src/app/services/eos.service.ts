@@ -76,7 +76,12 @@ export class EosService {
     for (const auth of auths) {
       const perm = accInfo.permissions.find(item => item.perm_name === auth);
       const pubkeys = perm.required_auth.keys.map(item => item.key);
-      privKey = await this.walletService.getPrivKeyByPubKeys(pubkeys, password);
+      for (const pubkey of pubkeys) {
+        privKey = await this.walletService.retrieveKey(pubkey, password);
+        if (privKey) {
+          break;
+        }
+      }
       if (privKey) {
         break;
       }
@@ -95,6 +100,11 @@ export class EosService {
       textDecoder: new TextDecoder(),
       textEncoder: new TextEncoder(),
     });
+  }
+
+  async getInfo() {
+    const rpc = await this.RPC();
+    return await rpc.get_info();
   }
 
   /**
@@ -146,10 +156,11 @@ export class EosService {
     return await rpc.get_account(name);
   }
 
-  async createTransaction(actions: Action[]): Promise<any> {
+  async sendTransaction(actions: Action[], broadcast: boolean = true): Promise<any> {
     return await this.api.transact({
       actions
     }, {
+      broadcast,
       blocksBehind: 3,
       expireSeconds: 30
     });
@@ -163,6 +174,11 @@ export class EosService {
   async getActions(name: string, pos: number, offset: number): Promise<any> {
     const rpc = await this.RPC();
     return await rpc.history_get_actions(name, pos, offset);
+  }
+
+  async getBlock() {
+    const rpc = await this.RPC();
+    return await rpc.get_block();
   }
 
   async getAbi(name: string): Promise<Abi> {

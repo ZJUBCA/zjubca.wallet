@@ -1,6 +1,5 @@
 export interface Account {
   name: string;
-  last_code_update: string;
 }
 
 export interface Wallet {

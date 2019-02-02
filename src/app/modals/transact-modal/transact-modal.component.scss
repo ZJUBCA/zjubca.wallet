@@ -1,15 +1,15 @@
 .data {
-  height: 160px;
+  height: 200px;
 }
 
 .actionGroup {
-  margin-top: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
 .input {
+  flex: 2;
   font-size: 14px;
   --padding-start: 10px;
   border: 1px solid #efefef;
@@ -18,6 +18,19 @@
 }
 
 .btn {
+  flex: 1;
   height: 40px;
 }
 
+.whitelist {
+  display: flex;
+  align-items: center;
+
+  .checkbox {
+    --size: 18px;
+  }
+}
+
+.gutter {
+  margin-top: 10px;
+}

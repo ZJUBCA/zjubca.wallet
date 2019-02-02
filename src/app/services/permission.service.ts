@@ -10,7 +10,6 @@ import {Account} from '../common/dappApi';
 export class PermissionService {
 
   static permissions = {};
-  static whitelist = {};
 
   constructor() {
   }
@@ -23,15 +22,8 @@ export class PermissionService {
     PermissionService.permissions[origin] = account;
   }
 
-  static delPermission(origin: string) {
+  static rmPermission(origin: string) {
     delete PermissionService.permissions[origin];
   }
 
-  static isInWhitelist(origin: string): boolean {
-    return typeof PermissionService.whitelist[origin] !== undefined;
-  }
-
-  static clearWhitelist(origin: string) {
-    delete PermissionService.whitelist[origin];
-  }
 }

@@ -6,6 +6,7 @@ import {TransactModalComponent} from '../../modals/transact-modal/transact-modal
 import axios from '../../common/axios';
 import {tokenCode, tokensUrl} from '../../common/config';
 import {ActivatedRoute} from '@angular/router';
+import {beautifyValue} from '../../common/helper';
 
 class TransferForm {
   account: string;
@@ -79,7 +80,8 @@ export class TransferPage implements OnInit {
             quantity: asset,
             memo: this.form.memo
           }
-        }]
+        }],
+        type: 'transfer'
       },
       backdropDismiss: true,
       showBackdrop: true
@@ -105,32 +107,6 @@ export class TransferPage implements OnInit {
   }
 
   valueBlur() {
-    this.form.value = this.beautifyValue(this.form.value);
-  }
-
-  beautifyValue(value: string): string {
-    const regex = /\d*\.?\d{0,4}/;
-    const matches = value.match(regex);
-    if (matches.length === 0) {
-      return '0.0000';
-    }
-    value = matches[0];
-    const dotInd = value.indexOf('.');
-    if (dotInd < 0) {
-      value += '.0000';
-    } else if (dotInd < value.length - 1) {
-      let remainingZeros = 4 - (value.length - dotInd - 1);
-      while (remainingZeros > 0) {
-        value += '0';
-        remainingZeros--;
-      }
-      if (dotInd === 0) {
-        value += '0' + value;
-      }
-    } else {
-      value += '0000';
-    }
-
-    return value;
+    this.form.value = beautifyValue(this.form.value);
   }
 }

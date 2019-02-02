@@ -97,7 +97,8 @@ export class CreateWalletComponent implements OnInit {
               });
               const resp = res.data;
               if (!resp.code) {
-                await this.accService.saveAccounts([{name: this.form.account}]);
+                await this.accService.saveAccounts([{name: this.form.account}])
+                ;
                 await this.accService.setCurrent(this.form.account);
                 await this.walletService.saveWallet(this.form.name, pubKey, privateKey, this.form.password);
                 this.router.navigate(['/assets']);

@@ -62,4 +62,7 @@ export default class Error {
     return this.signatureError('no_network', 'This user does not have this network in their Scatter.');
   }
 
+  static notSupportApi() {
+    return this.signatureError('not_support_api', 'This api type is not supported by zjubca.wallet');
+  }
 }

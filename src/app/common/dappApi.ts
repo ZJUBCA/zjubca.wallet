@@ -1,4 +1,4 @@
-export const METHOD_TYPEs = {
+export const METHOD_TYPES = {
   getVersion: 'getVersion',
   getOrRequestIdentity: 'getIdentity',
   identityFromPermissions: 'getIdentityFromPermissions',
@@ -16,12 +16,27 @@ export const METHOD_TYPEs = {
   addToken: 'addToken',
 };
 
+export const READABLE_TYPES = {
+  [METHOD_TYPES.getVersion]: '获取版本信息',
+  [METHOD_TYPES.getOrRequestIdentity]: '登录/获取账户信息',
+  [METHOD_TYPES.identityFromPermissions]: '登录/获取账户信息',
+  [METHOD_TYPES.forgetIdentity]: '登出',
+  [METHOD_TYPES.updateIdentity]: '更新账户信息',
+  [METHOD_TYPES.authenticate]: '授权',
+  [METHOD_TYPES.requestArbitrarySignature]: '请求签名',
+  [METHOD_TYPES.getPublicKey]: '获取公钥',
+  [METHOD_TYPES.linkAccount]: '链接账户',
+  [METHOD_TYPES.requestSignature]: '获取交易签名',
+  [METHOD_TYPES.requestTransfer]: '转账'
+};
+
 export interface Request {
   id: string;
   appKey: string;
   nonce: string | number;
   nextNonce: string | number;
   payload: any;
+  type?: string;
 }
 
 export interface Response {

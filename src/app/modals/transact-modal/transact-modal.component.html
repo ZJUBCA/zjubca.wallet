@@ -10,11 +10,20 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item-divider class="f14">
-    <ion-textarea class="data" [value]="formatData" readonly="true"></ion-textarea>
-  </ion-item-divider>
-  <div class="actionGroup">
+  <div class="type" *ngIf="!!type">
+    <ion-label position="stacked">{{type}}</ion-label>
+  </div>
+  <div *ngIf="actions && actions.length!==0">
+    <ion-item-divider class="gutter f14">
+      <ion-textarea class="data" [value]="formatData" readonly="true"></ion-textarea>
+    </ion-item-divider>
+  </div>
+  <div class="actionGroup gutter">
     <ion-input type="password" class="input" placeholder="钱包密码" [(ngModel)]="password"></ion-input>
     <ion-button class="btn" expand="full" color="dark" (click)="submit()">提交</ion-button>
+  </div>
+  <div class="whitelist gutter" *ngIf="sign">
+    <ion-checkbox class="checkbox" color="dark" [(ngModel)]="whitelist"></ion-checkbox>
+    <ion-label class="f14" padding-start>退出应用前不再输入密码</ion-label>
   </div>
 </ion-content>
