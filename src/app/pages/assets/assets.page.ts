@@ -61,7 +61,7 @@ export class AssetsPage implements OnInit {
     return await this.popover.present();
   }
 
-  async nameChange(ev) {
+  async nameChange() {
     try {
       this.loading = true;
       await this.accountSvc.setCurrent(this.currAccount);

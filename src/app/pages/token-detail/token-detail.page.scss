@@ -54,17 +54,29 @@
   }
 }
 
-.infiniteBottom {
-  margin-top: -20px;
-
-  .scrollContent {
-    min-height: 45px;
-  }
-
-}
-
 .bottomText {
   text-align: center;
+}
+
+.scrollContent {
+  min-height: 45px;
+}
+
+.list-md + .bottomText {
+  margin-bottom: 0px;
+  padding: 10px 0;
+}
+
+.infiniteBottom {
+  margin-top: -10px;
+}
+
+
+.list-ios + .bottomText {
   margin-top: -20px;
   margin-bottom: 10px;
+}
+
+.infiniteBottom {
+  margin-top: -20px;
 }

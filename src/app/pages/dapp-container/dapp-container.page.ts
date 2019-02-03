@@ -43,7 +43,7 @@ export class DappContainerPage implements OnInit {
     if (!protocol || protocol.indexOf('scatter') < 0) {
       return;
     }
-    console.log(ev.data);
+    // console.log(ev.data);
 
     if (type === 'pair') {
       return this.iframe.contentWindow.postMessage({

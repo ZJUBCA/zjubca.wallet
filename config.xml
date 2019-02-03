@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>MyApp</name>
+<widget id="io.ionic.zjubca.wallet" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>ZJUBCA.WALLET</name>
     <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <author email="zjubca@sina.com" href="https://github.com/Blockchain-zju">ZJUBCA</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="*" />
@@ -85,10 +85,10 @@
     <plugin name="cordova-sqlite-storage" spec="2.6.0" />
     <plugin name="cordova-plugin-qrscanner" spec="2.6.0" />
     <plugin name="cordova-clipboard" spec="1.2.1" />
-    <engine name="ios" spec="4.5.5" />
     <plugin name="cordova-plugin-inappbrowser" spec="3.0.0" />
     <plugin name="cordova-plugin-ionic-webview" spec="^2.3.2" />
     <plugin name="cordova-plugin-httpd" spec="0.9.3" />
     <plugin name="cordova-plugin-camera-preview" spec="0.10.0" />
-    <engine name="android" spec="~7.1.4" />
+    <engine name="ios" spec="4.5.5" />
+    <engine name="android" spec="7.1.4" />
 </widget>

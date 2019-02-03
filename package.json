@@ -20,6 +20,9 @@
     "@angular/platform-browser": "7.2.x",
     "@angular/platform-browser-dynamic": "7.2.x",
     "@angular/router": "7.2.x",
+    "@capacitor/android": "^1.0.0-beta.17",
+    "@capacitor/cli": "1.0.0-beta.17",
+    "@capacitor/core": "1.0.0-beta.17",
     "@ionic-native/camera-preview": "^5.0.0",
     "@ionic-native/clipboard": "^5.0.0",
     "@ionic-native/core": "5.0.x",
@@ -35,6 +38,7 @@
     "axios": "^0.18.0",
     "buffer": "^5.2.1",
     "cordova-android": "7.1.4",
+    "cordova-android-support-gradle-release": "^2.0.1",
     "cordova-clipboard": "1.2.1",
     "cordova-ios": "4.5.5",
     "cordova-plugin-add-swift-support": "^1.7.2",
@@ -103,7 +107,10 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-httpd": {},
-      "cordova-plugin-camera-preview": {}
+      "cordova-plugin-camera-preview": {},
+      "cordova-android-support-gradle-release": {
+        "ANDROID_SUPPORT_VERSION": "27+"
+      }
     },
     "platforms": [
       "ios",

@@ -1,7 +1,8 @@
 {
   "name": "jade",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular",
   "npmClient": "yarn"

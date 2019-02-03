@@ -10,6 +10,8 @@ import {CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, Camera
 })
 export class QrScanPage implements OnInit {
 
+  picture: string;
+
   constructor(
     private qrScanner: QRScanner,
     private cameraPreview: CameraPreview
@@ -17,19 +19,42 @@ export class QrScanPage implements OnInit {
   }
 
   async ngOnInit() {
-    const cameraPreviewOpts: CameraPreviewOptions = {
-      x: 0,
-      y: 0,
-      width: window.screen.width,
-      height: window.screen.height,
-      camera: 'rear',
-      tapPhoto: true,
-      previewDrag: true,
-      toBack: true,
-      alpha: 1
-    };
+    try {
+      const cameraPreviewOpts: CameraPreviewOptions = {
+        x: 0,
+        y: 0,
+        width: window.screen.width,
+        height: window.screen.height,
+        camera: 'rear',
+        tapPhoto: true,
+        previewDrag: true,
+        toBack: true,
+        alpha: 1
+      };
 
-    await this.cameraPreview.startCamera(cameraPreviewOpts);
+      this.cameraPreview.startCamera(cameraPreviewOpts).then(
+        (res) => {
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+        });
+      const pictureOpts: CameraPreviewPictureOptions = {
+        width: 1280,
+        height: 1280,
+        quality: 85
+      };
+
+      // take a picture
+      this.cameraPreview.takePicture(pictureOpts).then((imageData) => {
+        this.picture = 'data:image/jpeg;base64,' + imageData;
+      }, (err) => {
+        console.log(err);
+        this.picture = 'assets/img/test.jpg';
+      });
+    } catch (e) {
+      console.log(e);
+    }
 
   }
 
