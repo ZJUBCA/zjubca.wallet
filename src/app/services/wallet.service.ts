@@ -3,6 +3,7 @@ import {Storage} from '@ionic/storage';
 import Cryptojs from 'crypto-js';
 import {Wallet} from '../../classes';
 import {PUBKEYS_KEY} from '../common/config';
+import {AccountService} from './account.service';
 
 const SELF_WALLET = 'self_wallet';
 
@@ -14,7 +15,8 @@ export class WalletService {
   ase = Cryptojs.AES;
 
   constructor(
-    private storage: Storage
+    private storage: Storage,
+    private accService: AccountService
   ) {
   }
 
@@ -22,6 +24,10 @@ export class WalletService {
   async saveWallet(name: string, pubKey: string, privKey: string, password: string): Promise<any> {
     const encrypted = this.ase.encrypt(privKey, password).toString();
     // console.log(pubKey, encrypted);
+    const exist = await this.getWallet(pubKey);
+    if (exist) {
+      return;
+    }
     const wallet: Wallet = {
       name,
       publicKey: pubKey,
@@ -54,26 +60,60 @@ export class WalletService {
   }
 
   /**
-   * pushKey push a new public key to the key list
+   * pushKey push a new public key to the key list.
    */
   async pushKey(pubKey: string) {
-    let keys = await this.storage.get(PUBKEYS_KEY);
+    const keys = await this.storage.get(PUBKEYS_KEY) || [];
     console.log(keys);
-    if (!keys) {
-      keys = [];
-    }
     if (keys.indexOf(pubKey) < 0) {
       keys.push(pubKey);
       await this.storage.set(PUBKEYS_KEY, keys);
     }
   }
 
+  /**
+   * getWallet returns the key pair with the given public key.
+   *
+   * @param pubKey
+   */
   async getWallet(pubKey: string): Promise<Wallet> {
     return await this.storage.get(pubKey);
   }
 
+  /**
+   * getPublicKeys returns all public keys in local storage.
+   */
   async getPublicKeys(): Promise<string[]> {
-    return await this.storage.get(PUBKEYS_KEY);
+    return await this.storage.get(PUBKEYS_KEY) || [];
+  }
+
+  /**
+   * removeWallet removes a key pair from local storage.
+   *
+   * @param pubKey
+   */
+  async removeWallet(pubKey: string) {
+    const pubkeys = await this.getPublicKeys();
+    const index = pubkeys.indexOf(pubKey);
+    if (index >= 0) {
+      pubkeys.splice(index, 1);
+    }
+    await this.storage.set(PUBKEYS_KEY, pubkeys);
+
+    let names = await this.accService.fetchAccounts();
+    const amount = names.length;
+    names = await Promise.all(names.map(async name => {
+      if (await this.accService.removeAccount(name, pubKey)) {
+        return null;
+      } else {
+        return name;
+      }
+    }));
+    names = names.filter(x => x !== null);
+    if (names.length !== amount) {
+      await this.accService.setAccounts(names);
+    }
+    await this.storage.remove(pubKey);
   }
 
   // async getPublicKey(name: string, permission: string): string {

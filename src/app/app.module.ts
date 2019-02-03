@@ -17,11 +17,14 @@ import {IonicStorageModule} from '@ionic/storage';
 import {LoginPageModule} from './pages/login/login.module';
 import {TokensPageModule} from './pages/tokens/tokens.module';
 import {NftPageModule} from './pages/nft/nft.module';
-import { ActionModalComponent } from './modals/action-modal/action-modal.component';
+import {TransactModalComponent} from './modals/transact-modal/transact-modal.component';
+import {DappContainerPageModule} from './pages/dapp-container/dapp-container.module';
+import {TransferPageModule} from './pages/transfer/transfer.module';
+import {WalletDetailPageModule} from './pages/wallet-detail/wallet-detail.module';
 
 @NgModule({
-  declarations: [AppComponent, ActionModalComponent],
-  entryComponents: [],
+  declarations: [AppComponent],
+  entryComponents: [TransactModalComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -34,7 +37,10 @@ import { ActionModalComponent } from './modals/action-modal/action-modal.compone
     AccountPageModule,
     LoginPageModule,
     TokensPageModule,
-    NftPageModule
+    NftPageModule,
+    DappContainerPageModule,
+    TransferPageModule,
+    WalletDetailPageModule
   ],
   providers: [
     StatusBar,

@@ -23,7 +23,8 @@
           <h3>账户名</h3>
         </ion-col>
         <ion-col>
-          <ion-select interface="popover" [interfaceOptions]="{header:'账户名'}" class="f18" [(ngModel)]="currAccount">
+          <ion-select interface="popover" (ionChange)="nameChange()" [interfaceOptions]="{header:'账户名'}" class="f18"
+                      [(ngModel)]="currAccount">
             <ion-select-option *ngFor="let account of accounts" [value]="account" [selected]="account === currAccount">
               {{account}}
             </ion-select-option>
@@ -32,11 +33,11 @@
       </ion-row>
       <ion-row>
         <ion-col>EOS</ion-col>
-        <ion-col class="alignRight">{{balance.eos}}</ion-col>
+        <ion-col class="alignRight">{{loading ? 'loading...' : balance.eos}}</ion-col>
       </ion-row>
       <ion-row>
         <ion-col>ZJUBCA</ion-col>
-        <ion-col class="alignRight">{{balance.zjubca}}</ion-col>
+        <ion-col class="alignRight">{{loading ? 'loading...' : balance.zjubca}}</ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>

@@ -30,7 +30,7 @@ export class TransactModalComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.type = READABLE_TYPES[this.type];
+    this.type = READABLE_TYPES[this.type] || this.type;
     if (this.sign && this.actions) {
       const abis = await this.abiService.getAbis(this.actions.map(item => item.account));
       this.actions = await Promise.all(this.actions.map(async action => {
@@ -85,8 +85,7 @@ export class TransactModalComponent implements OnInit {
       duration: 3000,
       color: 'dark'
     });
-    toast.present();
-
+    await toast.present();
   }
 
 }

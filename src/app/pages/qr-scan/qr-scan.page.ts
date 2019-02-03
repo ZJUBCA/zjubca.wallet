@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {QRScanner, QRScannerStatus} from '@ionic-native/qr-scanner/ngx';
+import {CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions} from '@ionic-native/camera-preview/ngx';
+
 
 @Component({
   selector: 'app-qr-scan',
@@ -9,11 +11,26 @@ import {QRScanner, QRScannerStatus} from '@ionic-native/qr-scanner/ngx';
 export class QrScanPage implements OnInit {
 
   constructor(
-    private qrScanner: QRScanner
+    private qrScanner: QRScanner,
+    private cameraPreview: CameraPreview
   ) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const cameraPreviewOpts: CameraPreviewOptions = {
+      x: 0,
+      y: 0,
+      width: window.screen.width,
+      height: window.screen.height,
+      camera: 'rear',
+      tapPhoto: true,
+      previewDrag: true,
+      toBack: true,
+      alpha: 1
+    };
+
+    await this.cameraPreview.startCamera(cameraPreviewOpts);
+
   }
 
   async qrScan() {

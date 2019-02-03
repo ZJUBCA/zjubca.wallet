@@ -16,7 +16,7 @@ export const endpoints = [
   },
   {
     name: 'MEET.ONE',
-    endpoint: 'http://kylin.meet.one:8888',
+    endpoint: 'https://api-kylin.meet.one',
   },
   {
     name: 'EOS Asia',
@@ -29,11 +29,11 @@ export const timezone = 'Asia/Shanghai';
 
 
 /* ===== storage key ===== */
-export const ENDPOINT_KEY = 'endpoint';
-export const CURRENT_ACC_KEY = 'current';
-export const PUBKEYS_KEY = 'pubkeys';
-export const ACCOUNTS_KEY = 'accounts';
-export const ABI_KEY_PREFIX = 'abi.';
+export const ENDPOINT_KEY = 'ENDPOINT';
+export const CURRENT_ACC_KEY = 'CURRENT';
+export const PUBKEYS_KEY = 'PUBKEYS';
+export const ACCOUNTS_KEY = 'ACCOUNTS';
+export const ABI_KEY_PREFIX = 'ABI.';
 
 /* ===== Mobile Native App Interaction QR Protocol ===== */
 export const QR_PROTOCOL = 'SimpleWallet';

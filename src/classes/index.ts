@@ -1,9 +1,15 @@
 export interface Account {
   name: string;
+  permissions: Permission[];
+}
+
+export interface Permission {
+  publicKey: string;
+  permission: string;
 }
 
 export interface Wallet {
-  name: string;
+  name: string; // wallet name, not account name
   publicKey: string;
   encrypted_privkey: string;
 }

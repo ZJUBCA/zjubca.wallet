@@ -5,6 +5,8 @@ import axios from '../../common/axios';
 import {AccountService} from '../../services/account.service';
 import {WalletService} from '../../services/wallet.service';
 import {Storage} from '@ionic/storage';
+import {EosService} from '../../services/eos.service';
+import {Clipboard} from '@ionic-native/clipboard/ngx';
 
 class CreateForm {
   name: string;  // wallet name
@@ -30,8 +32,10 @@ export class CreateWalletComponent implements OnInit {
     public alertController: AlertController,
     private accService: AccountService,
     private walletService: WalletService,
+    private eosService: EosService,
     private storage: Storage,
-    private router: Router
+    private router: Router,
+    private clipboard: Clipboard
   ) {
     this.form = new CreateForm();
   }
@@ -79,7 +83,7 @@ export class CreateWalletComponent implements OnInit {
     const pubKey = this.ecc.privateToPublic(privateKey);
     const warning = await this.alertController.create({
       header: '请务必保存好私钥',
-      message: '创建成功后，您也可使用"备份私钥"功能再次显示私钥',
+      message: '创建成功后，您也可使用"导出私钥"功能再次显示私钥',
       buttons: [
         {
           text: '再等一会',
@@ -89,19 +93,28 @@ export class CreateWalletComponent implements OnInit {
           text: '确认',
           handler: async () => {
             try {
+              const name = this.form.account;
               const res = await axios.post('/signup', {
-                account: this.form.account,
+                account: name,
                 pubKey,
                 inviteCode: this.form.inviteCode,
                 debug: false
               });
               const resp = res.data;
               if (!resp.code) {
-                await this.accService.saveAccounts([{name: this.form.account}])
-                ;
-                await this.accService.setCurrent(this.form.account);
+                const account = await this.eosService.getAccount(name);
+                let permissions = account.permissions.filter(item => item.required_auth.keys[0].key === pubKey);
+                permissions = permissions.map(item => ({
+                  permission: item.perm_name,
+                  publicKey: pubKey
+                }));
+                await this.accService.saveAccounts([{
+                  name: name,
+                  permissions: permissions
+                }]);
+                await this.accService.setCurrent(name);
                 await this.walletService.saveWallet(this.form.name, pubKey, privateKey, this.form.password);
-                this.router.navigate(['/assets']);
+                await this.router.navigate(['/tabs'], {replaceUrl: true});
               } else {
                 throw new Error(resp.msg);
               }
@@ -116,14 +129,19 @@ export class CreateWalletComponent implements OnInit {
     await warning.present();
   }
 
-  async alert(msg: string) {
+  async copy() {
+    await this.clipboard.copy(this.privateKey);
+    await this.alert('已复制', 2000);
+  }
+
+  async alert(msg: string, duration: number = 3000) {
     const toast = await this.toastController.create({
       message: msg,
       position: 'bottom',
-      duration: 3000,
+      duration: duration,
       color: 'dark'
     });
-    toast.present();
+    await toast.present();
   }
 
 }

@@ -7,6 +7,29 @@
     <ion-title>钱包详情</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content padding>
 
+<ion-content class="bg">
+  <ion-list-header>
+    <ion-label>账户名</ion-label>
+  </ion-list-header>
+  <ion-list class="accountList">
+    <div class="loading" *ngIf="accountsLoading">
+      <ion-spinner name="circles"></ion-spinner>
+    </div>
+    <ion-item *ngFor="let item of accounts" lines="full">
+      {{item}}
+    </ion-item>
+  </ion-list>
+  <ion-list-header>
+    <ion-label>高级设置</ion-label>
+  </ion-list-header>
+  <ion-list>
+    <ion-item class="f14" lines="full" (click)="exportKey()">
+      <ion-label>导出私钥</ion-label>
+    </ion-item>
+    <ion-item class="f14" lines="none" (click)="changePassword()">
+      <ion-label>修改密码</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-button class="deleteBtn" expand="full" fill="clear" color="danger" (click)="deleteWallet()">删除钱包</ion-button>
 </ion-content>

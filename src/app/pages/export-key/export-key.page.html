@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text="" icon="arrow-back">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>备份密钥</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div>
+    <ion-label color="danger">
+      离线保存
+    </ion-label>
+  </div>
+  <div class="smgutter">
+    <ion-label class="f14">建议抄写或打印私钥后放置在安全地点保存</ion-label>
+  </div>
+  <div class="gutter">
+    <ion-label color="danger">
+      请勿使用网络传输
+    </ion-label>
+  </div>
+  <div class="smgutter">
+    <ion-label class="smgutter f14">请勿通过网络工具传输私钥，例如用微信发送到电脑。一旦被黑客获取将造成不可挽回的资产损失。</ion-label>
+  </div>
+  <ion-item-divider class="gutter">
+    <ion-textarea class="f14" [value]="privateKey" readonly="true"></ion-textarea>
+  </ion-item-divider>
+  <ion-button expand="full" fill="clear" (click)="copy()">复制</ion-button>
+</ion-content>

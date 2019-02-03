@@ -8,6 +8,7 @@ import {LoginPage} from './login.page';
 import {LoginRouterModule} from './login-router.module';
 import {CreateWalletComponent} from '../../components/create-wallet/create-wallet.component';
 import {ImportWalletComponent} from '../../components/import-wallet/import-wallet.component';
+import {Clipboard} from '@ionic-native/clipboard/ngx';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import {ImportWalletComponent} from '../../components/import-wallet/import-walle
     IonicModule,
     LoginRouterModule,
   ],
+  providers: [Clipboard],
   declarations: [LoginPage, CreateWalletComponent, ImportWalletComponent]
 })
 export class LoginPageModule {

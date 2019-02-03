@@ -5,12 +5,13 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {IonicModule} from '@ionic/angular';
 
-import {DappContainerPage} from './dapp-container.page';
+import {ExportKeyPage} from './export-key.page';
+import {Clipboard} from '@ionic-native/clipboard/ngx';
 
 const routes: Routes = [
   {
     path: '',
-    component: DappContainerPage
+    component: ExportKeyPage
   }
 ];
 
@@ -21,7 +22,8 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [DappContainerPage]
+  providers: [Clipboard],
+  declarations: [ExportKeyPage]
 })
-export class DappContainerPageModule {
+export class ExportKeyPageModule {
 }

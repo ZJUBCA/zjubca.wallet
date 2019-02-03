@@ -7,6 +7,7 @@ import {IonicModule} from '@ionic/angular';
 
 import {QrScanPage} from './qr-scan.page';
 import {QRScanner} from '@ionic-native/qr-scanner/ngx';
+import {CameraPreview} from '@ionic-native/camera-preview/ngx';
 
 const routes: Routes = [
   {
@@ -22,7 +23,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  providers: [QRScanner],
+  providers: [QRScanner, CameraPreview],
   declarations: [QrScanPage]
 })
 export class QrScanPageModule {

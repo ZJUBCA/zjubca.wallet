@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content padding>
-  <div class="type" *ngIf="!!type">
+  <div class="type" *ngIf="!!type && type!=='exportKey'">
     <ion-label position="stacked">{{type}}</ion-label>
   </div>
   <div *ngIf="actions && actions.length!==0">
@@ -22,7 +22,7 @@
     <ion-input type="password" class="input" placeholder="钱包密码" [(ngModel)]="password"></ion-input>
     <ion-button class="btn" expand="full" color="dark" (click)="submit()">提交</ion-button>
   </div>
-  <div class="whitelist gutter" *ngIf="sign">
+  <div class="whitelist gutter" *ngIf="sign && type!=='exportKey'">
     <ion-checkbox class="checkbox" color="dark" [(ngModel)]="whitelist"></ion-checkbox>
     <ion-label class="f14" padding-start>退出应用前不再输入密码</ion-label>
   </div>

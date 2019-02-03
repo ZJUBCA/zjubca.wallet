@@ -3,7 +3,7 @@ import {AccountService} from '../../services/account.service';
 import {EosService} from '../../services/eos.service';
 import {Router} from '@angular/router';
 import {Storage} from '@ionic/storage';
-import {PopoverController} from '@ionic/angular';
+import {PopoverController, ToastController} from '@ionic/angular';
 import {HomePopMenuComponent} from '../../components/home-pop-menu/home-pop-menu.component';
 
 @Component({
@@ -13,12 +13,13 @@ import {HomePopMenuComponent} from '../../components/home-pop-menu/home-pop-menu
 })
 export class AssetsPage implements OnInit {
   balance = {
-    eos: '获取中...',
-    zjubca: '获取中...',
+    eos: 'loading...',
+    zjubca: 'loading...',
   };
 
   currAccount: string;
   accounts: string[];
+  loading = false;
 
   popover: any;
 
@@ -27,19 +28,29 @@ export class AssetsPage implements OnInit {
     private eosService: EosService,
     private storage: Storage,
     private router: Router,
-    private popoverCtrl: PopoverController
+    private popoverCtrl: PopoverController,
+    private toastCtrl: ToastController
   ) {
   }
 
   async ngOnInit() {
-    this.accounts = await this.accountSvc.fetchAccounts();
-    this.currAccount = await this.accountSvc.current();
-    if (!this.currAccount) {
-      return await this.router.navigateByUrl('/login', {replaceUrl: true});
+    this.loading = true;
+    try {
+      this.accounts = await this.accountSvc.fetchAccounts();
+      this.currAccount = await this.accountSvc.current();
+      if (!this.currAccount) {
+        return await this.router.navigate(['/login'], {replaceUrl: true});
+      }
+      this.balance = await this.eosService.getBalance(this.currAccount);
+      console.log(this.currAccount, this.accounts);
+    } catch (e) {
+      console.log(e);
+      await this.alert(e.message);
+    } finally {
+      this.loading = false;
     }
-    this.balance = await this.eosService.getBalance(this.currAccount);
-    console.log(this.currAccount, this.accounts);
   }
+
 
   async showMenu(ev) {
     this.popover = await this.popoverCtrl.create({
@@ -50,4 +61,27 @@ export class AssetsPage implements OnInit {
     return await this.popover.present();
   }
 
+  async nameChange(ev) {
+    try {
+      this.loading = true;
+      await this.accountSvc.setCurrent(this.currAccount);
+      this.balance = await this.eosService.getBalance(this.currAccount);
+    } catch (e) {
+      console.log(e);
+      await this.alert(e.message);
+    } finally {
+      this.loading = false;
+    }
+  }
+
+  async alert(msg: string) {
+    const toast = await this.toastCtrl.create({
+      message: msg,
+      position: 'top',
+      duration: 3000,
+      cssClass: 'shortToast',
+      color: 'dark'
+    });
+    await toast.present();
+  }
 }

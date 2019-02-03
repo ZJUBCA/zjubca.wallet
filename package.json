@@ -20,6 +20,7 @@
     "@angular/platform-browser": "7.2.x",
     "@angular/platform-browser-dynamic": "7.2.x",
     "@angular/router": "7.2.x",
+    "@ionic-native/camera-preview": "^5.0.0",
     "@ionic-native/clipboard": "^5.0.0",
     "@ionic-native/core": "5.0.x",
     "@ionic-native/httpd": "^5.0.0",
@@ -33,9 +34,11 @@
     "angularx-qrcode": "^1.5.2",
     "axios": "^0.18.0",
     "buffer": "^5.2.1",
+    "cordova-android": "7.1.4",
     "cordova-clipboard": "1.2.1",
     "cordova-ios": "4.5.5",
     "cordova-plugin-add-swift-support": "^1.7.2",
+    "cordova-plugin-camera-preview": "0.10.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-httpd": "0.9.3",
     "cordova-plugin-inappbrowser": "3.0.0",
@@ -48,9 +51,12 @@
     "cordova-sqlite-storage": "^2.6.0",
     "core-js": "^2.5.4",
     "crypto-js": "^3.1.9-1",
+    "debug": "^4.1.1",
+    "iconv-lite": "^0.4.24",
+    "is-buffer": "^2.0.3",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.23",
-    "rxjs": "^6.3.3",
+    "rxjs": "^6.4.0",
     "socket.io": "^2.2.0",
     "stream": "^0.0.2",
     "text-encoding": "^0.7.0",
@@ -70,6 +76,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~10.12.0",
     "codelyzer": "~4.5.0",
+    "iconv-lite": "^0.4.24",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.1.4",
@@ -95,10 +102,12 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-inappbrowser": {},
-      "cordova-plugin-httpd": {}
+      "cordova-plugin-httpd": {},
+      "cordova-plugin-camera-preview": {}
     },
     "platforms": [
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }

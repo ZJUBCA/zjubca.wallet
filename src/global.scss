@@ -33,13 +33,19 @@
   font-size: 24px;
 }
 
-.transactModal {
-  --height: 390px;
-
+.modal {
   .modal-wrapper {
     position: inherit;
     bottom: 0px;
   }
+}
+
+.transactModal {
+  --height: 400px;
+}
+
+.noActionTransactModal {
+  --height: 180px;
 }
 
 .infinite-loading {
@@ -47,6 +53,15 @@
 }
 
 .shortToast {
-  --width: 100px;
+  --width: 140px;
   text-align: center;
+}
+
+.list-md {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+ion-card-header + .card-content-md {
+  padding-top: 13px;
 }

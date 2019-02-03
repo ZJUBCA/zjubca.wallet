@@ -12,7 +12,7 @@
     <ion-label class="privLabel" position="stacked">私钥 &nbsp;<ion-icon name="refresh"
                                                                        (click)="generatePrivkey()"></ion-icon>
     </ion-label>
-    <ion-item-divider class="keyarea f14">
+    <ion-item-divider class="keyarea f14" (click)="copy()">
       <ion-textarea [value]="privateKey" readonly="true"></ion-textarea>
     </ion-item-divider>
   </div>

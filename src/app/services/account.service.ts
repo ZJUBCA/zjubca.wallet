@@ -44,29 +44,65 @@ export class AccountService {
    * fetchAccounts fetch the name list in the storage.
    */
   async fetchAccounts(): Promise<string[]> {
-    const res = await this.storage.get(ACCOUNTS_KEY);
+    const res = await this.storage.get(ACCOUNTS_KEY) || [];
     console.log(res);
-    if (res) {
-      return res;
-    } else {
-      return [];
-    }
+    return res;
   }
 
   /**
    * saveAccounts store the given account list to the storage.
    *
-   * @param accounts
+   * @param newAccounts
    */
-  async saveAccounts(accounts: Account[]): Promise<any> {
+  async saveAccounts(newAccounts: Account[]): Promise<any> {
     const exists = await this.fetchAccounts();
-    accounts.forEach(item => {
-      if (exists.indexOf(item.name) < 0) {
-        exists.push(item.name);
+    newAccounts.forEach(async newA => {
+      let saved = newA;
+      if (exists.indexOf(newA.name) < 0) {
+        exists.push(newA.name);
+      } else {
+        const exist = await this.getAccount(newA.name);
+        newA.permissions.forEach(perm => {
+          if (exist.permissions.findIndex(x => x.publicKey === perm.publicKey && x.permission === perm.permission) < 0) {
+            // merge permission
+            exist.permissions.push(perm);
+          }
+        });
+        saved = exist;
       }
-      this.setAccount(item.name, item);
+      await this.setAccount(newA.name, saved);
+      console.log(saved);
     });
-    return await this.storage.set(ACCOUNTS_KEY, exists);
+    return await this.setAccounts(exists);
+  }
+
+  async setAccounts(accounts: string[]) {
+    await this.storage.set(ACCOUNTS_KEY, accounts);
+  }
+
+  /**
+   * removeAccount removes the corresponding permission of an account from local storage.
+   *
+   * @param name
+   * @param pubKey
+   * @return Promise<boolean>. If all permission are deleted, return true, otherwise false.
+   */
+  async removeAccount(name: string, pubKey: string): Promise<boolean> {
+    const account = await this.getAccount(name);
+    if (!account) {
+      return false;
+    }
+    const remains = account.permissions.filter(perm => perm.publicKey !== pubKey);
+    console.log(remains);
+    if (remains.length !== account.permissions.length) {
+      if (remains.length === 0) {
+        await this.storage.remove(name);
+        return true;
+      }
+      account.permissions = remains;
+      await this.setAccount(name, account);
+    }
+    return false;
   }
 
   async setAccount(name: string, account: Account) {
@@ -79,7 +115,7 @@ export class AccountService {
    * @param name
    */
   async getAccount(name: string): Promise<Account> {
-    return await this.storage.get(name) || null;
+    return await this.storage.get(name);
   }
 
   /**

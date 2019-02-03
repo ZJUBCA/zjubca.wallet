@@ -2,7 +2,7 @@ import {Component, ElementRef, OnInit} from '@angular/core';
 import {Account, Identification, METHOD_TYPES, Request} from '../../common/dappApi';
 import {EosService} from '../../services/eos.service';
 import {AccountService} from '../../services/account.service';
-import {CHAINID, endpoints, timezone, VERSION} from '../../common/config';
+import {CHAINID, endpoints, VERSION} from '../../common/config';
 import {WalletService} from '../../services/wallet.service';
 import {PermissionService} from '../../services/permission.service';
 import Error from '../../common/Error';
@@ -219,7 +219,7 @@ class ApiService {
   }
 
   /**
-   * getPublicKey returns the public key of the current account in wallet.
+   * getPublicKey returns the public key of the current account with 'active' permission in wallet.
    */
   async getPublicKey() {
     if (Object.keys(this.payload).length !== 2) {
@@ -234,13 +234,12 @@ class ApiService {
       return this.badResult('zjubca.wallet only supports EOS blockchain');
     }
 
-    // only give the public key of current account
+    // only give the public key of current account with 'active' permission
     const currName = await this.accService.current();
-    const pubkeys = await this.walletService.getPublicKeys();
-    for (const pub of pubkeys) {
-      const wallet = await this.walletService.getWallet(pub);
-      if (wallet.name === currName) {
-        return this.response(pub);
+    const account = await this.accService.getAccount(currName);
+    for (const perm of account.permissions) {
+      if (perm.permission === 'active') {
+        return this.response(perm.publicKey);
       }
     }
   }
@@ -416,10 +415,20 @@ class ApiService {
   }
 
   async popTransactModal(actions?: Action[], sign: boolean = true) {
+    let cssClass = '';
+    switch (this.type) {
+      case 'authenticate':
+      case 'requestArbitrarySignature':
+        cssClass = 'noActionTransactModal';
+        break;
+      default:
+        cssClass = 'transactModal';
+    }
+
     const modal = await this.modalCtrl.create(
       {
         component: TransactModalComponent,
-        cssClass: 'transactModal',
+        cssClass,
         componentProps: {
           actions,
           sign,

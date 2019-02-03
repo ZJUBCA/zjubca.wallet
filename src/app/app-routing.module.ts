@@ -15,6 +15,7 @@ const routes: Routes = [
   {path: 'wallet-detail/:pubkey', loadChildren: './pages/wallet-detail/wallet-detail.module#WalletDetailPageModule'},
   {path: 'qrscan', loadChildren: './pages/qr-scan/qr-scan.module#QrScanPageModule'},
   {path: 'dapp', loadChildren: './pages/dapp-container/dapp-container.module#DappContainerPageModule'},
+  {path: 'export-key/:privkey', loadChildren: './pages/export-key/export-key.module#ExportKeyPageModule'},
 ];
 
 @NgModule({

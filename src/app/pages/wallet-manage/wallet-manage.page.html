@@ -11,10 +11,16 @@
 <ion-content padding>
   <ion-card *ngFor="let wallet of wallets">
     <ion-card-header class="cardHeader" [routerLink]="'/wallet-detail/'+wallet.publicKey">
-      <ion-card-title color="dark" class="f16">{{wallet.name}}</ion-card-title>
+      <ion-card-title color="dark" class="f16">{{wallet.name}}
+      </ion-card-title>
+      <div>
+        <ion-icon name="ios-arrow-forward" slot="end"></ion-icon>
+      </div>
     </ion-card-header>
     <ion-card-content class="f14" (click)="copy(wallet.publicKey)">
       {{wallet.publicKey}}
     </ion-card-content>
   </ion-card>
+
+  <ion-button class="importBtn" color="dark" expand="full" fill="clear" routerLink="/login/import">导入钱包</ion-button>
 </ion-content>

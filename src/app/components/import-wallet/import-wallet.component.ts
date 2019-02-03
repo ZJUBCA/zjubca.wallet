@@ -31,7 +31,6 @@ export class ImportWalletComponent implements OnInit {
     private accService: AccountService,
     private walletService: WalletService,
     private router: Router,
-    private storage: Storage
   ) {
     this.form = new ImportForm();
   }
@@ -75,17 +74,26 @@ export class ImportWalletComponent implements OnInit {
       const privKey = this.form.privKey;
       const pubkey = this.ecc.privateToPublic(privKey);
       const res = await this.eosService.getAccountList(pubkey);
-      const names = res.account_names;
+      const names = res.account_names || [];
       if (names.length > 0) {
-        const accounts = names.map(name => {
-          return {
-            name: name
-          };
-        });
+        const accounts = await Promise.all(names.map(async name => {
+            const account = await this.eosService.getAccount(name);
+            let permissions = account.permissions.filter(item => item.required_auth.keys[0].key === pubkey);
+            permissions = permissions.map(item => ({
+              permission: item.perm_name,
+              publicKey: pubkey
+            }));
+            return {
+              name: name,
+              permissions: permissions
+            };
+          })
+        );
+        // @ts-ignore
         await this.accService.saveAccounts(accounts);
         await this.accService.setCurrent(names[0]);
         await this.walletService.saveWallet(this.form.name, pubkey, privKey, this.form.password);
-        await this.router.navigate(['/tabs']);
+        await this.router.navigate(['/tabs'], {replaceUrl: true});
       } else {
         await this.alert('该密钥下无账户名');
       }

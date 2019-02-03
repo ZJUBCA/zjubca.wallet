@@ -44,7 +44,7 @@ export class TokensPage implements OnInit {
       const symbol = entries[1];
       const ind = this.tokens.findIndex(item => item.symbol === symbol);
       if (ind >= 0) {
-        this.tokens[ind].value = val;
+        this.tokens[ind].value = val || 0;
       }
     });
     console.log(tokens);

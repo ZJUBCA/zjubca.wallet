@@ -22,7 +22,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  entryComponents: [TransactModalComponent],
   declarations: [TransferPage, TransactModalComponent]
 })
 export class TransferPageModule {
