@@ -1,0 +1,15 @@
+.cameraView {
+  --background: none transparent;
+  position: relative;
+}
+
+.error {
+  background-color: rgba(30, 32, 35, 0.8);
+  max-width: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  text-align: center;
+}

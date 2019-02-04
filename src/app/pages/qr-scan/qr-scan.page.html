@@ -8,6 +8,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-img [src]="picture"></ion-img>
+<ion-content class="cameraView">
+  <div class="error" *ngIf="noCameraPermission">
+    <ion-label color="light">{{errorMessage}}</ion-label>
+  </div>
 </ion-content>

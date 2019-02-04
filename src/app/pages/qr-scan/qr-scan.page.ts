@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {QRScanner, QRScannerStatus} from '@ionic-native/qr-scanner/ngx';
+import {QRData} from '../../../classes';
+import {NavController} from '@ionic/angular';
 
 
 @Component({
@@ -9,14 +11,16 @@ import {QRScanner, QRScannerStatus} from '@ionic-native/qr-scanner/ngx';
 })
 export class QrScanPage implements OnInit {
 
-  picture: string;
+  noCameraPermission = false;
+  errorMessage: string;
 
   constructor(
     private qrScanner: QRScanner,
+    private navCtrl: NavController
   ) {
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.qrScan();
   }
 
@@ -26,20 +30,29 @@ export class QrScanPage implements OnInit {
       if (status.authorized) {
         console.log('open scanner');
         // camera permission was granted
-        const scanSub = this.qrScanner.scan().subscribe((text: string) => {
+        const scanSub = this.qrScanner.scan().subscribe(async (text: string) => {
           console.log('scanned somthing', text);
-          this.qrScanner.hide();
-          scanSub.unsubscribe();
+          const data: QRData = JSON.parse(text);
+          if (data.action === 'transfer') {
+            let url = `/transfer?symbol=${data.symbol}&to=${data.to}`;
+            if (data.amount !== 0) {
+              url += `&amount=${data.amount}`;
+            }
+            await this.navCtrl.pop();
+            await this.navCtrl.navigateForward(url, {replaceUrl: true});
+          }
         });
 
-        await this.qrScanner.show();
-      } else if (status.denied) {
+        this.qrScanner.resumePreview();
 
+        this.qrScanner.show();
       } else {
-
+        this.noCameraPermission = true;
+        this.errorMessage = '无法获取相机权限';
       }
     } catch (e) {
-
+      this.noCameraPermission = true;
+      this.errorMessage = e.errorMsg;
     }
   }
 

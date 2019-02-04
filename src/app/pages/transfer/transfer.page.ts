@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {EosService} from '../../services/eos.service';
 import {AccountService} from '../../services/account.service';
-import {ModalController} from '@ionic/angular';
+import {ModalController, NavController} from '@ionic/angular';
 import {TransactModalComponent} from '../../modals/transact-modal/transact-modal.component';
 import axios from '../../common/axios';
 import {tokenCode, tokensUrl} from '../../common/config';
@@ -29,6 +29,7 @@ export class TransferPage implements OnInit {
     private eosService: EosService,
     private accService: AccountService,
     private route: ActivatedRoute,
+    private navCtrl: NavController,
     private modalController: ModalController,
   ) {
   }
@@ -38,10 +39,13 @@ export class TransferPage implements OnInit {
 
     this.symbols = this.symbols.concat(await this.fetchSymbols());
     // @ts-ignore
-    const {symbol, to} = this.route.queryParams.value;
+    const {symbol, to, amount} = this.route.queryParams.value;
     setTimeout(() => {
       this.form.symbol = symbol || 'EOS';
       this.form.account = to || '';
+      if (typeof amount !== 'undefined') {
+        this.form.value = beautifyValue('' + (amount || 0));
+      }
     });
   }
 
@@ -108,5 +112,9 @@ export class TransferPage implements OnInit {
 
   valueBlur() {
     this.form.value = beautifyValue(this.form.value);
+  }
+
+  goQRScan() {
+    this.navCtrl.navigateForward('/qrscan', {replaceUrl: true});
   }
 }
