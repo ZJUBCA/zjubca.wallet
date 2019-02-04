@@ -1,0 +1,60 @@
+{
+  "_from": "cordova-plugin-httpd",
+  "_id": "cordova-plugin-httpd@0.9.3",
+  "_inBundle": false,
+  "_integrity": "sha1-fNZY2DpmHHYhDbKz4H9wRN6gWZ4=",
+  "_location": "/cordova-plugin-httpd",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-httpd",
+    "name": "cordova-plugin-httpd",
+    "escapedName": "cordova-plugin-httpd",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-httpd/-/cordova-plugin-httpd-0.9.3.tgz",
+  "_shasum": "7cd658d83a661c76210db2b3e07f7044dea0599e",
+  "_spec": "cordova-plugin-httpd",
+  "_where": "/Users/lowesyang/Documents/website/zjubca.wallet",
+  "author": {
+    "name": "Raymond Xie",
+    "email": "rjfun.mobile@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/floatinghotpot/cordova-httpd/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-httpd",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova Plugin to embed httpd (web server) into Cordova App",
+  "homepage": "https://github.com/floatinghotpot/cordova-httpd#readme",
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "http",
+    "httpd",
+    "web",
+    "server",
+    "rjfun"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-httpd",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/floatinghotpot/cordova-httpd.git"
+  },
+  "version": "0.9.3"
+}

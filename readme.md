@@ -42,3 +42,9 @@ A necessary wallet for a new world.
 - [x] 钱包基本功能
 - [x] 钱包内Dapp与钱包App组件交互功能
 - [ ] 原生App与钱包App交互功能
+
+## 开发中遇到的坑
+- qr-scanner与camera-preview插件存在冲突。
+
+### Android
+- 请先下载Android Studio并成功运行一个项目(此过程会安装必要依赖)后再编译ionic项目。

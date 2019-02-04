@@ -42,7 +42,7 @@
     "cordova-clipboard": "1.2.1",
     "cordova-ios": "4.5.5",
     "cordova-plugin-add-swift-support": "^1.7.2",
-    "cordova-plugin-camera-preview": "0.10.0",
+    "cordova-plugin-compat": "1.2.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-httpd": "0.9.3",
     "cordova-plugin-inappbrowser": "3.0.0",
@@ -107,10 +107,10 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-httpd": {},
-      "cordova-plugin-camera-preview": {},
       "cordova-android-support-gradle-release": {
-        "ANDROID_SUPPORT_VERSION": "27+"
-      }
+        "ANDROID_SUPPORT_VERSION": "26+"
+      },
+      "cordova-plugin-compat": {}
     },
     "platforms": [
       "ios",
