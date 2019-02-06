@@ -14,7 +14,6 @@
 }
 
 .btn {
-  --border-radius: 100%;
   width: 80px;
   height: 80px;
 }
@@ -22,4 +21,8 @@
 .alignRight {
   text-align: right;
   padding-right: 10px;
+}
+
+.accNameSelect {
+  text-align: right;
 }

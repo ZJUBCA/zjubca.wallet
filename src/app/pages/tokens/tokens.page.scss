@@ -6,6 +6,17 @@
   --padding-bottom: 10px;
 }
 
+.tokens {
+  margin-top: 10px;
+}
+
 .value {
   text-align: right;
+}
+
+.loading {
+  position: absolute;
+  padding: 20px 0;
+  left: 50%;
+  transform: translateX(-50%);
 }

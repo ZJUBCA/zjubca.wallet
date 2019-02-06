@@ -1,9 +1,8 @@
 import {Component} from '@angular/core';
 
-import {Platform} from '@ionic/angular';
+import {NavController, Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
-import {Router} from '@angular/router';
 import {AccountService} from './services/account.service';
 
 @Component({
@@ -15,7 +14,7 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private router: Router,
+    private navCtrl: NavController,
     private accService: AccountService
   ) {
     this.initializeApp();
@@ -29,7 +28,8 @@ export class AppComponent {
 
     const accounts = await this.accService.fetchAccounts();
     if (accounts.length === 0) {
-      return await this.router.navigate(['/login'], {replaceUrl: true});
+      return await this.navCtrl.navigateRoot('/login', {replaceUrl: true});
     }
+    await this.navCtrl.navigateRoot('/tabs/assets', {replaceUrl: true});
   }
 }

@@ -1,9 +1,31 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>dapp</ion-title>
+    <ion-title>Dapp中心</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-button routerLink="/dapp">打开dapp</ion-button>
+<ion-content>
+  <div class="loading" *ngIf="loading">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+  <ion-list lines="none">
+    <div *ngFor="let group of groups" class="group">
+      <div *ngIf="dapps[group].length>0">
+        <ion-list-header class="header">
+          <ion-label>{{group}}</ion-label>
+          <ion-icon class="f18" name="more" [routerLink]="'/dapp-list/'+group"></ion-icon>
+        </ion-list-header>
+        <ion-item *ngFor="let dapp of dapps[group].slice(0,showAmount)" class="dappItem" (click)="goNav(dapp.url)">
+          <ion-avatar slot="start">
+            <img [src]="dapp.icon"/>
+          </ion-avatar>
+          <ion-label class="detail">
+            <ion-label>{{dapp.name}}</ion-label>
+            <ion-note class="f14">{{dapp.abstract}}</ion-note>
+          </ion-label>
+          <ion-icon slot="end" name="ios-arrow-forward" color="medium" class="f14"></ion-icon>
+        </ion-item>
+      </div>
+    </div>
+  </ion-list>
 </ion-content>

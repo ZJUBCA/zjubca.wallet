@@ -2,6 +2,7 @@
 import {version} from '../../../package.json';
 
 export const tokensUrl = 'https://raw.githubusercontent.com/Blockchain-zju/wallet-config/master/tokens.json';
+export const dappsUrl = 'https://raw.githubusercontent.com/Blockchain-zju/wallet-config/master/dapps.json';
 
 // account of token contract
 export const tokenCode = 'zjubcatokent';
@@ -34,6 +35,7 @@ export const CURRENT_ACC_KEY = 'CURRENT';
 export const PUBKEYS_KEY = 'PUBKEYS';
 export const ACCOUNTS_KEY = 'ACCOUNTS';
 export const ABI_KEY_PREFIX = 'ABI.';
+export const TEMP_DAPP_KEY = 'DAPPS';
 
 /* ===== Mobile Native App Interaction QR Protocol ===== */
 export const QR_PROTOCOL = 'SimpleWallet';

@@ -32,6 +32,16 @@ export interface Token {
   intro: string;
 }
 
+export interface Dapp {
+  name: string;
+  icon: string;
+  abstract: string;
+  intro: string;
+  url: string;
+  author: string;
+  images: string[];
+}
+
 export interface Abi {
   version: string;
   types: Array<{ new_type_name: string, type: string }>;

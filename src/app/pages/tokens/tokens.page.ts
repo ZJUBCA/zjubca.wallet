@@ -13,6 +13,7 @@ import {AccountService} from '../../services/account.service';
 export class TokensPage implements OnInit {
 
   tokens: Token[];
+  loading = false;
 
   constructor(
     private eosService: EosService,
@@ -27,11 +28,14 @@ export class TokensPage implements OnInit {
 
   async fetchTokens(): Promise<Token[]> {
     try {
+      this.loading = true;
       const result = await axios.get(tokensUrl);
       return result.data;
     } catch (e) {
       console.log(e);
       return [];
+    } finally {
+      this.loading = false;
     }
   }
 

@@ -93,7 +93,7 @@ export class ImportWalletComponent implements OnInit {
         await this.accService.saveAccounts(accounts);
         await this.accService.setCurrent(names[0]);
         await this.walletService.saveWallet(this.form.name, pubkey, privKey, this.form.password);
-        await this.router.navigate(['/tabs'], {replaceUrl: true});
+        await this.router.navigate(['/tabs/assets'], {replaceUrl: true});
       } else {
         await this.alert('该密钥下无账户名');
       }

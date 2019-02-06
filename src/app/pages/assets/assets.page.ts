@@ -51,7 +51,6 @@ export class AssetsPage implements OnInit {
     }
   }
 
-
   async showMenu(ev) {
     this.popover = await this.popoverCtrl.create({
       component: HomePopMenuComponent,

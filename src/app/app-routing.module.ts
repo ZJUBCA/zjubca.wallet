@@ -14,8 +14,9 @@ const routes: Routes = [
   {path: 'about', loadChildren: './pages/about/about.module#AboutPageModule'},
   {path: 'wallet-detail/:pubkey', loadChildren: './pages/wallet-detail/wallet-detail.module#WalletDetailPageModule'},
   {path: 'qrscan', loadChildren: './pages/qr-scan/qr-scan.module#QrScanPageModule'},
-  {path: 'dapp', loadChildren: './pages/dapp-container/dapp-container.module#DappContainerPageModule'},
+  {path: 'dapp/:url', loadChildren: './pages/dapp-container/dapp-container.module#DappContainerPageModule'},
   {path: 'export-key/:privkey', loadChildren: './pages/export-key/export-key.module#ExportKeyPageModule'},
+  {path: 'dapp-list/:group', loadChildren: './pages/dapp-list/dapp-list.module#DappListPageModule'},
 ];
 
 @NgModule({

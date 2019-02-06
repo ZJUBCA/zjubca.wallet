@@ -114,7 +114,7 @@ export class CreateWalletComponent implements OnInit {
                 }]);
                 await this.accService.setCurrent(name);
                 await this.walletService.saveWallet(this.form.name, pubKey, privateKey, this.form.password);
-                await this.router.navigate(['/tabs'], {replaceUrl: true});
+                await this.router.navigate(['/tabs/assets'], {replaceUrl: true});
               } else {
                 throw new Error(resp.msg);
               }

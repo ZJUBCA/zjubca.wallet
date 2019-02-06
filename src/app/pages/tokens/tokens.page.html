@@ -8,8 +8,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="list" padding>
-  <ion-list>
+<ion-content class="list">
+  <div class="loading" *ngIf="loading">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+  <ion-list class="tokens">
     <ion-item class="item" *ngFor="let item of tokens" [routerLink]="'/token-detail/'+item.symbol">
       <ion-avatar slot="start">
         <img [src]="item.logo"/>

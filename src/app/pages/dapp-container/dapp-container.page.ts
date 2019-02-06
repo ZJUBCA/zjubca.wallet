@@ -11,6 +11,7 @@ import {TransactModalComponent} from '../../modals/transact-modal/transact-modal
 import {Action} from '../../../classes';
 import moment from 'moment-timezone';
 import {beautifyValue} from '../../common/helper';
+import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -21,6 +22,7 @@ import {beautifyValue} from '../../common/helper';
 export class DappContainerPage implements OnInit {
 
   iframe: any;
+  url: string;
 
   constructor(
     private el: ElementRef,
@@ -28,11 +30,14 @@ export class DappContainerPage implements OnInit {
     private eosService: EosService,
     private walletService: WalletService,
     private modalCtrl: ModalController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private route: ActivatedRoute
   ) {
   }
 
   ngOnInit() {
+    // @ts-ignore
+    this.url = this.route.params.value.url;
     this.iframe = this.el.nativeElement.querySelector('.browser');
     // console.log(this.iframe);
     window.addEventListener('message', ev => this.handleMsg(ev));

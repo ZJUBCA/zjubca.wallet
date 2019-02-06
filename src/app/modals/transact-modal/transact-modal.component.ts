@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ModalController, ToastController} from '@ionic/angular';
+import {LoadingController, ModalController, ToastController} from '@ionic/angular';
 import {AccountService} from '../../services/account.service';
 import {EosService} from '../../services/eos.service';
 import {Action} from '../../../classes';
@@ -23,6 +23,7 @@ export class TransactModalComponent implements OnInit {
   constructor(
     private toastController: ToastController,
     private modalCtrl: ModalController,
+    private loadingCtrl: LoadingController,
     private accService: AccountService,
     private eosService: EosService,
     private abiService: AbiService
@@ -59,6 +60,10 @@ export class TransactModalComponent implements OnInit {
     if (!this.password) {
       return await this.alert('钱包密码不能为空');
     }
+    const loading = await this.loadingCtrl.create({
+      message: '转账中...',
+      spinner: 'crescent',
+    });
     try {
       const actor = await this.accService.current();
       let result = null;
@@ -68,13 +73,20 @@ export class TransactModalComponent implements OnInit {
           whitelist: this.whitelist
         });
       } else {
-        await this.eosService.init(actor, this.password, ['active', 'owner']);
+        await this.eosService.init(actor, this.password, ['active', 'transfer', 'owner']);
+
+        await loading.present();
         result = await this.eosService.sendTransaction(this.actions);
+        await this.modalCtrl.dismiss({
+          result
+        });
       }
       console.log(result);
     } catch (e) {
       console.log(e);
       await this.alert(e.message);
+    } finally {
+      await loading.dismiss();
     }
   }
 

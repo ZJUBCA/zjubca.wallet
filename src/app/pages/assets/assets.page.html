@@ -23,7 +23,8 @@
           <h3>账户名</h3>
         </ion-col>
         <ion-col>
-          <ion-select interface="popover" (ionChange)="nameChange()" [interfaceOptions]="{header:'账户名'}" class="f18"
+          <ion-select interface="popover" (ionChange)="nameChange()" [interfaceOptions]="{header:'账户名'}"
+                      class="accNameSelect f18"
                       [(ngModel)]="currAccount">
             <ion-select-option *ngFor="let account of accounts" [value]="account" [selected]="account === currAccount">
               {{account}}
@@ -42,8 +43,8 @@
     </ion-grid>
   </ion-card>
   <div padding class="btnGroup">
-    <ion-button class="btn" color="dark" fill="outline" routerLink="/transfer">转账</ion-button>
-    <ion-button class="btn" color="dark" fill="outline" routerLink="/bill">收款</ion-button>
+    <ion-fab-button class="btn" color="dark" routerLink="/transfer">转账</ion-fab-button>
+    <ion-fab-button class="btn" color="light" routerLink="/bill">收款</ion-fab-button>
   </div>
   <ion-list lines="none">
     <ion-list-header>

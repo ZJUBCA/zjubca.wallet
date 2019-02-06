@@ -94,6 +94,11 @@ export class TransferPage implements OnInit {
     await modal.present();
     console.log(this.form);
 
+    const {data} = await modal.onDidDismiss();
+    if (data && typeof data.result !== 'undefined') {
+      await this.navCtrl.back();
+    }
+
   }
 
   /**
