@@ -14,6 +14,25 @@ export interface Wallet {
   encrypted_privkey: string;
 }
 
+// RAM, CPU&NET resource
+export interface Resource {
+  // bytes
+  ram: {
+    max: number;
+    used: number;
+  };
+  // us
+  cpu: {
+    max: number;
+    used: number;
+  };
+  // bytes
+  net: {
+    max: number;
+    used: number;
+  };
+}
+
 export interface Action {
   account: string;  // contract account
   name: string;     // action name

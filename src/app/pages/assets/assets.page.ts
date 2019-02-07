@@ -5,6 +5,12 @@ import {Router} from '@angular/router';
 import {Storage} from '@ionic/storage';
 import {PopoverController, ToastController} from '@ionic/angular';
 import {HomePopMenuComponent} from '../../components/home-pop-menu/home-pop-menu.component';
+import {Resource} from '../../../classes';
+
+enum resrcType {
+  BYTES = 0,
+  TIME
+}
 
 @Component({
   selector: 'app-assets',
@@ -20,6 +26,23 @@ export class AssetsPage implements OnInit {
   currAccount: string;
   accounts: string[];
   loading = false;
+
+  TYPE: resrcType;
+
+  resource: Resource = {
+    ram: {
+      max: 1,
+      used: 0,
+    },
+    cpu: {
+      max: 1,
+      used: 0,
+    },
+    net: {
+      max: 1,
+      used: 0
+    }
+  };
 
   popover: any;
 
@@ -41,7 +64,10 @@ export class AssetsPage implements OnInit {
       if (!this.currAccount) {
         return await this.router.navigate(['/login'], {replaceUrl: true});
       }
-      this.balance = await this.eosService.getBalance(this.currAccount);
+      await Promise.all([
+        this.fetchBalance(this.currAccount),
+        this.fetchResource(this.currAccount)
+      ]);
       console.log(this.currAccount, this.accounts);
     } catch (e) {
       console.log(e);
@@ -58,6 +84,22 @@ export class AssetsPage implements OnInit {
       translucent: true,
     });
     return await this.popover.present();
+  }
+
+  async fetchBalance(name: string) {
+    try {
+      this.balance = await this.eosService.getBalance(name);
+    } catch (e) {
+      await this.alert('获取余额失败');
+    }
+  }
+
+  async fetchResource(name: string) {
+    try {
+      this.resource = await this.eosService.getResource(name);
+    } catch (e) {
+      await this.alert('获取账户资源失败');
+    }
   }
 
   async nameChange() {
@@ -82,5 +124,37 @@ export class AssetsPage implements OnInit {
       color: 'dark'
     });
     await toast.present();
+  }
+
+  format(val: number, type: resrcType): string {
+    const kb = 1024, mb = 1024 * 1024, ms = 1000, s = 1000 * 1000;
+    let result, unit;
+    if (type === resrcType.BYTES) {
+      if (val >= mb) {
+        result = val / mb;
+        unit = ' MB';
+      } else if (val >= kb) {
+        result = val / kb;
+        unit = ' KB';
+      } else {
+        result = val;
+        unit = ' B';
+      }
+    } else if (type === resrcType.TIME) {
+      if (val >= s) {
+        result = val / s;
+        unit = ' s';
+      } else if (val >= ms) {
+        result = val / ms;
+        unit = ' ms';
+      } else {
+        result = val;
+        unit = ' us';
+      }
+    } else {
+      return '' + val;
+    }
+
+    return result.toFixed(2) + unit;
   }
 }

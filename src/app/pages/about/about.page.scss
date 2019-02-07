@@ -1,0 +1,32 @@
+.bg {
+  --background: #f4f4f4;
+}
+
+.logoBox {
+  text-align: center;
+
+  .logo {
+    width: 200px;
+    margin: 0 auto;
+  }
+
+  .name {
+    margin-top: 5px;
+  }
+
+  .version {
+    margin-top: 10px;
+  }
+}
+
+.introList {
+  margin-top: 20px;
+
+  .introItem {
+    --border-color: #f4f4f4;
+  }
+
+  .value {
+    text-align: right;
+  }
+}

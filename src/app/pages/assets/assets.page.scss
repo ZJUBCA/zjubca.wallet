@@ -26,3 +26,16 @@
 .accNameSelect {
   text-align: right;
 }
+
+.resrc {
+  .info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+}
+
+.gutter {
+  margin-top: 10px;
+}

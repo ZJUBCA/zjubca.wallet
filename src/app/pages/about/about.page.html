@@ -8,6 +8,21 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="bg">
+  <div class="logoBox">
+    <ion-img class="logo" src="/assets/img/logo.png"></ion-img>
+    <div>
+      <ion-label class="f18">ZJUBCA</ion-label>
+    </div>
+    <div class="name">
+      <ion-label class="f14">浙江大学区块链协会</ion-label>
+    </div>
+  </div>
+  <ion-list lines="full" class="introList">
+    <ion-item class="f14 introItem" *ngFor="let item of intros" (click)="goOutsideUrl(item.link)">
+      <ion-label>{{item.key}}</ion-label>
+      <ion-label class="value" slot="end" *ngIf="item.value">{{item.value}}</ion-label>
+      <ion-icon color="medium" class="f14" name="ios-arrow-forward" slot="end" *ngIf="item.link"></ion-icon>
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -27,11 +27,11 @@
     "@ionic-native/clipboard": "^5.0.0",
     "@ionic-native/core": "5.0.x",
     "@ionic-native/httpd": "^5.0.0",
-    "@ionic-native/in-app-browser": "^5.0.0",
     "@ionic-native/ionic-webview": "^5.0.0",
     "@ionic-native/qr-scanner": "^5.0.0",
     "@ionic-native/splash-screen": "5.0.x",
     "@ionic-native/status-bar": "5.0.x",
+    "@ionic-native/themeable-browser": "^5.0.0",
     "@ionic/angular": "^4.0.0",
     "@ionic/storage": "^2.2.0",
     "angularx-qrcode": "^1.5.2",
@@ -45,12 +45,12 @@
     "cordova-plugin-compat": "1.2.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-httpd": "0.9.3",
-    "cordova-plugin-inappbrowser": "3.0.0",
     "cordova-plugin-ionic-keyboard": "^2.1.3",
     "cordova-plugin-ionic-webview": "^2.3.2",
     "cordova-plugin-qrscanner": "2.6.0",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
+    "cordova-plugin-themeablebrowser": "0.2.17",
     "cordova-plugin-whitelist": "^1.3.3",
     "cordova-sqlite-storage": "^2.6.0",
     "core-js": "^2.5.4",
@@ -107,12 +107,12 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-inappbrowser": {},
       "cordova-plugin-httpd": {},
       "cordova-android-support-gradle-release": {
         "ANDROID_SUPPORT_VERSION": "26+"
       },
-      "cordova-plugin-compat": {}
+      "cordova-plugin-compat": {},
+      "cordova-plugin-themeablebrowser": {}
     },
     "platforms": [
       "ios",

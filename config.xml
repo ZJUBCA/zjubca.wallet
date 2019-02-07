@@ -85,7 +85,6 @@
     <plugin name="cordova-sqlite-storage" spec="2.6.0" />
     <plugin name="cordova-plugin-qrscanner" spec="2.6.0" />
     <plugin name="cordova-clipboard" spec="1.2.1" />
-    <plugin name="cordova-plugin-inappbrowser" spec="3.0.0" />
     <plugin name="cordova-plugin-ionic-webview" spec="^2.3.2" />
     <plugin name="cordova-plugin-httpd" spec="0.9.3" />
     <plugin name="cordova-plugin-compat" spec="1.2.0" />
@@ -94,4 +93,5 @@
     </plugin>
     <engine name="ios" spec="4.5.5" />
     <engine name="android" spec="7.1.4" />
+    <plugin name="cordova-plugin-themeablebrowser" spec="0.2.17" />
 </widget>

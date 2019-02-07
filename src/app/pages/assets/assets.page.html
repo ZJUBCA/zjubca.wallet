@@ -42,6 +42,34 @@
       </ion-row>
     </ion-grid>
   </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <div class="resrc">
+        <div class="info f14">
+          <ion-label>RAM</ion-label>
+          <ion-note>{{format(resource['ram'].used, 0)}} / {{format(resource['ram'].max, 0)}}</ion-note>
+        </div>
+        <ion-progress-bar color="medium" [buffer]="1"
+                          [value]="resource['ram'].used/resource['ram'].max"></ion-progress-bar>
+      </div>
+      <div class="resrc gutter">
+        <div class="info f14">
+          <ion-label>CPU</ion-label>
+          <ion-note>{{format(resource['cpu'].used, 1)}} / {{format(resource['cpu'].max, 1)}}</ion-note>
+        </div>
+        <ion-progress-bar color="medium" [buffer]="1"
+                          [value]="resource['cpu'].used/resource['cpu'].max"></ion-progress-bar>
+      </div>
+      <div class="resrc gutter">
+        <div class="info f14">
+          <ion-label>NET</ion-label>
+          <ion-note>{{format(resource['net'].used, 0)}} / {{format(resource['net'].max, 0)}}</ion-note>
+        </div>
+        <ion-progress-bar color="medium" [buffer]="1"
+                          [value]="resource['net'].used/resource['net'].max"></ion-progress-bar>
+      </div>
+    </ion-card-content>
+  </ion-card>
   <div padding class="btnGroup">
     <ion-fab-button class="btn" color="dark" routerLink="/transfer">转账</ion-fab-button>
     <ion-fab-button class="btn" color="light" routerLink="/bill">收款</ion-fab-button>

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {WalletService} from './wallet.service';
-import {Abi, Action} from '../../classes';
+import {Abi, Action, Resource} from '../../classes';
 import {TextDecoder, TextEncoder} from 'text-encoding';
 import {tokenCode} from '../common/config';
 import {NetworkService} from './network.service';
@@ -164,6 +164,25 @@ export class EosService {
       blocksBehind: 3,
       expireSeconds: 30
     });
+  }
+
+  async getResource(name: string): Promise<Resource> {
+    const info = await this.getAccount(name);
+    const resrc: Resource = {
+      ram: {
+        max: info.ram_quota,
+        used: info.ram_usage
+      },
+      cpu: {
+        max: info.cpu_limit.max,
+        used: info.cpu_limit.used
+      },
+      net: {
+        max: info.net_limit.max,
+        used: info.net_limit.used
+      },
+    };
+    return resrc;
   }
 
   /**
