@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {SocialSharing} from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-account',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private socialSharing: SocialSharing
+  ) {
+  }
 
   ngOnInit() {
+  }
+
+  async share() {
+    const result = await this.socialSharing.shareWithOptions({
+      message: '分享zjubca.wallet'
+    });
+    console.log(result);
   }
 
 }

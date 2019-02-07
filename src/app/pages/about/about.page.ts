@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {VERSION} from '../../common/config';
-import {ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject} from '@ionic-native/themeable-browser/ngx';
+import {BrowserService} from '../../services/browser.service';
 
 @Component({
   selector: 'app-about',
@@ -16,7 +16,7 @@ export class AboutPage implements OnInit {
   }[] = [];
 
   constructor(
-    private browser: ThemeableBrowser
+    private browser: BrowserService
   ) {
   }
 
@@ -37,43 +37,11 @@ export class AboutPage implements OnInit {
     ];
   }
 
-  goOutsideUrl(url) {
+  async goOutsideUrl(url) {
     if (typeof url === 'undefined') {
       return;
     }
 
-    const options: ThemeableBrowserOptions = {
-      toolbar: {
-        height: 44,
-      },
-      title: {
-        color: '#1e2023',
-        showPageTitle: true
-      },
-      closeButton: {
-        wwwImage: 'assets/icon/favicon.png',
-        align: 'left',
-        event: 'closePressed'
-      },
-      backButton: {
-        wwwImage: 'assets/icon/back.png',
-        align: 'left',
-        event: 'backPressed'
-      },
-      customButtons: [
-        {
-          image: 'share',
-          imagePressed: 'share_pressed',
-          align: 'right',
-          event: 'sharePressed'
-        }
-      ],
-      backButtonCanClose: true
-    };
-
-    const browser: ThemeableBrowserObject = this.browser.create(url, '_blank', options);
-    browser.insertCss({
-      code: 'html{ padding-top:44px; }'
-    });
+    this.browser.open(url);
   }
 }

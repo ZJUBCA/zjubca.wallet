@@ -37,18 +37,24 @@
     "cordova-plugin-statusbar": {
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     },
+    "cordova-plugin-themeablebrowser": {
+      "PACKAGE_NAME": "io.ionic.zjubca.wallet"
+    },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     },
     "cordova-sqlite-storage": {
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     },
-    "cordova-plugin-themeablebrowser": {
+    "cordova-plugin-x-socialsharing": {
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "io.ionic.zjubca.wallet"
+    },
+    "es6-promise-plugin": {
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     }
   }

@@ -91,7 +91,7 @@
     <plugin name="cordova-android-support-gradle-release" spec="^2.0.1">
         <variable name="ANDROID_SUPPORT_VERSION" value="26+" />
     </plugin>
+    <plugin name="cordova-plugin-themeablebrowser" spec="0.2.17" />
     <engine name="ios" spec="4.5.5" />
     <engine name="android" spec="7.1.4" />
-    <plugin name="cordova-plugin-themeablebrowser" spec="0.2.17" />
 </widget>

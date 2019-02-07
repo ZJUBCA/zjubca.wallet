@@ -45,7 +45,7 @@ export class DappPage implements OnInit {
   }
 
   async goNav(url: string) {
-    await this.navCtrl.navigateForward('/dapp/' + url);
+    await this.navCtrl.navigateForward('dapp/' + encodeURIComponent(url));
   }
 
   async alert(msg: string) {

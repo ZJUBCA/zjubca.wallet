@@ -6,7 +6,6 @@ import {Routes, RouterModule} from '@angular/router';
 import {IonicModule} from '@ionic/angular';
 
 import {AboutPage} from './about.page';
-import {ThemeableBrowser} from '@ionic-native/themeable-browser/ngx';
 
 const routes: Routes = [
   {
@@ -22,7 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  providers: [ThemeableBrowser],
   declarations: [AboutPage]
 })
 export class AboutPageModule {

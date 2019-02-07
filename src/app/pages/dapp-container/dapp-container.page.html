@@ -9,5 +9,8 @@
 </ion-header>
 
 <ion-content>
+  <div class="loading" *ngIf="loading">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
   <iframe class="browser" [src]="url"></iframe>
 </ion-content>

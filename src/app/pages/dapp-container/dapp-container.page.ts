@@ -6,12 +6,13 @@ import {CHAINID, endpoints, VERSION} from '../../common/config';
 import {WalletService} from '../../services/wallet.service';
 import {PermissionService} from '../../services/permission.service';
 import Error from '../../common/Error';
-import {ModalController, ToastController} from '@ionic/angular';
+import {LoadingController, ModalController, ToastController} from '@ionic/angular';
 import {TransactModalComponent} from '../../modals/transact-modal/transact-modal.component';
 import {Action} from '../../../classes';
 import moment from 'moment-timezone';
 import {beautifyValue} from '../../common/helper';
 import {ActivatedRoute} from '@angular/router';
+import {DomSanitizer} from '@angular/platform-browser';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class DappContainerPage implements OnInit {
 
   iframe: any;
   url: string;
+  loading = false;
 
   constructor(
     private el: ElementRef,
@@ -31,16 +33,22 @@ export class DappContainerPage implements OnInit {
     private walletService: WalletService,
     private modalCtrl: ModalController,
     private toastCtrl: ToastController,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loadingCtrl: LoadingController,
+    private sanitizer: DomSanitizer
   ) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.loading = true;
     // @ts-ignore
-    this.url = this.route.params.value.url;
+    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(decodeURIComponent(this.route.params.value.url));
     this.iframe = this.el.nativeElement.querySelector('.browser');
     // console.log(this.iframe);
     window.addEventListener('message', ev => this.handleMsg(ev));
+    this.iframe.addEventListener('load', () => {
+      this.loading = false;
+    });
   }
 
   async handleMsg(ev) {

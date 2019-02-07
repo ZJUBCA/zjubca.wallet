@@ -11,7 +11,6 @@ import {AppComponent} from './app.component';
 import {AssetsPageModule} from './pages/assets/assets.module';
 import {DappPageModule} from './pages/dapp/dapp.module';
 import {AccountPageModule} from './pages/account/account.module';
-import {SharedModule} from './shared/shared.module';
 import {CoreModule} from './services/core.module';
 import {IonicStorageModule} from '@ionic/storage';
 import {LoginPageModule} from './pages/login/login.module';
@@ -21,6 +20,7 @@ import {TransactModalComponent} from './modals/transact-modal/transact-modal.com
 import {DappContainerPageModule} from './pages/dapp-container/dapp-container.module';
 import {TransferPageModule} from './pages/transfer/transfer.module';
 import {WalletDetailPageModule} from './pages/wallet-detail/wallet-detail.module';
+import {ThemeableBrowser} from '@ionic-native/themeable-browser/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,7 +31,6 @@ import {WalletDetailPageModule} from './pages/wallet-detail/wallet-detail.module
     IonicStorageModule.forRoot(),
     CoreModule,
     AppRoutingModule,
-    SharedModule,
     AssetsPageModule,
     DappPageModule,
     AccountPageModule,
@@ -45,6 +44,7 @@ import {WalletDetailPageModule} from './pages/wallet-detail/wallet-detail.module
   providers: [
     StatusBar,
     SplashScreen,
+    ThemeableBrowser,
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
   ],
   bootstrap: [AppComponent],
