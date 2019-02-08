@@ -1,11 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AccountService} from '../../services/account.service';
 import {EosService} from '../../services/eos.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {Storage} from '@ionic/storage';
-import {PopoverController, ToastController} from '@ionic/angular';
+import {NavController, PopoverController, ToastController} from '@ionic/angular';
 import {HomePopMenuComponent} from '../../components/home-pop-menu/home-pop-menu.component';
 import {Resource} from '../../../classes';
+import {c} from 'tar';
 
 enum resrcType {
   BYTES = 0,
@@ -18,14 +19,14 @@ enum resrcType {
   styleUrls: ['./assets.page.scss'],
 })
 export class AssetsPage implements OnInit {
+  loading = false;
   balance = {
-    eos: 'loading...',
-    zjubca: 'loading...',
+    eos: '',
+    zjubca: '',
   };
 
   currAccount: string;
   accounts: string[];
-  loading = false;
 
   TYPE: resrcType;
 
@@ -51,30 +52,78 @@ export class AssetsPage implements OnInit {
     private eosService: EosService,
     private storage: Storage,
     private router: Router,
+    private route: ActivatedRoute,
     private popoverCtrl: PopoverController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private navCtrl: NavController
   ) {
   }
 
   async ngOnInit() {
-    this.loading = true;
     try {
-      this.accounts = await this.accountSvc.fetchAccounts();
-      this.currAccount = await this.accountSvc.current();
-      if (!this.currAccount) {
-        return await this.router.navigate(['/login'], {replaceUrl: true});
-      }
-      await Promise.all([
-        this.fetchBalance(this.currAccount),
-        this.fetchResource(this.currAccount)
-      ]);
-      console.log(this.currAccount, this.accounts);
+      // console.log(this.currAccount, this.accounts);
+      this.loading = true;
+      await this.fetchAccounts();
     } catch (e) {
       console.log(e);
       await this.alert(e.message);
     } finally {
       this.loading = false;
     }
+    // listen for the url change
+    this.router.events.subscribe(async (ev) => {
+      // @ts-ignore
+      const {url} = ev;
+      if (ev instanceof NavigationEnd) {
+        // console.log(url);
+        if (url && url.indexOf('tabs/assets') >= 0) {
+          if (url.indexOf('refresh') >= 0) {
+            const params = url.split('?');
+            const pairs = params[1].split('=');
+            if (pairs[1] === '1') {
+              // @ts-ignore
+              try {
+                this.loading = true;
+                await this.fetchDetails();
+              } catch (e) {
+                await this.alert(e.message);
+              } finally {
+                this.loading = false;
+              }
+            }
+          } else {
+            await this.fetchAccounts();
+          }
+        }
+      }
+    });
+  }
+
+  /**
+   * fetchAccounts fetches account list. If current account is changed, it will invoke fetching balance and resource.
+   */
+  async fetchAccounts() {
+    this.accounts = []; // necessary for view refreshing.
+    this.accounts = await this.accountSvc.fetchAccounts();
+    const curr = await this.accountSvc.current();
+    const oldCurr = this.currAccount;
+    this.currAccount = curr;
+    if (!curr) {
+      return await this.navCtrl.navigateRoot('/login', {replaceUrl: true});
+    }
+    if (curr !== oldCurr) {
+      await this.fetchDetails();
+    }
+  }
+
+  /**
+   * fetchDetails fetches account balance and resource.
+   */
+  async fetchDetails() {
+    await Promise.all([
+      this.fetchBalance(this.currAccount),
+      this.fetchResource(this.currAccount)
+    ]);
   }
 
   async showMenu(ev) {
@@ -106,7 +155,7 @@ export class AssetsPage implements OnInit {
     try {
       this.loading = true;
       await this.accountSvc.setCurrent(this.currAccount);
-      this.balance = await this.eosService.getBalance(this.currAccount);
+      await this.fetchDetails();
     } catch (e) {
       console.log(e);
       await this.alert(e.message);

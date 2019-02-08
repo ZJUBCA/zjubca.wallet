@@ -56,7 +56,7 @@ export class TransactModalComponent implements OnInit {
     //   password: this.password
     // });
 
-    console.log(this.password);
+    // console.log(this.password);
     if (!this.password) {
       return await this.alert('钱包密码不能为空');
     }

@@ -96,7 +96,7 @@ export class TransferPage implements OnInit {
 
     const {data} = await modal.onDidDismiss();
     if (data && typeof data.result !== 'undefined') {
-      await this.navCtrl.back();
+      await this.navCtrl.navigateBack('/tabs/assets?refresh=1');
     }
 
   }

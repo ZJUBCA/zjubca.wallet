@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SocialSharing} from '@ionic-native/social-sharing/ngx';
+import {ToastController} from '@ionic/angular';
 
 @Component({
   selector: 'app-account',
@@ -9,18 +9,21 @@ import {SocialSharing} from '@ionic-native/social-sharing/ngx';
 export class AccountPage implements OnInit {
 
   constructor(
-    private socialSharing: SocialSharing
+    private toastCtrl: ToastController
   ) {
   }
 
   ngOnInit() {
   }
 
-  async share() {
-    const result = await this.socialSharing.shareWithOptions({
-      message: '分享zjubca.wallet'
+  async alert(msg: string) {
+    const toast = await this.toastCtrl.create({
+      message: msg,
+      position: 'top',
+      duration: 2000,
+      color: 'dark',
+      cssClass: 'shortToast'
     });
-    console.log(result);
+    await toast.present();
   }
-
 }

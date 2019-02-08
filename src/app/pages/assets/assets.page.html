@@ -20,7 +20,7 @@
           <ion-select interface="popover" (ionChange)="nameChange()" [interfaceOptions]="{header:'账户名'}"
                       class="accNameSelect f18"
                       [(ngModel)]="currAccount">
-            <ion-select-option *ngFor="let account of accounts" [value]="account" [selected]="account === currAccount">
+            <ion-select-option *ngFor="let account of accounts" [value]="account">
               {{account}}
             </ion-select-option>
           </ion-select>
@@ -28,11 +28,17 @@
       </ion-row>
       <ion-row>
         <ion-col>EOS</ion-col>
-        <ion-col class="alignRight">{{loading ? 'loading...' : balance.eos}}</ion-col>
+        <ion-col class="alignRight">
+          <ion-spinner *ngIf="loading" name="crescent" color="light" class="spinner"></ion-spinner>
+          <span *ngIf="!loading">{{balance.eos}}</span>
+        </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>ZJUBCA</ion-col>
-        <ion-col class="alignRight">{{loading ? 'loading...' : balance.zjubca}}</ion-col>
+        <ion-col class="alignRight">
+          <ion-spinner *ngIf="loading" name="crescent" color="light" class="spinner"></ion-spinner>
+          <span *ngIf="!loading">{{balance.zjubca}}</span>
+        </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>

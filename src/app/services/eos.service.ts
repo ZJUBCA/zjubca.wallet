@@ -69,15 +69,21 @@ export class EosService {
    */
   async init(name: string, password: string, auths: string[]) {
     const accInfo = await this.getAccount(name);
-    console.log(accInfo);
+    // console.log(accInfo);
 
     // find the private key corresponding to the given list of authorization.
     let privKey: string;
     for (const auth of auths) {
       const perm = accInfo.permissions.find(item => item.perm_name === auth);
+      if (!perm) {
+        continue;
+      }
       const pubkeys = perm.required_auth.keys.map(item => item.key);
       for (const pubkey of pubkeys) {
-        privKey = await this.walletService.retrieveKey(pubkey, password);
+        try {
+          privKey = await this.walletService.retrieveKey(pubkey, password);
+        } catch (e) {
+        }
         if (privKey) {
           break;
         }
@@ -116,7 +122,7 @@ export class EosService {
     const rpc = await this.RPC();
     const eosBalance = await rpc.get_currency_balance('eosio.token', name, 'EOS');
     const zjubcaBalance = await rpc.get_currency_balance(tokenCode, name, 'ZJUBCA');
-    console.log(zjubcaBalance);
+    // console.log(zjubcaBalance);
     return {
       eos: (eosBalance[0] || '0 EOS').split(' ')[0],
       zjubca: (zjubcaBalance[0] || '0 ZJUBCA').split(' ')[0],

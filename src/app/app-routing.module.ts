@@ -17,6 +17,7 @@ const routes: Routes = [
   {path: 'dapp/:url', loadChildren: './pages/dapp-container/dapp-container.module#DappContainerPageModule'},
   {path: 'export-key/:privkey', loadChildren: './pages/export-key/export-key.module#ExportKeyPageModule'},
   {path: 'dapp-list/:group', loadChildren: './pages/dapp-list/dapp-list.module#DappListPageModule'},
+  { path: 'share', loadChildren: './pages/share/share.module#SharePageModule' },
 ];
 
 @NgModule({

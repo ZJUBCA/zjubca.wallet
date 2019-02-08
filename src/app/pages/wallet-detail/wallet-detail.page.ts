@@ -66,7 +66,7 @@ export class WalletDetailPage implements OnInit {
     const modal = await this.modalCtrl.create(
       {
         component: TransactModalComponent,
-        cssClass: 'transactModal',
+        cssClass: 'noActionTransactModal',
         componentProps: {
           sign: true,
           type: 'exportKey'

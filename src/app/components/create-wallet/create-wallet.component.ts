@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ToastController, AlertController} from '@ionic/angular';
+import {ToastController, AlertController, LoadingController} from '@ionic/angular';
 import {Route, Router} from '@angular/router';
 import axios from '../../common/axios';
 import {AccountService} from '../../services/account.service';
@@ -35,7 +35,8 @@ export class CreateWalletComponent implements OnInit {
     private eosService: EosService,
     private storage: Storage,
     private router: Router,
-    private clipboard: Clipboard
+    private clipboard: Clipboard,
+    private loadingCtrl: LoadingController
   ) {
     this.form = new CreateForm();
   }
@@ -92,7 +93,13 @@ export class CreateWalletComponent implements OnInit {
         {
           text: '确认',
           handler: async () => {
+            const loading = await this.loadingCtrl.create({
+              message: '创建中...',
+              spinner: 'crescent'
+            });
             try {
+              await loading.present();
+
               const name = this.form.account;
               const res = await axios.post('/signup', {
                 account: name,
@@ -101,6 +108,7 @@ export class CreateWalletComponent implements OnInit {
                 debug: false
               });
               const resp = res.data;
+              console.log(resp);
               if (!resp.code) {
                 const account = await this.eosService.getAccount(name);
                 let permissions = account.permissions.filter(item => item.required_auth.keys[0].key === pubKey);
@@ -112,14 +120,19 @@ export class CreateWalletComponent implements OnInit {
                   name: name,
                   permissions: permissions
                 }]);
-                await this.accService.setCurrent(name);
+                const curr = await this.accService.current();
+                if (!curr) {
+                  await this.accService.setCurrent(name);
+                }
                 await this.walletService.saveWallet(this.form.name, pubKey, privateKey, this.form.password);
                 await this.router.navigate(['/tabs/assets'], {replaceUrl: true});
               } else {
                 throw new Error(resp.msg);
               }
             } catch (e) {
-              this.alert(e.message);
+              await this.alert(e.message);
+            } finally {
+              await loading.dismiss();
             }
           }
         }
@@ -130,14 +143,18 @@ export class CreateWalletComponent implements OnInit {
   }
 
   async copy() {
-    await this.clipboard.copy(this.privateKey);
-    await this.alert('已复制', 2000);
+    try {
+      await this.clipboard.copy(this.privateKey);
+      await this.alert('已复制', 2000);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   async alert(msg: string, duration: number = 3000) {
     const toast = await this.toastController.create({
       message: msg,
-      position: 'bottom',
+      position: 'top',
       duration: duration,
       color: 'dark'
     });

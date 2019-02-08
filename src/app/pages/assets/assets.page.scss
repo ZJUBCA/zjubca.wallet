@@ -9,10 +9,6 @@
   align-items: center;
 }
 
-.f18 {
-  font-size: 18px;
-}
-
 .btn {
   width: 80px;
   height: 80px;
@@ -21,6 +17,10 @@
 .alignRight {
   text-align: right;
   padding-right: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .accNameSelect {
@@ -38,4 +38,9 @@
 
 .gutter {
   margin-top: 10px;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
 }

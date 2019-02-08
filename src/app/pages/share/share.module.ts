@@ -5,12 +5,13 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {IonicModule} from '@ionic/angular';
 
-import {AccountPage} from './account.page';
+import {SharePage} from './share.page';
+import {QRCodeModule} from 'angularx-qrcode';
 
 const routes: Routes = [
   {
     path: '',
-    component: AccountPage
+    component: SharePage
   }
 ];
 
@@ -19,10 +20,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    QRCodeModule,
     RouterModule.forChild(routes)
   ],
-  providers: [],
-  declarations: [AccountPage]
+  declarations: [SharePage]
 })
-export class AccountPageModule {
+export class SharePageModule {
 }

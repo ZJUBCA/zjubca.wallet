@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text="" icon="arrow-back">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>分享</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="qrcode">
+    <qrcode [qrdata]="qrcode" [size]="256" [level]="'M'"></qrcode>
+  </div>
+</ion-content>

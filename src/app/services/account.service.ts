@@ -45,7 +45,7 @@ export class AccountService {
    */
   async fetchAccounts(): Promise<string[]> {
     const res = await this.storage.get(ACCOUNTS_KEY) || [];
-    console.log(res);
+    // console.log(res);
     return res;
   }
 

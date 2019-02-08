@@ -113,6 +113,11 @@ export class WalletService {
     if (names.length !== amount) {
       await this.accService.setAccounts(names);
     }
+    const curr = await this.accService.current();
+    if (names.indexOf(curr) < 0) {
+      // if current account has been removed
+      await this.accService.setCurrent(names[0]);
+    }
     await this.storage.remove(pubKey);
   }
 
