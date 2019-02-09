@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {QRScanner, QRScannerStatus} from '@ionic-native/qr-scanner/ngx';
 import {QRData} from '../../../classes';
 import {NavController} from '@ionic/angular';
@@ -9,7 +9,7 @@ import {NavController} from '@ionic/angular';
   templateUrl: './qr-scan.page.html',
   styleUrls: ['./qr-scan.page.scss'],
 })
-export class QrScanPage implements OnInit {
+export class QrScanPage implements OnInit, OnDestroy {
 
   noCameraPermission = false;
   errorMessage: string;
@@ -22,6 +22,10 @@ export class QrScanPage implements OnInit {
 
   ngOnInit() {
     this.qrScan();
+  }
+
+  ngOnDestroy() {
+    this.qrScanner.hide();
   }
 
   async qrScan() {

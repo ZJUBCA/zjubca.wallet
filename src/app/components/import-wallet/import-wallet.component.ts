@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ToastController, LoadingController} from '@ionic/angular';
+import {ToastController, LoadingController, NavController} from '@ionic/angular';
 import {EosService} from '../../services/eos.service';
 import {AccountService} from '../../services/account.service';
 import {Router} from '@angular/router';
@@ -29,7 +29,7 @@ export class ImportWalletComponent implements OnInit {
     private eosService: EosService,
     private accService: AccountService,
     private walletService: WalletService,
-    private router: Router,
+    private navCtrl: NavController,
   ) {
     this.form = new ImportForm();
   }
@@ -90,12 +90,14 @@ export class ImportWalletComponent implements OnInit {
         );
         // @ts-ignore
         await this.accService.saveAccounts(accounts);
+        await this.walletService.saveWallet(this.form.name, pubkey, privKey, this.form.password);
         const curr = await this.accService.current();
         if (!curr) {
           await this.accService.setCurrent(names[0]);
+          await this.navCtrl.navigateRoot('/tabs/assets');
+        } else {
+          await this.navCtrl.navigateBack('/tabs/assets', {replaceUrl: true});
         }
-        await this.walletService.saveWallet(this.form.name, pubkey, privKey, this.form.password);
-        await this.router.navigate(['/tabs/assets'], {replaceUrl: true});
       } else {
         await this.alert('该密钥下无账户名');
       }

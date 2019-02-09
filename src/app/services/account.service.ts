@@ -28,6 +28,9 @@ export class AccountService {
    * @param name
    */
   async setCurrent(name: string): Promise<any> {
+    if (typeof name === 'undefined') {
+      return await this.storage.remove(CURRENT_ACC_KEY);
+    }
     return await this.storage.set(CURRENT_ACC_KEY, name);
   }
 

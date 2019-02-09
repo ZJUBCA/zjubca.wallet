@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ToastController, AlertController, LoadingController} from '@ionic/angular';
-import {Route, Router} from '@angular/router';
+import {ToastController, AlertController, LoadingController, NavController} from '@ionic/angular';
 import axios from '../../common/axios';
 import {AccountService} from '../../services/account.service';
 import {WalletService} from '../../services/wallet.service';
@@ -34,7 +33,7 @@ export class CreateWalletComponent implements OnInit {
     private walletService: WalletService,
     private eosService: EosService,
     private storage: Storage,
-    private router: Router,
+    private navCtrl: NavController,
     private clipboard: Clipboard,
     private loadingCtrl: LoadingController
   ) {
@@ -120,12 +119,14 @@ export class CreateWalletComponent implements OnInit {
                   name: name,
                   permissions: permissions
                 }]);
+                await this.walletService.saveWallet(this.form.name, pubKey, privateKey, this.form.password);
                 const curr = await this.accService.current();
                 if (!curr) {
                   await this.accService.setCurrent(name);
+                  await this.navCtrl.navigateRoot('/tabs/assets');
+                } else {
+                  await this.navCtrl.navigateBack('/tabs/assets', {replaceUrl: true});
                 }
-                await this.walletService.saveWallet(this.form.name, pubKey, privateKey, this.form.password);
-                await this.router.navigate(['/tabs/assets'], {replaceUrl: true});
               } else {
                 throw new Error(resp.msg);
               }

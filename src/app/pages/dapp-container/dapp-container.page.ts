@@ -9,10 +9,10 @@ import Error from '../../common/Error';
 import {LoadingController, ModalController, ToastController} from '@ionic/angular';
 import {TransactModalComponent} from '../../modals/transact-modal/transact-modal.component';
 import {Action} from '../../../classes';
-import moment from 'moment-timezone';
 import {beautifyValue} from '../../common/helper';
 import {ActivatedRoute} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
+import * as moment from 'moment';
 
 
 @Component({
@@ -273,11 +273,16 @@ class ApiService {
     if (network.chainId === CHAINID) {
       return this.response(Error.notKylinChain());
     }
-    network = endpoints.find(x => x.endpoint === `${network.prototype}://${network.host}`);
-    if (!network) {
-      return this.response(Error.noNetwork());
+    network = endpoints.normal.find(x => x.endpoint === `${network.prototype}://${network.host}`);
+    if (network) {
+      return this.response(true);
     }
-    this.response(true);
+    network = endpoints.actions.find(x => x.endpoint === `${network.prototype}://${network.host}`);
+    if (network) {
+      return this.response(true);
+    }
+    this.response(Error.noNetwork());
+
   }
 
   suggestNetwork() {

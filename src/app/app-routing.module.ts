@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
 const routes: Routes = [
-  {path: '', loadChildren: './tabs/tabs.module#TabsPageModule'},
+  {path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule'},
   {path: 'login', loadChildren: './pages/login/login.module#LoginPageModule'},
   {path: 'transfer', loadChildren: './pages/transfer/transfer.module#TransferPageModule'},
   {path: 'bill', loadChildren: './pages/bill/bill.module#BillPageModule'},
@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'dapp/:url', loadChildren: './pages/dapp-container/dapp-container.module#DappContainerPageModule'},
   {path: 'export-key/:privkey', loadChildren: './pages/export-key/export-key.module#ExportKeyPageModule'},
   {path: 'dapp-list/:group', loadChildren: './pages/dapp-list/dapp-list.module#DappListPageModule'},
-  { path: 'share', loadChildren: './pages/share/share.module#SharePageModule' },
+  {path: 'share', loadChildren: './pages/share/share.module#SharePageModule'},
 ];
 
 @NgModule({

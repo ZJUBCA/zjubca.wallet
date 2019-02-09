@@ -34,6 +34,9 @@
     <ion-list-header>
       <ion-label>交易记录</ion-label>
     </ion-list-header>
+    <div class="notice f14">
+      <ion-note *ngIf="noSupportActions">所选网络节点不支持获取历史action，请更换节点</ion-note>
+    </div>
     <ion-item class="txItem" *ngFor="let action of historyActions">
       <div class="left">
         <ion-text class="name" color="dark">{{action.type ? action.to : action.from}}</ion-text>
@@ -44,7 +47,7 @@
       </div>
     </ion-item>
   </ion-list>
-  <div class="bottomText" *ngIf="noMoreActions">
+  <div class="bottomText" *ngIf="noMoreActions && !noSupportActions">
     <ion-note class="f14">到底了</ion-note>
   </div>
   <ion-infinite-scroll class="infiniteBottom" threshold="50px" (ionInfinite)="loadData($event)"

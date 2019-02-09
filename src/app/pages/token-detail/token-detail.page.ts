@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import axios from '../../common/axios';
-import {timezone, tokenCode, tokensUrl} from '../../common/config';
+import {endpoints, timezone, tokenCode, tokensUrl} from '../../common/config';
 import {ToastController} from '@ionic/angular';
 import {Token} from '../../../classes';
 import {EosService} from '../../services/eos.service';
 import {AccountService} from '../../services/account.service';
-import moment from 'moment-timezone';
+import {NetworkService} from '../../services/network.service';
+import * as moment from 'moment';
 
 interface HistoryAction {
   from: string;
@@ -36,6 +37,7 @@ export class TokenDetailPage implements OnInit {
 
   historyActions: HistoryAction[] = [];
   noMoreActions = false;
+  noSupportActions = false;
   actionsLoading = false;
   pos = 1;
   offset = 30;
@@ -45,16 +47,22 @@ export class TokenDetailPage implements OnInit {
     private router: Router,
     private toastController: ToastController,
     private eosService: EosService,
-    private accService: AccountService
+    private accService: AccountService,
+    private networkService: NetworkService
   ) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     // @ts-ignore
     this.symbol = this.routes.params.value.symbol;
     this.fetchDetails();
     this.getBalance();
-    this.getHistoryActions();
+    const currPeer = await this.networkService.getNetwork();
+    if (endpoints.actions.findIndex(x => x.name === currPeer.name) < 0) {
+      this.noSupportActions = true;
+    } else {
+      this.getHistoryActions();
+    }
   }
 
   async fetchDetails() {
@@ -154,9 +162,13 @@ export class TokenDetailPage implements OnInit {
           to,
           quantity: quantity.split(' ')[0],
           type,
-          time: moment.tz(item.action_trace.block_time, timezone).format('YYYY-MM-DD HH:mm:ss')
+          time: moment(item.action_trace.block_time).utcOffset(timezone).format('YYYY-MM-DD HH:mm:ss')
         };
       });
+      if (actions.length === 0 && !this.noMoreActions) {
+        this.actionsLoading = false;
+        return await this.getHistoryActions();
+      }
       this.historyActions = this.historyActions.concat(actions);
       // console.log(this.historyActions);
     } catch (e) {

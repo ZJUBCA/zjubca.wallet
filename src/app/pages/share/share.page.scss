@@ -1,0 +1,11 @@
+.qrcode {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .name {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}

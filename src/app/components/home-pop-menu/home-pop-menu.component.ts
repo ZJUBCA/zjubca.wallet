@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {PopoverController} from '@ionic/angular';
+import {NavController, PopoverController} from '@ionic/angular';
 import {Router} from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 export class HomePopMenuComponent implements OnInit {
 
   constructor(
-    private router: Router,
+    private navCtrl: NavController,
     private popoverCtrl: PopoverController
   ) {
   }
@@ -19,7 +19,7 @@ export class HomePopMenuComponent implements OnInit {
   }
 
   async nav(url) {
-    await this.router.navigateByUrl(url);
+    await this.navCtrl.navigateForward(url);
     await this.popoverCtrl.dismiss();
   }
 }

@@ -17,6 +17,10 @@
   text-align: center;
 }
 
+.notice {
+  text-align: center;
+}
+
 .btnGroup {
   padding-top: 0px;
   display: flex;
@@ -56,24 +60,22 @@
 
 .bottomText {
   text-align: center;
+  margin-top: -20px;
 }
 
 .scrollContent {
   min-height: 45px;
 }
 
+.list-md {
+  margin-bottom: 20px;
+}
+
 .list-md + .bottomText {
-  margin-bottom: 0px;
   padding: 10px 0;
 }
 
-.infiniteBottom {
-  margin-top: -10px;
-}
-
-
 .list-ios + .bottomText {
-  margin-top: -20px;
   margin-bottom: 10px;
 }
 

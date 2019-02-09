@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Storage} from '@ionic/storage';
 import {ENDPOINT_KEY, endpoints} from '../common/config';
+import axios from '../common/axios';
 
 interface Peer {
   name: string;
@@ -28,5 +29,16 @@ export class NetworkService {
       return endpoints[0];
     }
     return peer;
+  }
+
+  /**
+   * ping a server and returns the delay time(ms).
+   *
+   * @param url
+   */
+  async ping(url): Promise<number> {
+    const begin = Date.now();
+    await axios.get(`${url}/v1/chain/get_info`);
+    return Date.now() - begin;
   }
 }

@@ -529,6 +529,13 @@
     opn "^5.1.0"
     tiny-lr "^1.0.5"
 
+"@types/cordova-plugin-file-transfer@^1.6.2":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@types/cordova-plugin-file-transfer/-/cordova-plugin-file-transfer-1.6.2.tgz#fd87d3f91781a1519dab8b87723d756eefdda998"
+  integrity sha512-jWZQefyVn/GiQAdummRoY1v5cUY4dT7GNk3Hg40iUtL68y40jKWD3ALAtMM4pnYt9RSMTlsgs1I7/apXexddvw==
+  dependencies:
+    cordova-plugin-file-transfer "*"
+
 "@types/cordova@latest":
   version "0.0.34"
   resolved "http://registry.npm.taobao.org/@types/cordova/download/@types/cordova-0.0.34.tgz#ea7addf74ecec3d7629827a0c39e2c9addc73d04"
@@ -2203,6 +2210,16 @@ cordova-plugin-device@^2.0.2:
   resolved "https://registry.yarnpkg.com/cordova-plugin-device/-/cordova-plugin-device-2.0.2.tgz#fc08f3722e67eef7b6c67bfc99a83df6add0baba"
   integrity sha1-/Ajzci5n7ve2xnv8mag99q3Quro=
 
+cordova-plugin-file-transfer@*, cordova-plugin-file-transfer@1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-file-transfer/-/cordova-plugin-file-transfer-1.7.1.tgz#a75d8be2ebc3bb9b23c5b1bbd199214ec267586b"
+  integrity sha1-p12L4uvDu5sjxbG70ZkhTsJnWGs=
+
+cordova-plugin-file@6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-file/-/cordova-plugin-file-6.0.1.tgz#49606b8c15a5688d4728f92e4a7325a061de07f5"
+  integrity sha1-SWBrjBWlaI1HKPkuSnMloGHeB/U=
+
 cordova-plugin-httpd@0.9.3:
   version "0.9.3"
   resolved "https://registry.yarnpkg.com/cordova-plugin-httpd/-/cordova-plugin-httpd-0.9.3.tgz#7cd658d83a661c76210db2b3e07f7044dea0599e"
@@ -2217,6 +2234,17 @@ cordova-plugin-ionic-webview@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/cordova-plugin-ionic-webview/-/cordova-plugin-ionic-webview-2.3.2.tgz#f4b1d669cefe7d25cfe47cfc9c6fe820211b63fa"
   integrity sha512-f7nXWTT93ZAJP4fMUxZWd8BacegTJNUK9Cocu0n2SH8gliAIjKzJtvSzEONSJ5b1Xp2osdUF6f5x+oWvyM90jQ==
+
+cordova-plugin-ionic@5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-ionic/-/cordova-plugin-ionic-5.3.0.tgz#9713a40b53a0e2938e4bf04611fd4efc2f7cd88a"
+  integrity sha512-INMNiPlBsgAndLBqOGvrvGhz/gV4PtLu7yOgRZ6cwQq7qBSnO59GheRZC97rh/1j5LakkKi9lJEeve8+xoz8jg==
+  dependencies:
+    "@types/cordova-plugin-file-transfer" "^1.6.2"
+    mkpath ">=1.0.0"
+    node-version-compare ">=1.0.1"
+    plist ">=1.2.0"
+    xml2js ">=0.4"
 
 cordova-plugin-qrscanner@2.6.0:
   version "2.6.0"
@@ -2240,11 +2268,6 @@ cordova-plugin-themeablebrowser@0.2.17:
   version "0.2.17"
   resolved "https://registry.yarnpkg.com/cordova-plugin-themeablebrowser/-/cordova-plugin-themeablebrowser-0.2.17.tgz#e55ba5da37694d51e61a06949580040dc9b69d7c"
   integrity sha1-5Vul2jdpTVHmGgaUlYAEDcm2nXw=
-
-cordova-plugin-wechat@2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-wechat/-/cordova-plugin-wechat-2.6.0.tgz#2c0e43570c2942fb42859b0e2ada737d3678435f"
-  integrity sha512-VyJSNGvBss46DYh7Wd+TRg0UMbiMJjZaV+PGa+U+UCvSjqk5+sq8OomBMwYc0mVneygbLBbpZbCT9ydQrJnRgA==
 
 cordova-plugin-whitelist@^1.3.3:
   version "1.3.3"
@@ -5367,14 +5390,12 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
   dependencies:
     minimist "0.0.8"
 
-moment-timezone@^0.5.23:
-  version "0.5.23"
-  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.23.tgz#7cbb00db2c14c71b19303cb47b0fb0a6d8651463"
-  integrity sha512-WHFH85DkCfiNMDX5D3X7hpNH3/PUhjTGcD0U1SgfBGZxJ3qUmJh5FdvaFjcClxOvB3rzdfj4oRffbI38jEnC1w==
-  dependencies:
-    moment ">= 2.9.0"
+mkpath@>=1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/mkpath/-/mkpath-1.0.0.tgz#ebb3a977e7af1c683ae6fda12b545a6ba6c5853d"
+  integrity sha1-67Opd+evHGg65v2hK1Raa6bFhT0=
 
-"moment@>= 2.9.0", moment@^2.24.0:
+moment@^2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
@@ -5578,6 +5599,11 @@ node-sass@4.10.0:
     sass-graph "^2.2.4"
     stdout-stream "^1.4.0"
     "true-case-path" "^1.0.2"
+
+node-version-compare@>=1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/node-version-compare/-/node-version-compare-1.0.1.tgz#d85bfd20f0acade33577f56682c7109c34c550cd"
+  integrity sha1-2Fv9IPCsreM1d/VmgscQnDTFUM0=
 
 nopt@1.0.9:
   version "1.0.9"
@@ -6223,7 +6249,7 @@ plist@2.1.0, plist@^2.1.0:
     xmlbuilder "8.2.2"
     xmldom "0.1.x"
 
-plist@^3.0.1:
+plist@>=1.2.0, plist@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/plist/-/plist-3.0.1.tgz#a9b931d17c304e8912ef0ba3bdd6182baf2e1f8c"
   integrity sha512-GpgvHHocGRyQm74b6FWEZZVRroHKE1I0/BTjAmySaohK+cUn+hZpbqXkc3KWgW3gQYkqcQej35FohcT0FRlkRQ==
@@ -8726,7 +8752,7 @@ xml-escape@1.1.0:
   resolved "https://registry.yarnpkg.com/xml-escape/-/xml-escape-1.1.0.tgz#3904c143fa8eb3a0030ec646d2902a2f1b706c44"
   integrity sha1-OQTBQ/qOs6ADDsZG0pAqLxtwbEQ=
 
-xml2js@^0.4.17, xml2js@^0.4.19, xml2js@~0.4.19:
+xml2js@>=0.4, xml2js@^0.4.17, xml2js@^0.4.19, xml2js@~0.4.19:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.4.19.tgz#686c20f213209e94abf0d1bcf1efaa291c7827a7"
   integrity sha512-esZnJZJOiJR9wWKMyuvSE1y6Dq5LCuJanqhxslH2bxM6duahNZ+HMpCLhBQGZkbX6xRf8x1Y2eJlgt2q3qo49Q==

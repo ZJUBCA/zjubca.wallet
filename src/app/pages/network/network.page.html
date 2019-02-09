@@ -12,11 +12,20 @@
   <ion-list lines="full">
     <ion-radio-group (ionChange)="peerChange($event)" [value]="currPeer.name">
       <ion-list-header>
-        <ion-label>可选节点</ion-label>
+        <ion-label>可选节点（支持获取历史action）</ion-label>
       </ion-list-header>
-      <ion-item *ngFor="let peer of peers">
+      <ion-item *ngFor="let peer of actionsPeers">
         <ion-label>{{peer.name}}</ion-label>
         <ion-radio slot="start" [value]="peer.name" [checked]="peer.name === currPeer.name"></ion-radio>
+        <ion-note slot="end" class="f14">{{peer.delay}}</ion-note>
+      </ion-item>
+      <ion-list-header>
+        <ion-label>可选节点</ion-label>
+      </ion-list-header>
+      <ion-item *ngFor="let peer of normalPeers">
+        <ion-label>{{peer.name}}</ion-label>
+        <ion-radio slot="start" [value]="peer.name" [checked]="peer.name === currPeer.name"></ion-radio>
+        <ion-note slot="end" class="f14">{{peer.delay}}</ion-note>
       </ion-item>
     </ion-radio-group>
   </ion-list>
