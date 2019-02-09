@@ -120,5 +120,36 @@
     },
     "is_top_level": false,
     "variables": {}
+  },
+  "cordova-plugin-ionic": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-ionic@5.3.0"
+    },
+    "is_top_level": true,
+    "variables": {
+      "APP_ID": "205551f0",
+      "CHANNEL_NAME": "Master",
+      "UPDATE_METHOD": "background",
+      "MAX_STORE": "3",
+      "UPDATE_API": "https://api.ionicjs.com",
+      "MIN_BACKGROUND_DURATION": "30"
+    }
+  },
+  "cordova-plugin-file": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-file@^6.0.1"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-file-transfer": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-file-transfer@^1.7.1"
+    },
+    "is_top_level": false,
+    "variables": {}
   }
 }

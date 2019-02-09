@@ -93,5 +93,13 @@
     </plugin>
     <plugin name="cordova-plugin-themeablebrowser" spec="0.2.17" />
     <engine name="ios" spec="4.5.5" />
-    <engine name="android" spec="~7.1.4" />
+    <engine name="android" spec="7.1.4" />
+    <plugin name="cordova-plugin-ionic" spec="5.3.0">
+        <variable name="APP_ID" value="205551f0" />
+        <variable name="CHANNEL_NAME" value="Master" />
+        <variable name="UPDATE_METHOD" value="background" />
+        <variable name="MAX_STORE" value="3" />
+        <variable name="UPDATE_API" value="https://api.ionicjs.com" />
+        <variable name="MIN_BACKGROUND_DURATION" value="30" />
+    </plugin>
 </widget>
