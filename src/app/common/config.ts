@@ -72,3 +72,5 @@ export const QR_VERSION = '1.0';
 
 /* ===== Wallet Meta ===== */
 export const VERSION = version;
+
+export const DOWNLOAD_URL = 'https://fir.im/zjubcawallet';

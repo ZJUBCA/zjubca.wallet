@@ -25,8 +25,8 @@ export class NetworkService {
   async getNetwork(): Promise<Peer> {
     const peer = await this.storage.get(ENDPOINT_KEY);
     if (!peer) {
-      await this.setNetwork(endpoints[0]);
-      return endpoints[0];
+      await this.setNetwork(endpoints['actions'][0]);
+      return endpoints['actions'][0];
     }
     return peer;
   }

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.zjubca.wallet" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.ionic.zjubca.wallet" version="1.0.0-beta3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>zjubca.wallet</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="zjubca@sina.com" href="https://github.com/Blockchain-zju">ZJUBCA</author>
@@ -100,6 +100,7 @@
         <variable name="UPDATE_API" value="https://api.ionicjs.com" />
         <variable name="MIN_BACKGROUND_DURATION" value="30" />
     </plugin>
+    <plugin name="cordova-plugin-inappbrowser" spec="3.0.0" />
     <engine name="ios" spec="4.5.5" />
     <engine name="android" spec="7.1.4" />
 </widget>

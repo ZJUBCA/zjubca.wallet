@@ -127,6 +127,7 @@ export class CreateWalletComponent implements OnInit {
                 } else {
                   await this.navCtrl.navigateBack('/tabs/assets', {replaceUrl: true});
                 }
+                this.form = new CreateForm();
               } else {
                 throw new Error(resp.msg);
               }

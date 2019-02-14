@@ -98,6 +98,7 @@ export class ImportWalletComponent implements OnInit {
         } else {
           await this.navCtrl.navigateBack('/tabs/assets', {replaceUrl: true});
         }
+        this.form = new ImportForm();
       } else {
         await this.alert('该密钥下无账户名');
       }
