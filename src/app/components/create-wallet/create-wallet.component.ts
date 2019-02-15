@@ -59,6 +59,10 @@ export class CreateWalletComponent implements OnInit {
       return await this.alert('账号名不能为空');
     }
 
+    if (/[^a-z1-5]/.test(this.form.account)) {
+      return await this.alert('账户名不合法');
+    }
+
     if (this.form.account.length !== 12) {
       return await this.alert('账户名长度必须为12位');
     }
@@ -156,7 +160,7 @@ export class CreateWalletComponent implements OnInit {
   async alert(msg: string, duration: number = 3000) {
     const toast = await this.toastController.create({
       message: msg,
-      position: 'top',
+      position: 'middle',
       duration: duration,
       color: 'dark'
     });
