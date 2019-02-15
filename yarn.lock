@@ -365,6 +365,13 @@
   dependencies:
     "@types/cordova" latest
 
+"@ionic-native/in-app-browser@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/in-app-browser/-/in-app-browser-5.1.0.tgz#ec65a47414d97e129e947e2896464efb6a695796"
+  integrity sha512-/lRcDD1+T0PQPbZpV4+LfzAsnWxo/KB/hROMrrT1QNjY3yaJvncZkQv2iGLr04RtBBOUNerVj31ZJyziVnBlTw==
+  dependencies:
+    "@types/cordova" latest
+
 "@ionic-native/ionic-webview@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/ionic-webview/-/ionic-webview-5.0.0.tgz#8c755db35f9b6e3f90bb1a6847be2b1c359aa3f0"
@@ -2224,6 +2231,11 @@ cordova-plugin-httpd@0.9.3:
   version "0.9.3"
   resolved "https://registry.yarnpkg.com/cordova-plugin-httpd/-/cordova-plugin-httpd-0.9.3.tgz#7cd658d83a661c76210db2b3e07f7044dea0599e"
   integrity sha1-fNZY2DpmHHYhDbKz4H9wRN6gWZ4=
+
+cordova-plugin-inappbrowser@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-inappbrowser/-/cordova-plugin-inappbrowser-3.0.0.tgz#d4ae00d36676210751057ad258ae4ad4a9161ada"
+  integrity sha1-1K4A02Z2IQdRBXrSWK5K1KkWGto=
 
 cordova-plugin-ionic-keyboard@^2.1.3:
   version "2.1.3"
