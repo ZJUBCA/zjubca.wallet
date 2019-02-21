@@ -2,14 +2,17 @@
 A necessary wallet for a new world.
 
 本仓库为协会钱包移动端代码仓库。协会钱包基于EOS麒麟测试网，旨在为协会开发者提供Dapp运行容器，为高校用户打造门槛更低的区块链入口。
+
 This repo is the code of the mobile app of ZJUBCA.WALLET. WALLET is aimed to provide a higher-level container for **decentralized applications** based on EOS kylin testnet, and build an easy-to-use entrance of blockchain for users in colleges.
 
 ## Scatter支持
 
 本钱包完全兼容Scatter的接口，Dapp开发者只须使用同一套[ScatterJS](https://github.com/Blockchain-zju/zjubca-scatter-js)(协会二次开发版本)即可实现同时与桌面端Scatter钱包及协会钱包进行交互。
+
 This wallet support the interface provided by Scatter. DAPP developers just need to use only one [ScatterJS](https://github.com/Blockchain-zju/zjubca-scatter-js)(re-dev by ZJUBCA), and get ready to interact with both Scatter Desktop and ZJUBCA.WALLET.
 
 **注: 已测试eosjs@16.0.9的兼容性，建议开发者选用该版本的plugin与sdk!!!**
+
 **Note: we have test the compatibility of eosjs@16.0.9 and recommend to use this version as plugin and sdk.**
 
 ### Scatter API (Support ScatterJS)
@@ -32,6 +35,7 @@ This wallet support the interface provided by Scatter. DAPP developers just need
 ## Simple Wallet协议
 
 本钱包接入[SimpleWallet](https://github.com/southex/SimpleWallet)协议。
+
 This wallet supports [SimpleWallet](https://github.com/southex/SimpleWallet) protocol.
 
 已实现:
@@ -41,6 +45,7 @@ This wallet supports [SimpleWallet](https://github.com/southex/SimpleWallet) pro
 
 ## Dapp dev guide
 请移步[Dapp开发指南](https://github.com/Blockchain-zju/dapp-dev-guide)。
+
 Checkout the [dapp-dev-guide](https://github.com/Blockchain-zju/dapp-dev-guide).
 
 ## Dev plan
