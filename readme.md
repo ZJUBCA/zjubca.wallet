@@ -9,7 +9,7 @@ This repo is the code of the mobile app of ZJUBCA.WALLET. WALLET is aimed to pro
 
 本钱包完全兼容Scatter的接口，Dapp开发者只须使用同一套[ScatterJS](https://github.com/Blockchain-zju/zjubca-scatter-js)(协会二次开发版本)即可实现同时与桌面端Scatter钱包及协会钱包进行交互。
 
-This wallet support the interface provided by Scatter. DAPP developers just need to use only one [ScatterJS](https://github.com/Blockchain-zju/zjubca-scatter-js)(re-dev by ZJUBCA), and get ready to interact with both Scatter Desktop and ZJUBCA.WALLET.
+This wallet supports the interface provided by Scatter. DAPP developers only need to use one [zjubca-scatter-js](https://github.com/Blockchain-zju/zjubca-scatter-js)(re-dev by ZJUBCA), and get ready to interact with both Scatter Desktop and ZJUBCA.WALLET.
 
 **注: 已测试eosjs@16.0.9的兼容性，建议开发者选用该版本的plugin与sdk!!!**
 
