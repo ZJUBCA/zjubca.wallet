@@ -6,7 +6,6 @@ import {TransactModalComponent} from '../../modals/transact-modal/transact-modal
 import axios from '../../common/axios';
 import {tokenCode, tokensUrl} from '../../common/config';
 import {ActivatedRoute} from '@angular/router';
-import {beautifyValue} from '../../common/helper';
 
 class TransferForm {
   account: string;
@@ -44,7 +43,7 @@ export class TransferPage implements OnInit {
       this.form.symbol = symbol || 'EOS';
       this.form.account = to || '';
       if (typeof amount !== 'undefined') {
-        this.form.value = beautifyValue('' + (amount || 0));
+        this.form.value = (+amount || 0).toFixed(4);
       }
     });
   }
@@ -116,7 +115,7 @@ export class TransferPage implements OnInit {
   }
 
   valueBlur() {
-    this.form.value = beautifyValue(this.form.value);
+    this.form.value = (+this.form.value).toFixed(4);
   }
 
   goQRScan() {

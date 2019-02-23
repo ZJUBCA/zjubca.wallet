@@ -48,3 +48,16 @@ A necessary wallet for a new world.
 
 ### Android
 - 请先下载Android Studio并成功运行一个项目(此过程会安装必要依赖)后再编译ionic项目。
+
+## How to build and deploy
+1. `git clone`本仓库
+2. `yarn`
+
+### Android
+3. `mkdir android-deploy` and put `zjubca_wallet.keystore`(stored in secure storage) in the dir. 
+4. `npm run build-android`. ps:you need to input a key when compilation, and please ask admin for key。
+5. You'll find the `zjubca_wallet.apk` in dir `android-deploy`.
+
+### IOS
+3. `npm run build-ios`
+4. Open `XCode` to sign the project, and get `ipa` binary file.

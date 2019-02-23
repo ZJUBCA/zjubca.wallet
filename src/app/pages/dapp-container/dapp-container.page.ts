@@ -9,7 +9,6 @@ import Error from '../../common/Error';
 import {LoadingController, ModalController, ToastController} from '@ionic/angular';
 import {TransactModalComponent} from '../../modals/transact-modal/transact-modal.component';
 import {Action} from '../../../classes';
-import {beautifyValue} from '../../common/helper';
 import {ActivatedRoute} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import * as moment from 'moment';
@@ -318,7 +317,7 @@ class ApiService {
       data: {
         from: account.name,
         to,
-        quantity: beautifyValue(`${amount} ${symbol}`),
+        quantity: (+amount).toFixed(4) + ` ${symbol}`,
         memo
       }
     };

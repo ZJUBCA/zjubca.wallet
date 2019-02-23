@@ -1,12 +1,13 @@
 {
   "name": "zjubca.wallet",
-  "version": "1.0.0-beta3",
+  "version": "1.0.0",
   "author": "ZJUBCA",
   "homepage": "https://github.com/Blockchain-zju/zjubca.wallet",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build-android": "ionic cordova build android --prod --release && bash ./build_android.sh",
+    "build-ios": "ionic cordova build ios --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -27,7 +28,7 @@
     "@ionic-native/clipboard": "^5.0.0",
     "@ionic-native/core": "5.0.x",
     "@ionic-native/httpd": "^5.0.0",
-    "@ionic-native/in-app-browser": "^5.1.0",
+    "@ionic-native/in-app-browser": "^5.2.0",
     "@ionic-native/ionic-webview": "^5.0.0",
     "@ionic-native/qr-scanner": "^5.0.0",
     "@ionic-native/splash-screen": "5.0.x",

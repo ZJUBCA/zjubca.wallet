@@ -365,10 +365,10 @@
   dependencies:
     "@types/cordova" latest
 
-"@ionic-native/in-app-browser@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@ionic-native/in-app-browser/-/in-app-browser-5.1.0.tgz#ec65a47414d97e129e947e2896464efb6a695796"
-  integrity sha512-/lRcDD1+T0PQPbZpV4+LfzAsnWxo/KB/hROMrrT1QNjY3yaJvncZkQv2iGLr04RtBBOUNerVj31ZJyziVnBlTw==
+"@ionic-native/in-app-browser@^5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/in-app-browser/-/in-app-browser-5.2.0.tgz#c3e1d4643e27e451fff24d8a9af7f41648bad868"
+  integrity sha512-mVTVtOXv8Cg9LHhcG5Nw8oNxM3TbuS5/9ywx1gpIz9ISVxIOD9sF2JgttP8NhGjMXbJKzlchp+mPcq+ne4J1YA==
   dependencies:
     "@types/cordova" latest
 

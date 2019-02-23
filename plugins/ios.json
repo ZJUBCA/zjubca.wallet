@@ -22,6 +22,18 @@
     "cordova-plugin-httpd": {
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "io.ionic.zjubca.wallet"
+    },
+    "cordova-plugin-ionic": {
+      "APP_ID": "205551f0",
+      "CHANNEL_NAME": "Master",
+      "UPDATE_API": "https://api.ionicjs.com",
+      "UPDATE_METHOD": "background",
+      "MAX_STORE": "3",
+      "MIN_BACKGROUND_DURATION": "30",
+      "PACKAGE_NAME": "io.ionic.zjubca.wallet"
+    },
     "cordova-plugin-ionic-keyboard": {
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     },
@@ -44,18 +56,6 @@
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     },
     "cordova-sqlite-storage": {
-      "PACKAGE_NAME": "io.ionic.zjubca.wallet"
-    },
-    "cordova-plugin-ionic": {
-      "APP_ID": "205551f0",
-      "CHANNEL_NAME": "Master",
-      "UPDATE_API": "https://api.ionicjs.com",
-      "UPDATE_METHOD": "background",
-      "MAX_STORE": "3",
-      "MIN_BACKGROUND_DURATION": "30",
-      "PACKAGE_NAME": "io.ionic.zjubca.wallet"
-    },
-    "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     }
   },
