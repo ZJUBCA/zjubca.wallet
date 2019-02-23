@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {EosService} from '../../services/eos.service';
 import {AccountService} from '../../services/account.service';
-import {ModalController, NavController} from '@ionic/angular';
+import {ModalController, NavController, ToastController} from '@ionic/angular';
 import {TransactModalComponent} from '../../modals/transact-modal/transact-modal.component';
 import axios from '../../common/axios';
 import {tokenCode, tokensUrl} from '../../common/config';
@@ -30,6 +30,7 @@ export class TransferPage implements OnInit {
     private route: ActivatedRoute,
     private navCtrl: NavController,
     private modalController: ModalController,
+    private toastCtrl: ToastController,
   ) {
   }
 
@@ -95,9 +96,21 @@ export class TransferPage implements OnInit {
 
     const {data} = await modal.onDidDismiss();
     if (data && typeof data.result !== 'undefined') {
+      await this.alert('发送成功');
       await this.navCtrl.navigateBack('/tabs/assets?refresh=1');
     }
 
+  }
+
+  async alert(msg: string) {
+    const toast = await this.toastCtrl.create({
+      message: msg,
+      position: 'middle',
+      duration: 2000,
+      cssClass: 'shortToast',
+      color: 'dark'
+    });
+    await toast.present();
   }
 
   /**

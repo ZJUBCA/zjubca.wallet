@@ -32,10 +32,10 @@ export class QrScanPage implements OnInit, OnDestroy {
     try {
       const status: QRScannerStatus = await this.qrScanner.prepare();
       if (status.authorized) {
-        console.log('open scanner');
+        // console.log('open scanner');
         // camera permission was granted
         const scanSub = this.qrScanner.scan().subscribe(async (text: string) => {
-          console.log('scanned somthing', text);
+          // console.log('scanned somthing', text);
           const data: QRData = JSON.parse(text);
           if (data.action === 'transfer') {
             let url = `/transfer?symbol=${data.symbol}&to=${data.to}`;
@@ -44,6 +44,7 @@ export class QrScanPage implements OnInit, OnDestroy {
             }
             await this.navCtrl.pop();
             await this.navCtrl.navigateForward(url, {replaceUrl: true});
+            scanSub.unsubscribe();
           }
         });
 
