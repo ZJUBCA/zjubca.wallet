@@ -25,6 +25,7 @@ tmp/
 temp/
 platforms/
 $RECYCLE.BIN/
+android-deploy/
 
 .DS_Store
 Thumbs.db
