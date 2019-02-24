@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
 import {Account, Identification, METHOD_TYPES, Request} from '../../common/dappApi';
 import {EosService} from '../../services/eos.service';
 import {AccountService} from '../../services/account.service';
@@ -19,11 +19,14 @@ import * as moment from 'moment';
   templateUrl: './dapp-container.page.html',
   styleUrls: ['./dapp-container.page.scss'],
 })
-export class DappContainerPage implements OnInit {
+export class DappContainerPage implements OnInit, OnDestroy {
 
   iframe: any;
   url: string;
   loading = false;
+  dappName: string;
+
+  listenFunc: EventListenerOrEventListenerObject;
 
   constructor(
     private el: ElementRef,
@@ -40,25 +43,37 @@ export class DappContainerPage implements OnInit {
 
   async ngOnInit() {
     this.loading = true;
+    // const url = 'http://localhost:8080';
+    // const url = 'http://localhost:8081';
     // @ts-ignore
-    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(decodeURIComponent(this.route.params.value.url));
+    const url = this.route.params.value.url;
+    // console.log(url);
+    // @ts-ignore
+    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(decodeURIComponent(url));
     this.iframe = this.el.nativeElement.querySelector('.browser');
     // console.log(this.iframe);
-    window.addEventListener('message', ev => this.handleMsg(ev));
+    this.listenFunc = ev => this.handleMsg(ev);
+    window.addEventListener('message', this.listenFunc);
     this.iframe.addEventListener('load', () => {
       this.loading = false;
     });
   }
 
+  async ngOnDestroy() {
+    window.removeEventListener('message', this.listenFunc);
+  }
+
   async handleMsg(ev) {
     const {protocol, type} = ev.data;
+
     if (!protocol || protocol.indexOf('scatter') < 0) {
       return;
     }
     // console.log(ev.data);
 
     if (type === 'pair') {
-      return this.iframe.contentWindow.postMessage({
+      const contentWindow = this.iframe.contentWindow;
+      return contentWindow && contentWindow.postMessage({
         protocol: '42/scatters',
         type: 'paired',
         data: true
