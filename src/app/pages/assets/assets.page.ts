@@ -62,13 +62,10 @@ export class AssetsPage implements OnInit {
   async ngOnInit() {
     try {
       // console.log(this.currAccount, this.accounts);
-      this.loading = true;
       await this.fetchAccounts();
     } catch (e) {
       console.log(e);
       await this.alert(e.message);
-    } finally {
-      this.loading = false;
     }
     // listen for the url change
     this.router.events.subscribe(async (ev) => {
@@ -136,10 +133,16 @@ export class AssetsPage implements OnInit {
   }
 
   async fetchBalance(name: string) {
+    if (this.loading) {
+      return;
+    }
     try {
+      this.loading = true;
       this.balance = await this.eosService.getBalance(name);
     } catch (e) {
       await this.alert('获取余额失败');
+    } finally {
+      this.loading = false;
     }
   }
 
@@ -153,14 +156,11 @@ export class AssetsPage implements OnInit {
 
   async nameChange() {
     try {
-      this.loading = true;
       await this.accountSvc.setCurrent(this.currAccount);
       await this.fetchDetails();
     } catch (e) {
       console.log(e);
       await this.alert(e.message);
-    } finally {
-      this.loading = false;
     }
   }
 

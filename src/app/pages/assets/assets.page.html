@@ -26,20 +26,22 @@
           </ion-select>
         </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col>EOS</ion-col>
-        <ion-col class="alignRight">
-          <ion-spinner *ngIf="loading" name="crescent" color="light" class="spinner"></ion-spinner>
-          <span *ngIf="!loading">{{balance.eos}}</span>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>ZJUBCA</ion-col>
-        <ion-col class="alignRight">
-          <ion-spinner *ngIf="loading" name="crescent" color="light" class="spinner"></ion-spinner>
-          <span *ngIf="!loading">{{balance.zjubca}}</span>
-        </ion-col>
-      </ion-row>
+      <div (click)="fetchBalance(currAccount)">
+        <ion-row>
+          <ion-col>EOS</ion-col>
+          <ion-col class="alignRight">
+            <ion-spinner *ngIf="loading" name="crescent" color="light" class="spinner"></ion-spinner>
+            <span *ngIf="!loading">{{balance.eos}}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>ZJUBCA</ion-col>
+          <ion-col class="alignRight">
+            <ion-spinner *ngIf="loading" name="crescent" color="light" class="spinner"></ion-spinner>
+            <span *ngIf="!loading">{{balance.zjubca}}</span>
+          </ion-col>
+        </ion-row>
+      </div>
     </ion-grid>
   </ion-card>
   <ion-card>
@@ -71,8 +73,19 @@
     </ion-card-content>
   </ion-card>
   <div padding class="btnGroup">
-    <ion-fab-button class="btn" color="dark" routerLink="/transfer">转账</ion-fab-button>
-    <ion-fab-button class="btn" color="light" routerLink="/bill">收款</ion-fab-button>
+    <div class="btn" routerLink="/qrscan">
+      <ion-icon name="ios-qr-scanner" class="f18"></ion-icon>
+      <span class="name"> 扫码</span>
+    </div>
+    <div class="divider"></div>
+    <div class="btn" routerLink="/transfer">
+      <ion-icon name="ios-swap" class="f18"></ion-icon>
+      <span class="name"> 转账</span>
+    </div>
+    <div class="btn" routerLink="/bill">
+      <ion-icon name="ios-barcode" class="f20"></ion-icon>
+      <span class="name"> 收款</span>
+    </div>
   </div>
   <ion-list lines="none">
     <ion-list-header>

@@ -79,10 +79,6 @@ export class CreateWalletComponent implements OnInit {
       return await this.alert('两次输入密码不一致');
     }
 
-    if (!this.form.inviteCode) {
-      return await this.alert('邀请码不能为空');
-    }
-
     const privateKey = this.privateKey;
     const pubKey = this.ecc.privateToPublic(privateKey);
     const warning = await this.alertController.create({

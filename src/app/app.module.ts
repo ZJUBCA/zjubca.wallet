@@ -21,6 +21,7 @@ import {DappContainerPageModule} from './pages/dapp-container/dapp-container.mod
 import {TransferPageModule} from './pages/transfer/transfer.module';
 import {WalletDetailPageModule} from './pages/wallet-detail/wallet-detail.module';
 import {ThemeableBrowser} from '@ionic-native/themeable-browser/ngx';
+import {InAppBrowser} from '@ionic-native/in-app-browser/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -45,6 +46,7 @@ import {ThemeableBrowser} from '@ionic-native/themeable-browser/ngx';
     StatusBar,
     SplashScreen,
     ThemeableBrowser,
+    InAppBrowser,
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
   ],
   bootstrap: [AppComponent],

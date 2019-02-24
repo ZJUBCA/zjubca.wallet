@@ -10,8 +10,20 @@
 }
 
 .btn {
-  width: 80px;
-  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  border-right: 1px solid #eeeeee;
+
+  .name {
+    margin-left: 6px;
+  }
+
+  &:last-child {
+    border-right: 0;
+  }
 }
 
 .alignRight {

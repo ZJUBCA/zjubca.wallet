@@ -4,6 +4,7 @@ import {NavController, Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {AccountService} from './services/account.service';
+import {VersionService} from './services/version.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private navCtrl: NavController,
-    private accService: AccountService
+    private accService: AccountService,
+    private versionSvc: VersionService
   ) {
     this.initializeApp();
   }
@@ -28,8 +30,12 @@ export class AppComponent {
 
     const accounts = await this.accService.fetchAccounts();
     if (accounts.length === 0) {
-      return await this.navCtrl.navigateRoot('/login', {replaceUrl: true});
+      await this.navCtrl.navigateRoot('/login', {replaceUrl: true});
+    } else {
+      await this.navCtrl.navigateRoot('/tabs/assets', {replaceUrl: true});
     }
-    await this.navCtrl.navigateRoot('/tabs/assets', {replaceUrl: true});
+
+    // check update
+    await this.versionSvc.checkupdate(false);
   }
 }

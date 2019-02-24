@@ -13,7 +13,7 @@
       <div *ngIf="dapps[group].length>0">
         <ion-list-header class="header">
           <ion-label>{{group}}</ion-label>
-          <ion-icon class="f18" name="more" [routerLink]="'/dapp-list/'+group"></ion-icon>
+          <ion-icon class="f18" name="ios-list" [routerLink]="'/dapp-list/'+group"></ion-icon>
         </ion-list-header>
         <ion-item *ngFor="let dapp of dapps[group].slice(0,showAmount)" class="dappItem" (click)="goNav(dapp.url)">
           <ion-avatar slot="start">
