@@ -164,6 +164,10 @@ export class AssetsPage implements OnInit {
     }
   }
 
+  async nav(url) {
+    await this.navCtrl.navigateForward(url);
+  }
+
   async alert(msg: string) {
     const toast = await this.toastCtrl.create({
       message: msg,

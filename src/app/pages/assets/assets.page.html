@@ -73,16 +73,16 @@
     </ion-card-content>
   </ion-card>
   <div padding class="btnGroup">
-    <div class="btn" routerLink="/qrscan">
+    <div class="btn" (click)="nav('/qrscan')">
       <ion-icon name="ios-qr-scanner" class="f18"></ion-icon>
       <span class="name"> 扫码</span>
     </div>
     <div class="divider"></div>
-    <div class="btn" routerLink="/transfer">
+    <div class="btn" (click)="nav('/transfer')">
       <ion-icon name="ios-swap" class="f18"></ion-icon>
       <span class="name"> 转账</span>
     </div>
-    <div class="btn" routerLink="/bill">
+    <div class="btn" (click)="nav('/bill')">
       <ion-icon name="ios-barcode" class="f20"></ion-icon>
       <span class="name"> 收款</span>
     </div>
