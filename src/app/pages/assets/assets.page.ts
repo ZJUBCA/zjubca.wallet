@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AccountService} from '../../services/account.service';
 import {EosService} from '../../services/eos.service';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
@@ -6,7 +6,6 @@ import {Storage} from '@ionic/storage';
 import {NavController, PopoverController, ToastController} from '@ionic/angular';
 import {HomePopMenuComponent} from '../../components/home-pop-menu/home-pop-menu.component';
 import {Resource} from '../../../classes';
-import {c} from 'tar';
 
 enum resrcType {
   BYTES = 0,
@@ -60,13 +59,10 @@ export class AssetsPage implements OnInit {
   }
 
   async ngOnInit() {
-    try {
-      // console.log(this.currAccount, this.accounts);
-      await this.fetchAccounts();
-    } catch (e) {
-      console.log(e);
-      await this.alert(e.message);
-    }
+    this.loading = true;
+    // console.log(this.currAccount, this.accounts);
+    await this.fetchAccounts();
+    this.loading = false;
     // listen for the url change
     this.router.events.subscribe(async (ev) => {
       // @ts-ignore
@@ -116,11 +112,19 @@ export class AssetsPage implements OnInit {
   /**
    * fetchDetails fetches account balance and resource.
    */
-  async fetchDetails() {
-    await Promise.all([
-      this.fetchBalance(this.currAccount),
-      this.fetchResource(this.currAccount)
-    ]);
+  async fetchDetails(ev?) {
+    try {
+      await Promise.all([
+        this.fetchBalance(this.currAccount),
+        this.fetchResource(this.currAccount)
+      ]);
+    } catch (e) {
+      await this.alert(e.message);
+    } finally {
+      if (ev) {
+        ev.target.complete();
+      }
+    }
   }
 
   async showMenu(ev) {
@@ -133,11 +137,7 @@ export class AssetsPage implements OnInit {
   }
 
   async fetchBalance(name: string) {
-    if (this.loading) {
-      return;
-    }
     try {
-      this.loading = true;
       this.balance = await this.eosService.getBalance(name);
     } catch (e) {
       await this.alert('获取余额失败');

@@ -27,7 +27,7 @@ export class DappPage implements OnInit {
     this.fetchDapps();
   }
 
-  async fetchDapps() {
+  async fetchDapps(ev?) {
     try {
       this.loading = true;
       const res = await axios.get(dappsUrl);
@@ -41,6 +41,9 @@ export class DappPage implements OnInit {
       await this.alert(e.message);
     } finally {
       this.loading = false;
+      if (ev) {
+        ev.target.complete();
+      }
     }
   }
 

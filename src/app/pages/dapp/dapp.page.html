@@ -4,7 +4,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="bg">
+  <ion-refresher [disabled]="loading" class="zIndex99" slot="fixed" (ionRefresh)="fetchDapps($event)">
+    <ion-refresher-content
+      class="refreshing"
+      pullingIcon="ios-arrow-down"
+      refreshingSpinner="crescent"
+    >
+    </ion-refresher-content>
+  </ion-refresher>
   <div class="loading" *ngIf="loading">
     <ion-spinner name="crescent"></ion-spinner>
   </div>

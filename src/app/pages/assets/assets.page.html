@@ -9,7 +9,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="bg">
+  <ion-refresher [disabled]="loading" class="zIndex99" slot="fixed" (ionRefresh)="fetchDetails($event)">
+    <ion-refresher-content
+      class="refreshing"
+      pullingIcon="ios-arrow-down"
+      refreshingSpinner="crescent"
+    >
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-card class="info" color="dark">
     <ion-grid padding>
       <ion-row class="account">
@@ -26,22 +34,20 @@
           </ion-select>
         </ion-col>
       </ion-row>
-      <div (click)="fetchBalance(currAccount)">
-        <ion-row>
-          <ion-col>EOS</ion-col>
-          <ion-col class="alignRight">
-            <ion-spinner *ngIf="loading" name="crescent" color="light" class="spinner"></ion-spinner>
-            <span *ngIf="!loading">{{balance.eos}}</span>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>ZJUBCA</ion-col>
-          <ion-col class="alignRight">
-            <ion-spinner *ngIf="loading" name="crescent" color="light" class="spinner"></ion-spinner>
-            <span *ngIf="!loading">{{balance.zjubca}}</span>
-          </ion-col>
-        </ion-row>
-      </div>
+      <ion-row>
+        <ion-col>EOS</ion-col>
+        <ion-col class="alignRight">
+          <ion-spinner *ngIf="loading" name="crescent" color="light" class="spinner"></ion-spinner>
+          <span *ngIf="!loading">{{balance.eos}}</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>ZJUBCA</ion-col>
+        <ion-col class="alignRight">
+          <ion-spinner *ngIf="loading" name="crescent" color="light" class="spinner"></ion-spinner>
+          <span *ngIf="!loading">{{balance.zjubca}}</span>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </ion-card>
   <ion-card>
