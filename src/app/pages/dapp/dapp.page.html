@@ -23,7 +23,8 @@
           <ion-label>{{group}}</ion-label>
           <ion-icon class="f18" name="ios-list" (click)="goNav('/dapp-list/'+group)"></ion-icon>
         </ion-list-header>
-        <ion-item *ngFor="let dapp of dapps[group].slice(0,showAmount)" class="dappItem" (click)="goDappNav(dapp.url)">
+        <ion-item *ngFor="let dapp of dapps[group].slice(0,showAmount)" class="dappItem"
+                  (click)="goDappNav(dapp.url,dapp.name)">
           <ion-avatar slot="start">
             <img [src]="dapp.icon"/>
           </ion-avatar>

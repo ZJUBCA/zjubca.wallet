@@ -50,6 +50,8 @@ export class DappContainerPage implements OnInit, OnDestroy {
     // console.log(url);
     // @ts-ignore
     this.url = this.sanitizer.bypassSecurityTrustResourceUrl(decodeURIComponent(url));
+    // @ts-ignore
+    this.dappName = this.route.queryParams.value.name;
     this.iframe = this.el.nativeElement.querySelector('.browser');
     // console.log(this.iframe);
     this.listenFunc = ev => this.handleMsg(ev);

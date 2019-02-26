@@ -10,7 +10,7 @@
 
 <ion-content>
   <ion-list lines="none">
-    <ion-item *ngFor="let dapp of dapps" class="dappItem" (click)="goNav(dapp.url)">
+    <ion-item *ngFor="let dapp of dapps" class="dappItem" (click)="goNav(dapp.url,dapp.name)">
       <ion-avatar slot="start">
         <img [src]="dapp.icon"/>
       </ion-avatar>

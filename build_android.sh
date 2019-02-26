@@ -19,7 +19,7 @@ fi
 
 cp $target $copy_target # copy the release apk to `keystore` dir
 
-jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore "$folder/$file" $copy_target zjubca.wallet
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore "$folder/$file" $copy_target zjubca_wallet
 
 zipalign -v 4 $copy_target $folder/zjubca_wallet.apk
 

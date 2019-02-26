@@ -23,13 +23,14 @@ export class DappPage implements OnInit {
   ) {
   }
 
-  ngOnInit() {
-    this.fetchDapps();
+  async ngOnInit() {
+    this.loading = true;
+    await this.fetchDapps();
+    this.loading = false;
   }
 
   async fetchDapps(ev?) {
     try {
-      this.loading = true;
       const res = await axios.get(dappsUrl);
       if (res.data) {
         this.groups = Object.keys(res.data);
@@ -40,15 +41,14 @@ export class DappPage implements OnInit {
       console.log(e);
       await this.alert(e.message);
     } finally {
-      this.loading = false;
       if (ev) {
         ev.target.complete();
       }
     }
   }
 
-  async goDappNav(url: string) {
-    await this.navCtrl.navigateForward('dapp/' + encodeURIComponent(url));
+  async goDappNav(url: string, name: string) {
+    await this.navCtrl.navigateForward('dapp/' + encodeURIComponent(url) + `?name=${name}`);
   }
 
   async goNav(url: string) {

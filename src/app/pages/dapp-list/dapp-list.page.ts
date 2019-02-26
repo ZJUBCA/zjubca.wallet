@@ -29,8 +29,8 @@ export class DappListPage implements OnInit {
     this.dapps = dapps[this.group];
   }
 
-  async goNav(url) {
-    await this.navCtrl.navigateForward('/dapp/' + encodeURIComponent(url));
+  async goNav(url: string, name: string) {
+    await this.navCtrl.navigateForward('dapp/' + encodeURIComponent(url) + `?name=${name}`);
   }
 
 }
