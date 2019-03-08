@@ -26,6 +26,8 @@ export class QrScanPage implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.qrScanner.hide();
+    this.qrScanner.pausePreview();
+    this.qrScanner.destroy();
   }
 
   async qrScan() {
