@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.zjubca.wallet" version="1.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.ionic.zjubca.wallet" version="1.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>ZJUBCA.WALLET</name>
     <description>A cryptocurrency wallet for college users based on EOSIO blockchain.</description>
     <author email="zjubca@sina.com" href="https://github.com/Blockchain-zju">ZJUBCA</author>
@@ -95,4 +95,7 @@
     <plugin name="cordova-plugin-inappbrowser" spec="~3.0.0" />
     <engine name="android" spec="7.1.4" />
     <engine name="ios" spec="4.5.5" />
+    <plugin name="cordova-plugin-photo-library" spec="2.2.1">
+        <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value=" " />
+    </plugin>
 </widget>

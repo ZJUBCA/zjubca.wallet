@@ -7,6 +7,8 @@ import {IonicModule} from '@ionic/angular';
 
 import {SharePage} from './share.page';
 import {QRCodeModule} from 'angularx-qrcode';
+import {PhotoLibrary} from '@ionic-native/photo-library/ngx';
+
 
 const routes: Routes = [
   {
@@ -23,6 +25,7 @@ const routes: Routes = [
     QRCodeModule,
     RouterModule.forChild(routes)
   ],
+  providers: [PhotoLibrary],
   declarations: [SharePage]
 })
 export class SharePageModule {

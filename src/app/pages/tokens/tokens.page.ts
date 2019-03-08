@@ -51,7 +51,7 @@ export class TokensPage implements OnInit {
         this.tokens[ind].value = val || 0;
       }
     });
-    console.log(tokens);
+    // console.log(tokens);
   }
 
 }

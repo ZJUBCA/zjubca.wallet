@@ -47,10 +47,16 @@
     },
     "cordova-sqlite-storage": {
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
+    },
+    "cordova-plugin-photo-library": {
+      "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "io.ionic.zjubca.wallet"
+    },
+    "cordova-plugin-file": {
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     }
   }

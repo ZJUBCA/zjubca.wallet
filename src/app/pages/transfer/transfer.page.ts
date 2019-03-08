@@ -92,12 +92,14 @@ export class TransferPage implements OnInit {
     });
 
     await modal.present();
-    console.log(this.form);
+    // console.log(this.form);
 
     const {data} = await modal.onDidDismiss();
     if (data && typeof data.result !== 'undefined') {
-      await this.alert('发送成功');
-      await this.navCtrl.navigateBack('/tabs/assets?refresh=1');
+      await this.alert('转账成功');
+      setTimeout(() => {
+        this.navCtrl.navigateBack('/tabs/assets?refresh=1');
+      }, 250);
     }
 
   }
