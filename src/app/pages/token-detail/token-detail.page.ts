@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import axios from '../../common/axios';
-import {endpoints, timezone, tokenCode, tokensUrl} from '../../common/config';
+import {endpoints, timezone, tokensUrl} from '../../common/config';
 import {ToastController} from '@ionic/angular';
 import {Token} from '../../../classes';
 import {EosService} from '../../services/eos.service';
@@ -55,8 +55,8 @@ export class TokenDetailPage implements OnInit {
   async ngOnInit() {
     // @ts-ignore
     this.symbol = this.routes.params.value.symbol;
-    this.fetchDetails();
-    this.getBalance();
+    await this.fetchDetails();
+    await this.getBalance();
     const currPeer = await this.networkService.getNetwork();
     if (endpoints.actions.findIndex(x => x.name === currPeer.name) < 0) {
       this.noSupportActions = true;
@@ -68,7 +68,7 @@ export class TokenDetailPage implements OnInit {
   async fetchDetails() {
     try {
       const result = await axios.get(tokensUrl);
-      console.log(result);
+      // console.log(result);
       this.tokenInfo = result.data.find(item => item.symbol === this.symbol);
     } catch (e) {
       console.log(e);
@@ -79,7 +79,7 @@ export class TokenDetailPage implements OnInit {
   async getBalance() {
     try {
       const name = await this.accService.current();
-      const token = await this.eosService.getTokenBalance(tokenCode, name, this.symbol);
+      const token = await this.eosService.getTokenBalance(this.tokenInfo.account, name, this.symbol);
       if (token.length === 0) {
         this.balance = '0';
       } else {
@@ -135,7 +135,7 @@ export class TokenDetailPage implements OnInit {
         }
 
         // filter contract account
-        if (item.action_trace.act.account !== tokenCode) {
+        if (item.action_trace.act.account !== this.tokenInfo.account) {
           return false;
         }
 

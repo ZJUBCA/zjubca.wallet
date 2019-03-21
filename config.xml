@@ -93,9 +93,9 @@
     <plugin name="cordova-plugin-compat" spec="1.2" />
     <plugin name="cordova-plugin-themeablebrowser" spec="~0.2.17" />
     <plugin name="cordova-plugin-inappbrowser" spec="~3.0.0" />
-    <engine name="android" spec="7.1.4" />
-    <engine name="ios" spec="4.5.5" />
     <plugin name="cordova-plugin-photo-library" spec="2.2.1">
         <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value=" " />
     </plugin>
+    <engine name="android" spec="7.1.4" />
+    <engine name="ios" spec="4.5.5" />
 </widget>

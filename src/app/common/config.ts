@@ -5,7 +5,7 @@ export const tokensUrl = 'https://raw.githubusercontent.com/Blockchain-zju/walle
 export const dappsUrl = 'https://raw.githubusercontent.com/Blockchain-zju/wallet-config/master/dapps.json';
 
 // account of token contract
-export const tokenCode = 'zjubcatokent';
+export const tokenCode = 'zjubcatokens';
 
 // kylin testnet chain id
 export const CHAINID = '5fff1dae8dc8e2fc4d5b23b2c7665c97f9e9d8edf2b6485a86ba311c25639191';

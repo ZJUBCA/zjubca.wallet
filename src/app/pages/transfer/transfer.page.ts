@@ -4,8 +4,9 @@ import {AccountService} from '../../services/account.service';
 import {ModalController, NavController, ToastController} from '@ionic/angular';
 import {TransactModalComponent} from '../../modals/transact-modal/transact-modal.component';
 import axios from '../../common/axios';
-import {tokenCode, tokensUrl} from '../../common/config';
+import {tokensUrl} from '../../common/config';
 import {ActivatedRoute} from '@angular/router';
+import {Token} from '../../../classes';
 
 class TransferForm {
   account: string;
@@ -23,6 +24,7 @@ export class TransferPage implements OnInit {
 
   form: TransferForm;
   symbols: string[] = ['EOS'];
+  tokens: Token[];
 
   constructor(
     private eosService: EosService,
@@ -52,8 +54,8 @@ export class TransferPage implements OnInit {
   async fetchSymbols(): Promise<string[]> {
     try {
       const result = await axios.get(tokensUrl);
-      const tokens = result.data;
-      return tokens.map(item => item.symbol);
+      this.tokens = result.data;
+      return this.tokens.map(item => item.symbol);
     } catch (e) {
       console.log(e);
       return [];
@@ -64,6 +66,10 @@ export class TransferPage implements OnInit {
     // this.eosService.init(name, '123', ['active']);
     const actor = await this.accService.current();
     const code = this.filterCode(this.form.symbol);
+    if (!code) {
+      await this.alert('找不到对应的Token合约');
+      return await this.navCtrl.pop();
+    }
     const asset = `${this.form.value} ${this.form.symbol}`;
     const modal = await this.modalController.create({
       component: TransactModalComponent,
@@ -125,7 +131,8 @@ export class TransferPage implements OnInit {
       case 'EOS':
         return 'eosio.token';
       default:
-        return tokenCode;
+        const code = this.tokens.find(x => x.symbol === symbol);
+        return code && code.account;
     }
   }
 
