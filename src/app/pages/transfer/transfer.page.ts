@@ -137,7 +137,7 @@ export class TransferPage implements OnInit {
   }
 
   valueBlur() {
-    this.form.value = (+this.form.value).toFixed(4);
+    this.form.value = (+this.form.value || 0).toFixed(4);
   }
 
   goQRScan() {

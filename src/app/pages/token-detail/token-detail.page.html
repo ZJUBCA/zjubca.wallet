@@ -19,10 +19,10 @@
         <ion-text color="dark" class="f20">{{symbol}}</ion-text>
       </div>
       <div class="gutter balance">
-        <ion-text color="dark">余额 {{balance}}</ion-text>
+        <ion-text color="dark">余额 &nbsp;{{balance}}</ion-text>
       </div>
       <div class="gutter intro f14">
-        <ion-text>{{tokenInfo.intro}}测试测试测试测试</ion-text>
+        <ion-text>{{tokenInfo.intro || '暂无简介'}}</ion-text>
       </div>
     </ion-card-content>
   </ion-card>
