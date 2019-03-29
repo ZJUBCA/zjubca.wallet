@@ -48,6 +48,22 @@ This wallet supports [SimpleWallet](https://github.com/southex/SimpleWallet) pro
 
 Checkout the [dapp-dev-guide](https://github.com/Blockchain-zju/dapp-dev-guide).
 
+## Configuration
+
+钱包涉及两个须从远端获取的配置信息：
+
+- Dapp 列表
+- Token 列表
+
+请移步[wallet-config](https://github.com/Blockchain-zju/wallet-config)。
+
+Wallet includes two configurations fetching from remote:
+
+- Dapp list
+- Token list
+
+Checkout the [wallet-config](https://github.com/Blockchain-zju/wallet-config).
+
 ## Dev plan
 - [x] 钱包基本功能/Basic functions
 - [x] 钱包内Dapp与钱包App组件交互功能/In-wallet Dapps interact with the wallet app components.
