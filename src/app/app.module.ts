@@ -22,6 +22,7 @@ import {TransferPageModule} from './pages/transfer/transfer.module';
 import {WalletDetailPageModule} from './pages/wallet-detail/wallet-detail.module';
 import {ThemeableBrowser} from '@ionic-native/themeable-browser/ngx';
 import {InAppBrowser} from '@ionic-native/in-app-browser/ngx';
+import {Device} from '@ionic-native/device/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -47,6 +48,7 @@ import {InAppBrowser} from '@ionic-native/in-app-browser/ngx';
     SplashScreen,
     ThemeableBrowser,
     InAppBrowser,
+    Device,
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
   ],
   bootstrap: [AppComponent],

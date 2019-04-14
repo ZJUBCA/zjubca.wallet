@@ -18,7 +18,7 @@
       <ion-icon slot="start" color="medium" name="share-alt"></ion-icon>
       <ion-label>推荐zjubca.wallet</ion-label>
     </ion-item>
-    <ion-item (click)="checkUpdate()">
+    <ion-item *ngIf="showCheckUpdate" (click)="checkUpdate()">
       <ion-icon slot="start" color="medium" name="color-wand"></ion-icon>
       <ion-label>检查更新</ion-label>
     </ion-item>

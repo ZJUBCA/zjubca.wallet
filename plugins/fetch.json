@@ -34,7 +34,7 @@
   "cordova-plugin-device": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-device@2.0.2"
+      "id": "cordova-plugin-device@^2.0.2"
     },
     "is_top_level": true,
     "variables": {}
@@ -67,14 +67,6 @@
     "source": {
       "type": "registry",
       "id": "cordova-sqlite-storage@2.6.0"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-httpd": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-httpd"
     },
     "is_top_level": true,
     "variables": {}
@@ -149,6 +141,14 @@
     "source": {
       "type": "registry",
       "id": "cordova-plugin-photo-library"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-httpd": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-httpd"
     },
     "is_top_level": true,
     "variables": {}

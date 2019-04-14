@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.zjubca.wallet" version="1.0.8" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.ionic.zjubca.wallet" version="1.0.9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>ZJUBCA.WALLET</name>
     <description>A cryptocurrency wallet for college users based on EOSIO blockchain.</description>
     <author email="zjubca@sina.com" href="https://github.com/Blockchain-zju">ZJUBCA</author>
@@ -80,12 +80,10 @@
     <plugin name="cordova-clipboard" spec="~1.2.1" />
     <plugin name="cordova-plugin-whitelist" spec="~1.3.3" />
     <plugin name="cordova-plugin-statusbar" spec="~2.4.2" />
-    <plugin name="cordova-plugin-device" spec="~2.0.2" />
     <plugin name="cordova-plugin-splashscreen" spec="~5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^2.3.2" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-sqlite-storage" spec="~2.6.0" />
-    <plugin name="cordova-plugin-httpd" spec="~0.9.3" />
     <plugin name="cordova-android-support-gradle-release" spec="^2.0.1">
         <variable name="ANDROID_SUPPORT_VERSION" value="26+" />
     </plugin>
@@ -96,6 +94,8 @@
     <plugin name="cordova-plugin-photo-library" spec="2.2.1">
         <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value=" " />
     </plugin>
+    <plugin name="cordova-plugin-device" spec="^2.0.2" />
+    <plugin name="cordova-plugin-httpd" spec="0.9.3" />
     <engine name="android" spec="7.1.4" />
     <engine name="ios" spec="4.5.5" />
 </widget>

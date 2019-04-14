@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AlertController, ToastController} from '@ionic/angular';
 import {VersionService} from '../../services/version.service';
+import {Device} from '@ionic-native/device/ngx';
 
 @Component({
   selector: 'app-account',
@@ -9,13 +9,19 @@ import {VersionService} from '../../services/version.service';
 })
 export class AccountPage implements OnInit {
 
+  showCheckUpdate = true;
+
   constructor(
-    private versionSvc: VersionService
+    private versionSvc: VersionService,
+    private device: Device,
   ) {
 
   }
 
   ngOnInit() {
+    if (this.device.platform === 'iOS') {
+      this.showCheckUpdate = false;
+    }
   }
 
   async checkUpdate() {

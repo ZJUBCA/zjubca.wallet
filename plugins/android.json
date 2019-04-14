@@ -17,9 +17,6 @@
     "cordova-plugin-device": {
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     },
-    "cordova-plugin-httpd": {
-      "PACKAGE_NAME": "io.ionic.zjubca.wallet"
-    },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     },
@@ -49,6 +46,9 @@
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     },
     "cordova-plugin-photo-library": {
+      "PACKAGE_NAME": "io.ionic.zjubca.wallet"
+    },
+    "cordova-plugin-httpd": {
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     }
   },

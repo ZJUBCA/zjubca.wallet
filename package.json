@@ -1,6 +1,6 @@
 {
   "name": "zjubca.wallet",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "author": "ZJUBCA",
   "homepage": "https://github.com/Blockchain-zju/zjubca.wallet",
   "scripts": {
@@ -27,6 +27,7 @@
     "@ionic-native/camera-preview": "^5.0.0",
     "@ionic-native/clipboard": "^5.0.0",
     "@ionic-native/core": "5.0.x",
+    "@ionic-native/device": "^5.4.0",
     "@ionic-native/httpd": "^5.0.0",
     "@ionic-native/in-app-browser": "^5.2.0",
     "@ionic-native/ionic-webview": "^5.0.0",
@@ -112,7 +113,6 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-httpd": {},
       "cordova-android-support-gradle-release": {
         "ANDROID_SUPPORT_VERSION": "26+"
       },
@@ -121,7 +121,8 @@
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-photo-library": {
         "PHOTO_LIBRARY_USAGE_DESCRIPTION": " "
-      }
+      },
+      "cordova-plugin-httpd": {}
     },
     "platforms": [
       "android",

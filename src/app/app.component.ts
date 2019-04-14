@@ -5,6 +5,7 @@ import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {AccountService} from './services/account.service';
 import {VersionService} from './services/version.service';
+import {Device} from '@ionic-native/device/ngx';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     private navCtrl: NavController,
     private accService: AccountService,
-    private versionSvc: VersionService
+    private versionSvc: VersionService,
+    private device: Device,
   ) {
     this.initializeApp();
   }
@@ -35,7 +37,9 @@ export class AppComponent {
       await this.navCtrl.navigateRoot('/tabs/assets', {replaceUrl: true});
     }
 
-    // check update
-    await this.versionSvc.checkupdate(false);
+    if (this.device.platform !== 'iOS') {
+      // check update
+      await this.versionSvc.checkupdate(false);
+    }
   }
 }
