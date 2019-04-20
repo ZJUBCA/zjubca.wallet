@@ -13,7 +13,7 @@ export class DappPage implements OnInit {
 
   groups: string[];
   dapps: any;
-  showAmount = 5; // amount of showing dapps in each group
+  showAmount = 12; // amount of showing dapps in each group
   loading = false;
 
   constructor(
