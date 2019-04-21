@@ -45,7 +45,7 @@ export class QrScanPage implements OnInit, OnDestroy {
               url += `&amount=${data.amount}`;
             }
             await this.navCtrl.pop();
-            await this.navCtrl.navigateForward(url, {replaceUrl: true});
+            await this.navCtrl.navigateForward(url);
             scanSub.unsubscribe();
           }
         });

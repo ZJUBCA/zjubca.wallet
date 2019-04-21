@@ -42,13 +42,14 @@ export class TransferPage implements OnInit {
     this.symbols = this.symbols.concat(await this.fetchSymbols());
     // @ts-ignore
     const {symbol, to, amount} = this.route.queryParams.value;
+    // console.log(symbol, to, amount);
     setTimeout(() => {
       this.form.symbol = symbol || 'EOS';
       this.form.account = to || '';
       if (typeof amount !== 'undefined') {
         this.form.value = (+amount || 0).toFixed(4);
       }
-    });
+    }, 20);
   }
 
   async fetchSymbols(): Promise<string[]> {
@@ -140,7 +141,8 @@ export class TransferPage implements OnInit {
     this.form.value = (+this.form.value || 0).toFixed(4);
   }
 
-  goQRScan() {
-    this.navCtrl.navigateForward('/qrscan', {replaceUrl: true});
+  async goQRScan() {
+    await this.navCtrl.pop();
+    await this.navCtrl.navigateForward('/qrscan');
   }
 }
