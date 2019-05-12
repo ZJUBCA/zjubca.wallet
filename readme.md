@@ -72,6 +72,9 @@ Checkout the [wallet-config](https://github.com/Blockchain-zju/wallet-config).
 ## Memorandum and Experience
 - qr-scanner与camera-preview插件存在冲突。
 
+### IOS
+由于所用到的部分Cordova插件对Swift4支持尚不成熟，请务必安装并使用**xcode 10.1**。
+
 ### Android
 - 请先下载Android Studio并成功运行一个项目(此过程会安装必要依赖)后再编译ionic项目。
 
