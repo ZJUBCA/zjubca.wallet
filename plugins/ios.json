@@ -19,6 +19,9 @@
     "cordova-plugin-device": {
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     },
+    "cordova-plugin-httpd": {
+      "PACKAGE_NAME": "io.ionic.zjubca.wallet"
+    },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     },
@@ -26,6 +29,10 @@
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     },
     "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "io.ionic.zjubca.wallet"
+    },
+    "cordova-plugin-photo-library": {
+      "PHOTO_LIBRARY_USAGE_DESCRIPTION": " ",
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     },
     "cordova-plugin-qrscanner": {
@@ -44,13 +51,6 @@
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     },
     "cordova-sqlite-storage": {
-      "PACKAGE_NAME": "io.ionic.zjubca.wallet"
-    },
-    "cordova-plugin-photo-library": {
-      "PHOTO_LIBRARY_USAGE_DESCRIPTION": " ",
-      "PACKAGE_NAME": "io.ionic.zjubca.wallet"
-    },
-    "cordova-plugin-httpd": {
       "PACKAGE_NAME": "io.ionic.zjubca.wallet"
     }
   },

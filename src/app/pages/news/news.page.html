@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>news</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-virtual-scroll [items]="news">
+    <ion-item *virtualItem="let item">
+      <div>
+        <span class="title">{{item.title}}</span>
+
+      </div>
+    </ion-item>
+  </ion-virtual-scroll>
+</ion-content>

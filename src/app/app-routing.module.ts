@@ -18,6 +18,7 @@ const routes: Routes = [
   {path: 'export-key/:privkey', loadChildren: './pages/export-key/export-key.module#ExportKeyPageModule'},
   {path: 'dapp-list/:group', loadChildren: './pages/dapp-list/dapp-list.module#DappListPageModule'},
   {path: 'share', loadChildren: './pages/share/share.module#SharePageModule'},
+  {path: 'news', loadChildren: './pages/news/news.module#NewsPageModule'},
 ];
 
 @NgModule({

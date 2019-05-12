@@ -35,6 +35,15 @@ const routes: Routes = [
             pathMatch: 'full'
           }
         ]
+      },
+      {
+        path: 'news',
+        children: [
+          {
+            path: '',
+            loadChildren: '../pages/news/news.module#NewsPageModule',
+          }
+        ]
       }
     ]
   },
