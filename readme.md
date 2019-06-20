@@ -88,5 +88,5 @@ Checkout the [wallet-config](https://github.com/Blockchain-zju/wallet-config).
 5. You'll find the `zjubca_wallet.apk` in dir `android-deploy`.
 
 ### IOS
-3. `npm run build-ios`
+3. `npm run build-ios --prod`
 4. Open `XCode` to sign the project, and get `ipa` binary file.
