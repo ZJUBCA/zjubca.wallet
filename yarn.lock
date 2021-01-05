@@ -358,6 +358,13 @@
   dependencies:
     "@types/cordova" latest
 
+"@ionic-native/device@^5.4.0":
+  version "5.30.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/device/-/device-5.30.0.tgz#2097d79bc6191a8bda18ff4f37c7377c893cf9f0"
+  integrity sha512-JI3+OzwYbe22NmBfgvK34fmCY4xb6WcLbwu2/qCnK3QoX4T0Xrvb0KJYUCvjx4DZQdcv3ov5xAWLxNpIlbl3YA==
+  dependencies:
+    "@types/cordova" latest
+
 "@ionic-native/httpd@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/httpd/-/httpd-5.0.0.tgz#403f6580d3bc5057f7af645c236b951431e187c1"
@@ -376,6 +383,13 @@
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/ionic-webview/-/ionic-webview-5.0.0.tgz#8c755db35f9b6e3f90bb1a6847be2b1c359aa3f0"
   integrity sha512-Gz6shJXPJmrLcNz2ETPoCQoqdX/6lSkH2GOL0ZORsEBT78U+5Hlo9bQWfOvNFChKjBxmnhsJTFe3Ap18F/uZng==
+  dependencies:
+    "@types/cordova" latest
+
+"@ionic-native/photo-library@^5.2.0":
+  version "5.30.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/photo-library/-/photo-library-5.30.0.tgz#901820a784261202e3a53ff0871202e287d8bc12"
+  integrity sha512-ScX7ElXA5ZLXPMXtEuKmXRdq0YzLQb3bdRX5QsJSjfXtOu1VSDBEdaOnU/GzsmvTrlF/aRi2ipOoBzRSP8pqXQ==
   dependencies:
     "@types/cordova" latest
 
@@ -535,13 +549,6 @@
     ecstatic "^2.2.1"
     opn "^5.1.0"
     tiny-lr "^1.0.5"
-
-"@types/cordova-plugin-file-transfer@^1.6.2":
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/@types/cordova-plugin-file-transfer/-/cordova-plugin-file-transfer-1.6.2.tgz#fd87d3f91781a1519dab8b87723d756eefdda998"
-  integrity sha512-jWZQefyVn/GiQAdummRoY1v5cUY4dT7GNk3Hg40iUtL68y40jKWD3ALAtMM4pnYt9RSMTlsgs1I7/apXexddvw==
-  dependencies:
-    cordova-plugin-file-transfer "*"
 
 "@types/cordova@latest":
   version "0.0.34"
@@ -1133,6 +1140,13 @@ async@1.x, async@^1.5.2:
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
   integrity sha1-7GphrlZIDAw8skHJVhjiCJL5Zyo=
 
+async@^2.1.4:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.6.3.tgz#d72625e2344a3656e3a3ad4fa749fa83299d82ff"
+  integrity sha512-zflvls11DCy+dQWzTW2dzuilv8Z5X/pjfmZOWba6TNIVDm+2UDaJmXSOXlasHKfNBs8oo3M0aT50fDEWfKZjXg==
+  dependencies:
+    lodash "^4.17.14"
+
 async@^2.5.0, async@^2.6.1:
   version "2.6.1"
   resolved "http://registry.npm.taobao.org/async/download/async-2.6.1.tgz#b245a23ca71930044ec53fa46aa00a3e87c6a610"
@@ -1172,13 +1186,12 @@ aws4@^1.8.0:
   resolved "http://registry.npm.taobao.org/aws4/download/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
   integrity sha1-8OAD2cqef1nHpQiUXXsu+aBKVC8=
 
-axios@^0.18.0:
-  version "0.18.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
-  integrity sha1-MtU+SFHv3AoRmTts0AB4nXDAUQI=
+axios@^0.21.1:
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
   dependencies:
-    follow-redirects "^1.3.0"
-    is-buffer "^1.1.5"
+    follow-redirects "^1.10.0"
 
 babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
   version "6.26.0"
@@ -2217,11 +2230,6 @@ cordova-plugin-device@^2.0.2:
   resolved "https://registry.yarnpkg.com/cordova-plugin-device/-/cordova-plugin-device-2.0.2.tgz#fc08f3722e67eef7b6c67bfc99a83df6add0baba"
   integrity sha1-/Ajzci5n7ve2xnv8mag99q3Quro=
 
-cordova-plugin-file-transfer@*, cordova-plugin-file-transfer@1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-file-transfer/-/cordova-plugin-file-transfer-1.7.1.tgz#a75d8be2ebc3bb9b23c5b1bbd199214ec267586b"
-  integrity sha1-p12L4uvDu5sjxbG70ZkhTsJnWGs=
-
 cordova-plugin-file@6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/cordova-plugin-file/-/cordova-plugin-file-6.0.1.tgz#49606b8c15a5688d4728f92e4a7325a061de07f5"
@@ -2247,16 +2255,12 @@ cordova-plugin-ionic-webview@^2.3.2:
   resolved "https://registry.yarnpkg.com/cordova-plugin-ionic-webview/-/cordova-plugin-ionic-webview-2.3.2.tgz#f4b1d669cefe7d25cfe47cfc9c6fe820211b63fa"
   integrity sha512-f7nXWTT93ZAJP4fMUxZWd8BacegTJNUK9Cocu0n2SH8gliAIjKzJtvSzEONSJ5b1Xp2osdUF6f5x+oWvyM90jQ==
 
-cordova-plugin-ionic@5.3.0:
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-ionic/-/cordova-plugin-ionic-5.3.0.tgz#9713a40b53a0e2938e4bf04611fd4efc2f7cd88a"
-  integrity sha512-INMNiPlBsgAndLBqOGvrvGhz/gV4PtLu7yOgRZ6cwQq7qBSnO59GheRZC97rh/1j5LakkKi9lJEeve8+xoz8jg==
+cordova-plugin-photo-library@2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-photo-library/-/cordova-plugin-photo-library-2.2.1.tgz#d8b06b238c4875a5d535dcea5a9e4119acff8793"
+  integrity sha512-oz+iWBlW6tBtpmACGshCm0Z/deMbbFwcC67avnx8eFpX4o4nfA4jiHIImW1GO9NBMVkoTKH71OixDKIqq/0uXA==
   dependencies:
-    "@types/cordova-plugin-file-transfer" "^1.6.2"
-    mkpath ">=1.0.0"
-    node-version-compare ">=1.0.1"
-    plist ">=1.2.0"
-    xml2js ">=0.4"
+    async "^2.1.4"
 
 cordova-plugin-qrscanner@2.6.0:
   version "2.6.0"
@@ -2490,7 +2494,7 @@ debug@2.6.9, debug@^2.1.2, debug@^2.2.0, debug@^2.3.3, debug@^2.6.8:
   dependencies:
     ms "2.0.0"
 
-debug@3.1.0, debug@=3.1.0, debug@~3.1.0:
+debug@3.1.0, debug@~3.1.0:
   version "3.1.0"
   resolved "http://registry.npm.taobao.org/debug/download/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
   integrity sha1-W7WgZyYotkFJVmuhaBnmFRjGcmE=
@@ -3414,12 +3418,10 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.1"
     readable-stream "^2.0.4"
 
-follow-redirects@^1.0.0, follow-redirects@^1.3.0, follow-redirects@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.6.1.tgz#514973c44b5757368bad8bddfe52f81f015c94cb"
-  integrity sha512-t2JCjbzxQpWvbhts3l6SH1DKzSrx8a+SsaVf4h6bG4kOXUuPYS/kg2Lr4gQSb7eemaHqJkOThF1BGyjlUkO1GQ==
-  dependencies:
-    debug "=3.1.0"
+follow-redirects@^1.0.0, follow-redirects@^1.10.0, follow-redirects@^1.6.1:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.1.tgz#5f69b813376cee4fd0474a3aba835df04ab763b7"
+  integrity sha512-SSG5xmZh1mkPGyKzjZP8zLjltIfpW32Y5QpdNJyjcfGxK3qo3NDDkZOZSFiGn1A6SclQxY9GzEwAHQ3dmYRWpg==
 
 for-in@^0.1.3:
   version "0.1.8"
@@ -5022,6 +5024,11 @@ lodash@^4.0.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.4, lodash@^4.17.5,
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
 
+lodash@^4.17.14:
+  version "4.17.20"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
+  integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
+
 log-symbols@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-2.2.0.tgz#5740e1c5d6f0dfda4ad9323b5332107ef6b4c40a"
@@ -5402,11 +5409,6 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
   dependencies:
     minimist "0.0.8"
 
-mkpath@>=1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/mkpath/-/mkpath-1.0.0.tgz#ebb3a977e7af1c683ae6fda12b545a6ba6c5853d"
-  integrity sha1-67Opd+evHGg65v2hK1Raa6bFhT0=
-
 moment@^2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
@@ -5611,11 +5613,6 @@ node-sass@4.10.0:
     sass-graph "^2.2.4"
     stdout-stream "^1.4.0"
     "true-case-path" "^1.0.2"
-
-node-version-compare@>=1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/node-version-compare/-/node-version-compare-1.0.1.tgz#d85bfd20f0acade33577f56682c7109c34c550cd"
-  integrity sha1-2Fv9IPCsreM1d/VmgscQnDTFUM0=
 
 nopt@1.0.9:
   version "1.0.9"
@@ -6261,7 +6258,7 @@ plist@2.1.0, plist@^2.1.0:
     xmlbuilder "8.2.2"
     xmldom "0.1.x"
 
-plist@>=1.2.0, plist@^3.0.1:
+plist@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/plist/-/plist-3.0.1.tgz#a9b931d17c304e8912ef0ba3bdd6182baf2e1f8c"
   integrity sha512-GpgvHHocGRyQm74b6FWEZZVRroHKE1I0/BTjAmySaohK+cUn+hZpbqXkc3KWgW3gQYkqcQej35FohcT0FRlkRQ==
@@ -8764,7 +8761,7 @@ xml-escape@1.1.0:
   resolved "https://registry.yarnpkg.com/xml-escape/-/xml-escape-1.1.0.tgz#3904c143fa8eb3a0030ec646d2902a2f1b706c44"
   integrity sha1-OQTBQ/qOs6ADDsZG0pAqLxtwbEQ=
 
-xml2js@>=0.4, xml2js@^0.4.17, xml2js@^0.4.19, xml2js@~0.4.19:
+xml2js@^0.4.17, xml2js@^0.4.19, xml2js@~0.4.19:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.4.19.tgz#686c20f213209e94abf0d1bcf1efaa291c7827a7"
   integrity sha512-esZnJZJOiJR9wWKMyuvSE1y6Dq5LCuJanqhxslH2bxM6duahNZ+HMpCLhBQGZkbX6xRf8x1Y2eJlgt2q3qo49Q==

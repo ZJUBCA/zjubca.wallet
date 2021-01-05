@@ -39,7 +39,7 @@
     "@ionic/angular": "^4.0.0",
     "@ionic/storage": "^2.2.0",
     "angularx-qrcode": "^1.5.2",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "buffer": "^5.2.1",
     "cordova-android": "7.1.4",
     "cordova-android-support-gradle-release": "^2.0.1",
