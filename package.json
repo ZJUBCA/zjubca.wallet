@@ -63,7 +63,7 @@
     "core-js": "^2.5.4",
     "crypto-js": "^3.1.9-1",
     "debug": "^4.1.1",
-    "follow-redirects": "^1.6.1",
+    "follow-redirects": "^1.14.8",
     "iconv-lite": "^0.4.24",
     "is-buffer": "^2.0.3",
     "moment": "^2.24.0",
